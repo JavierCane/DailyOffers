@@ -3,7 +3,7 @@ package me.javierferrer.dailyoffersapp;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class ProductsList extends Activity
+public class productsList extends Activity
 {
 
 	/**
