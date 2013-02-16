@@ -1,19 +1,231 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="logLevel" value="error" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="" />
+        <option name="name" value="Errors" />
+        <option name="pid" value="" />
+      </filter>
+    </filters>
+  </component>
+  <component name="AndroidDesignerProfile">
+    <option name="fullProfile">
+      <profile>
+        <option name="device" value="4.65in 720p (Galaxy Nexus)" />
+        <option name="deviceConfiguration" value="Portrait" />
+        <option name="targetHashString" value="android-10" />
+        <option name="theme" value="Sherlock.__Theme" />
+      </profile>
+    </option>
+    <option name="selection" value="[Full]" />
+  </component>
+  <component name="AndroidLayoutPreviewToolWindow">
+    <option name="state">
+      <GlobalState>
+        <option name="device" value="2.7in QVGA" />
+        <option name="dockMode" value="" />
+        <option name="nightMode" value="notnight" />
+        <option name="targetHashString" value="android-10" />
+        <option name="theme" value="Theme" />
+        <option name="visible" value="false" />
+      </GlobalState>
+    </option>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Errors" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsList.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyOffers.iml" afterPath="$PROJECT_DIR$/DailyOffers.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DailyOffers.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361027624448" ignored="false" />
-    <file path="/fragment.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361027639022" ignored="false" />
-    <file path="/a.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1360965734267" ignored="false" />
+    <file path="/Dummy.txt" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361052441625" ignored="false" />
+    <file path="/fragment.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361053777962" ignored="false" />
+    <file path="/a.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361028273612" ignored="false" />
     <file path="/ProductsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361024664529" ignored="false" />
-    <file path="/productsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361027634118" ignored="false" />
-    <file path="/a.dummy" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361027665012" ignored="false" />
-    <file path="/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361027672955" ignored="false" />
+    <file path="/productsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361055075496" ignored="false" />
+    <file path="/a.dummy" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361043673735" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361034403638" ignored="false" />
+    <file path="/main.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361028241681" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361038944895" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/res/values/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361038944895" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/project.properties" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361038944895" ignored="false" />
+    <file path="$PROJECT_DIR$/../ActionBarSherlock/project.properties" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361030156987" ignored="false" />
+    <file path="$PROJECT_DIR$/../MyAwesomeAndroidApp/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361031166284" ignored="false" />
+    <file path="$PROJECT_DIR$/../MyAwesomeAndroidApp/res/values/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361031070755" ignored="false" />
+    <file path="$PROJECT_DIR$/../MyAwesomeAndroidApp/build.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361031071212" ignored="false" />
+    <file path="$PROJECT_DIR$/../MyAwesomeAndroidApp/src/me/javierferrer/MyAwesomeAndroidApp/MainActivity.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361031476128" ignored="false" />
+    <file path="$PROJECT_DIR$/../MyAwesomeAndroidApp/res/layout/main.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361031071212" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/Window.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/SubMenu.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/MenuItem.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/MenuInflater.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/Menu.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/CollapsibleActionView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/ScrollingTabContainerView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/ActionMode.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/ActionProvider.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsSpinner.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsProgressBar.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsColorDrawable.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsLinearLayout.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsListPopupWindow.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsAdapterView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/FakeDialogPhoneWindow.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/ActionBarView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/SubMenuWrapper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/AbsActionBarView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/ActionBarContainer.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/ActionBarContextView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuPopupHelper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuPresenter.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuWrapper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/SubMenuBuilder.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuItemImpl.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuItemWrapper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuBuilder.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/BaseMenuPresenter.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/ListMenuItemView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/ActionMenuView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/ActionMenuPresenter.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/ActionMenu.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/ActionMenuItem.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806928" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/ActionMenuItemView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/View_HasStateListenerSupport.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/View_OnAttachStateChangeListener.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/ValueAnimator.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/view/NineViewGroup.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/view/animation/AnimatorProxy.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineFrameLayout.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineLinearLayout.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/ActionProviderWrapper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/PropertyValuesHolder.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/TypeEvaluator.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/ObjectAnimator.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntEvaluator.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntKeyframeSet.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/Keyframe.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/KeyframeSet.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806929" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorSet.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatEvaluator.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorListenerAdapter.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/app/ActionBarImpl.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/nineoldandroids/animation/Animator.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/app/ActionBarWrapper.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/ActionBarSherlockNative.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/ResourcesCompat.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/ActionBarSherlockCompat.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806930" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values-xlarge/abs__dimens.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values-v14/abs__styles.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values-v14/abs__themes.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values-sw600dp/abs__dimens.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values-v11/abs__themes.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values/abs__attrs.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values/abs__ids.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values/abs__strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/values/abs__styles.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__list_menu_item_layout.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__list_menu_item_radio.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__popup_menu_item_layout.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__screen_action_bar.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806931" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__screen_action_bar_overlay.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__screen_simple.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__screen_simple_overlay_action_mode.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__search_dropdown_item_icons_2line.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__search_view.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__simple_dropdown_hint.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/sherlock_spinner_dropdown_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/sherlock_spinner_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout-large/abs__action_mode_close_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout-v14/sherlock_spinner_dropdown_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout-v14/sherlock_spinner_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout-xlarge/abs__screen_action_bar.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout-xlarge/abs__screen_action_bar_overlay.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__activity_chooser_view.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__activity_chooser_view_list_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__dialog_title_holo.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__list_menu_item_checkbox.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__list_menu_item_icon.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__list_selector_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__progress_horizontal_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__progress_horizontal_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806932" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_bar_home.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__progress_medium_holo.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_bar_tab.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__search_dropdown_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_bar_tab_bar_view.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__search_dropdown_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_bar_title_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__spinner_ab_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_menu_item_layout.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__spinner_ab_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_menu_layout.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__tab_indicator_ab_holo.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_mode_bar.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__textfield_searchview_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/layout/abs__action_mode_close_item.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__textfield_searchview_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__textfield_searchview_right_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__textfield_searchview_right_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable-v11/abs__progress_medium_holo.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/color/abs__primary_text_disable_only_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/color/abs__primary_text_disable_only_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/color/abs__primary_text_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/color/abs__primary_text_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806933" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__activated_background_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__activated_background_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__btn_cab_done_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__btn_cab_done_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__ic_clear.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__ic_clear_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__ic_menu_moreoverflow_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__item_background_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__item_background_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__list_selector_background_transition_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__list_selector_background_transition_holo_light.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="$PROJECT_DIR$/actionbarsherlock/res/drawable/abs__list_selector_holo_dark.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
+    <file path="/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361039811670" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361037037344" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/res/values/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361037037344" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/project.properties" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361037037344" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/gen/com/example/demos/R.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361039002635" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/gen/com/example/demos/Manifest.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361039002635" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/gen/com/example/demos/BuildConfig.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361039542365" ignored="false" />
+    <file path="/SampleList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361041372818" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/fragments/project.properties" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361043307065" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/fragments/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361043307065" ignored="false" />
+    <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/fragments/res/values/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361043307065" ignored="false" />
+    <file path="/Categories.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361043834964" ignored="false" />
+    <file path="/Applications/android-sdk-macosx/samples/android-16/XmlAdapters/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361051094827" ignored="false" />
+    <file path="/Applications/android-sdk-macosx/samples/android-16/XmlAdapters/res/values/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361051094828" ignored="false" />
+    <file path="/Applications/android-sdk-macosx/samples/android-16/XmlAdapters/gen/com/example/XmlAdapters/BuildConfig.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361051164614" ignored="false" />
+    <file path="/itemsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361052991520" ignored="false" />
+    <file path="/products_list_entry.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361055625032" ignored="false" />
+    <file path="/product.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361054772388" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,23 +284,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="productsList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0">
+            <state line="19" column="18" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="12" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductsListActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="0" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-                <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
+                <element signature="e#580#588#0" expanded="true" />
+                <element signature="method#onCreate#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="method#getProducts#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="e#1621#1630#0" expanded="true" />
+                <element signature="method#get#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="method#onTabReselected#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="method#onTabSelected#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="method#onTabUnselected#0;class#ProductsListActivity#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="Product.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="18" selection-start="661" selection-end="661" vertical-scroll-proportion="0.45252526">
+            <state line="22" column="27" selection-start="526" selection-end="526" vertical-scroll-proportion="0.4785047">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products_list.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/products_list.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="49" selection-start="256" selection-end="256" vertical-scroll-proportion="-2.9629629">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products_list_entry.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/products_list_entry.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="0" selection-start="1037" selection-end="1037" vertical-scroll-proportion="-15.407408">
               <folding />
             </state>
           </provider>
@@ -112,15 +372,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsList.java" />
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/SampleList.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Cateogories.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Categories.java" />
+        <option value="$PROJECT_DIR$/res/layout/list.xml" />
+        <option value="$PROJECT_DIR$/res/layout/products_lists.xml" />
+        <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/res/menu/menu.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/itemsList.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/product.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsListActivity.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/products_list_entry.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1440" />
+    <option name="width" value="1442" />
     <option name="height" value="874" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -152,7 +425,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -171,18 +444,12 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="DailyOffers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -244,24 +511,60 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable-hdpi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Android Logcat" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="/Applications/android-sdk-macosx/platforms/android-10/android.jar!/" />
-    <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+    <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="options.searchVisible" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager" selected="Android Application.DailyOffers">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="me.javierferrer.dailyoffersapp" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/res/layout" />
+      <recent name="$PROJECT_DIR$/res" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android Application.DailyOffers USB">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -279,6 +582,26 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -294,10 +617,10 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="DailyOffers" type="AndroidRunConfigurationType" factoryName="Android Application">
+    <configuration default="false" name="DailyOffers Wildfire" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="DailyOffers" />
-      <option name="ACTIVITY_CLASS" value="me.javierferrer.dailyoffersapp.productsList" />
-      <option name="MODE" value="specific_activity" />
+      <option name="ACTIVITY_CLASS" value="me.javierferrer.dailyoffersapp.itemsList" />
+      <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
       <option name="PREFERRED_AVD" value="HTC_Wildfire_S-HVGA-320x480-mdpi" />
@@ -311,8 +634,26 @@
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.DailyOffers" />
+    <configuration default="false" name="DailyOffers USB" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="DailyOffers" />
+      <option name="ACTIVITY_CLASS" value="me.javierferrer.dailyoffersapp.itemsList" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Android Application.DailyOffers Wildfire" />
+      <item index="1" class="java.lang.String" itemvalue="Android Application.DailyOffers USB" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -343,26 +684,29 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
+    <frame x="0" y="22" width="1442" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24426934" sideWeight="0.72179484" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21489972" sideWeight="0.72179484" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.49713466" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.6705128" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286445" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32820514" sideWeight="0.49713466" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27820513" sideWeight="0.23137535" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.49713466" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16025642" sideWeight="0.4913917" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27820513" sideWeight="0.7636103" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18938307" sideWeight="0.6705128" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20803443" sideWeight="0.72179484" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22435898" sideWeight="0.47994268" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -429,138 +773,119 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="7" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="16" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="53" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="37" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="37" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="37" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Applications/android-sdk-macosx/platforms/android-10/android.jar!/android/app/Activity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="154" selection-end="154" vertical-scroll-proportion="0.11004127" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/DailyOffers.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/ant.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/me/javierferrer/dailyoffersapp/BuildConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="1" selection-start="172" selection-end="172" vertical-scroll-proportion="0.16161616">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java">
+    <entry file="file://$PROJECT_DIR$/gen/me/javierferrer/dailyoffersapp/Manifest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#onCreate#0;class#productsList#0" expanded="true" />
-            <element signature="method#onCreate#0;class#productsList#0" expanded="true" />
-          </folding>
+        <state line="3" column="19" selection-start="156" selection-end="156" vertical-scroll-proportion="0.096969694">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/me/javierferrer/dailyoffersapp/R.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="1" selection-start="154" selection-end="154" vertical-scroll-proportion="0.12929294">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actionbarsherlock/res/values/abs__themes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="17" selection-start="557" selection-end="557" vertical-scroll-proportion="0.3325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/android/support/v4/app/FragmentTransaction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="22" selection-start="174" selection-end="174" vertical-scroll-proportion="-0.07002188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="12" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="18" selection-start="661" selection-end="661" vertical-scroll-proportion="0.45252526">
+        <state line="19" column="18" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/products_list.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="49" selection-start="256" selection-end="256" vertical-scroll-proportion="-2.9629629">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Applications/android-sdk-macosx/platforms/android-16/android.jar!/android/R.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="633" column="32" selection-start="43818" selection-end="43818" vertical-scroll-proportion="0.3321033">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/widget/ArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="378" column="0" selection-start="12540" selection-end="12540" vertical-scroll-proportion="0.33271027">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/products_list_entry.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="1037" selection-end="1037" vertical-scroll-proportion="-15.407408">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#580#588#0" expanded="true" />
+            <element signature="method#onCreate#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="method#getProducts#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="e#1621#1630#0" expanded="true" />
+            <element signature="method#get#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="method#onTabReselected#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="method#onTabSelected#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="method#onTabUnselected#0;class#ProductsListActivity#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="27" selection-start="526" selection-end="526" vertical-scroll-proportion="0.4785047">
           <folding />
         </state>
       </provider>
@@ -641,6 +966,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>android-support-v4</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
