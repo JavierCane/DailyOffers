@@ -1,0 +1,74 @@
+{
+	"products":
+	[
+		{
+			"name": "Habana 7",
+			"image": "R.drawable.ic_refresh_inverse",
+			"price": "23.24",
+			"offer_price": "19.27",
+			"producer": "RhumJm",
+			"categories":
+			{
+				"root": "Spirits",
+				"last_child": "Rum"
+			},
+			"attributes":
+			[
+				{
+					"key": "country",
+					"value": "Cuba"
+				},
+				{
+					"key": "volume",
+					"value": "70 cl"
+				}
+			]
+		},
+		{
+			"name": "Habana 5",
+			"image": "R.drawable.ic_refresh_inverse",
+			"price": "11",
+			"offer_price": "10",
+			"producer": "RhumJm",
+			"categories":
+			{
+				"root": "Spirits",
+				"last_child": "Rum"
+			},
+			"attributes":
+			[
+				{
+					"key": "country",
+					"value": "Cuba"
+				},
+				{
+					"key": "volume",
+					"value": "70 cl"
+				}
+			]
+		},
+		{
+			"name": "Habana 3",
+			"image": "R.drawable.ic_refresh_inverse",
+			"price": "9",
+			"offer_price": "8",
+			"producer": "RhumJm",
+			"categories":
+			{
+				"root": "Spirits",
+				"last_child": "Rum"
+			},
+			"attributes":
+			[
+				{
+					"key": "country",
+					"value": "Cuba"
+				},
+				{
+					"key": "volume",
+					"value": "70 cl"
+				}
+			]
+		}
+	]
+}

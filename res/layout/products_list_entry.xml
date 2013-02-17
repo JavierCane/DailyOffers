@@ -6,21 +6,43 @@
               <!--android:layout_height="wrap_content">-->
 
     <!--<TextView-->
-            <!--android:id="@+id/product_name"-->
+            <!--android:id="@+id/name"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:textSize="28dip"/>-->
 
     <!--<TextView-->
-            <!--android:id="@+id/product_price"-->
+            <!--android:id="@+id/price"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:textSize="28dip"/>-->
 <!--</LinearLayout>-->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/name"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+<TextView
+        android:id="@+id/tv_product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+id/name"
-        android:textSize="30px" >
-</TextView>
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+<ImageView
+        android:id="@+id/iv_product_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_product_name"
+        android:layout_centerVertical="true"
+        android:padding="4dp"
+        android:contentDescription="@string/desc_iv_product_image" />
+
+<TextView
+        android:id="@+id/tv_product_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_product_image"
+        android:layout_below="@id/tv_product_name" />
+
+</RelativeLayout>

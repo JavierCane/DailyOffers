@@ -1,12 +1,18 @@
 package me.javierferrer.dailyoffersapp;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.ArrayAdapter;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.actionbarsherlock.app.ActionBar.Tab;
@@ -16,6 +22,8 @@ public class ProductsListActivity extends SherlockListActivity implements Action
 
 	private Tab tab;
 	private FragmentTransaction transaction;
+
+	SimpleCursorAdapter products_adapter;
 	private final ArrayList<String> categories = new ArrayList<String>();
 
 	@Override
@@ -30,47 +38,90 @@ public class ProductsListActivity extends SherlockListActivity implements Action
 		// Layout
 		setContentView( R.layout.products_list );
 
-		// [Start] Create tabs
-		categories.add( "Wines" );
-		categories.add( "Spirits" );
-		categories.add( "Beers" );
+		// Get categories
+		constructCategories();
 
-		getSupportActionBar().setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
+		// Construct tabs
+		constructTabs();
 
-		for ( String category_name : categories )
-		{
-			Tab tab = getSupportActionBar().newTab();
-			tab.setText( category_name );
-			tab.setTabListener( this );
-			getSupportActionBar().addTab( tab );
-		}
-		// [End] Create tabs
+		String json_string =
+			"{ " +
+                "\"products\":" +
+				"[ " +
+	                 "{" +
+	                    "\"name\": \"Habana 7\"," +
+	                    "\"image\": " + R.drawable.ic_refresh_inverse + "," +
+	                    "\"price\": \"23.24\"," +
+	                    "\"offer_price\": \"19.27\"," +
+	                    "\"producer\": \"RhumJm\"," +
+                        "\"categories\": {" +
+		                    "\"root\": \"Spirits\", " +
+	                        "\"last_child\": \"Rum\" " +
+	                    "}," +
+	                    "\"attributes\":" +
+						"[ " +
+							"{" +
+		                        "\"key\": \"country\", " +
+		                        "\"value\": \"Cuba\" " +
+	                        "}," +
+	                        "{" +
+	                            "\"key\": \"volume\", " +
+	                            "\"value\": \"70 cl\" " +
+	                        "}" +
+                        "]" +
+	                 "}, " +
+	                 "{" +
+		                 "\"name\": \"Habana 5\"," +
+		                 "\"image\": " + R.drawable.ic_refresh_inverse + "," +
+		                 "\"price\": \"11.20\"," +
+		                 "\"offer_price\": \"10.20\"," +
+		                 "\"producer\": \"RhumJm\"," +
+		                 "\"categories\": {" +
+			                 "\"root\": \"Spirits\", " +
+			                 "\"last_child\": \"Rum\" " +
+		                 "}," +
+		                 "\"attributes\":" +
+		                 "[ " +
+		                 "{" +
+		                 "\"key\": \"country\", " +
+		                 "\"value\": \"Cuba\" " +
+		                 "}," +
+		                 "{" +
+		                 "\"key\": \"volume\", " +
+		                 "\"value\": \"70 cl\" " +
+		                 "}" +
+		                 "]" +
+	                 "}, " +
+	                 "{" +
+		                 "\"name\": \"Habana 3\"," +
+		                 "\"image\": " + R.drawable.ic_refresh_inverse + "," +
+		                 "\"price\": \"10.90\"," +
+		                 "\"offer_price\": \"9.90\"," +
+		                 "\"producer\": \"RhumJm\"," +
+		                 "\"categories\": {" +
+			                 "\"root\": \"Spirits\", " +
+			                 "\"last_child\": \"Rum\" " +
+		                 "}," +
+		                 "\"attributes\":" +
+		                 "[ " +
+		                 "{" +
+		                 "\"key\": \"country\", " +
+		                 "\"value\": \"Cuba\" " +
+		                 "}," +
+		                 "{" +
+		                 "\"key\": \"volume\", " +
+		                 "\"value\": \"70 cl\" " +
+		                 "}" +
+		                 "]" +
+	                 "}" +
+                "]" +
+            "}";
 
-		// [Start] Get tab content
-		// Create an array of Strings, that will be put to our ListActivity
-		ArrayAdapter<Product> adapter = new ArrayAdapter( this, R.layout.products_list_entry, getProducts() );
-		setListAdapter( adapter );
-		// [End] Get tab content
-	}
+		/** The parsing of the xml data is done in a non-ui thread */
+		ProductsLoader products_loader = new ProductsLoader( this );
 
-	private List<Product> getProducts()
-	{
-		List<Product> list = new ArrayList<Product>();
-
-		list.add( get( "Habana 7", "Rum", 23.24, 19.27, "image/path" ) );
-		list.add( get( "Habana 6", "Rum", 23.24, 19.27, "image/path" ) );
-		list.add( get( "Habana 5", "Rum", 23.24, 19.27, "image/path" ) );
-		list.add( get( "Habana 4", "Rum", 23.24, 19.27, "image/path" ) );
-		list.add( get( "Habana 3", "Rum", 23.24, 19.27, "image/path" ) );
-		list.add( get( "Habana 2", "Rum", 23.24, 19.27, "image/path" ) );
-		list.add( get( "Habana 1", "Rum", 23.24, 19.27, "image/path" ) );
-
-		return list;
-	}
-
-	private Product get( String name, String category, Double price, Double offer_price, String image_path )
-	{
-		return new Product( name, category, price, offer_price, image_path );
+		/** Start parsing xml data */
+		products_loader.execute( json_string );
 	}
 
 	@Override
@@ -92,5 +143,31 @@ public class ProductsListActivity extends SherlockListActivity implements Action
 	{
 		this.tab = tab;
 		this.transaction = transaction;
+	}
+
+	/**
+	 * Add to the categories array the current context categories
+	 */
+	public void constructCategories()
+	{
+		categories.add( "Wines" );
+		categories.add( "Spirits" );
+		categories.add( "Beers" );
+	}
+
+	/**
+	 * Construct categories tabs
+	 */
+	private void constructTabs()
+	{
+		getSupportActionBar().setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
+
+		for ( String category_name : categories )
+		{
+			Tab tab = getSupportActionBar().newTab();
+			tab.setText( category_name );
+			tab.setTabListener( this );
+			getSupportActionBar().addTab( tab );
+		}
 	}
 }

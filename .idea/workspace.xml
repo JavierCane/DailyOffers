@@ -9,6 +9,13 @@
         <option name="name" value="Errors" />
         <option name="pid" value="" />
       </filter>
+      <filter>
+        <option name="logLevel" value="debug" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="" />
+        <option name="name" value="Debug" />
+        <option name="pid" value="" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidDesignerProfile">
@@ -39,21 +46,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsListActivity.java" afterPath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyOffers.iml" afterPath="$PROJECT_DIR$/DailyOffers.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/products_list.xml" afterPath="$PROJECT_DIR$/res/layout/products_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/products_list_entry.xml" afterPath="$PROJECT_DIR$/res/layout/products_list_entry.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DailyOffers.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361052441625" ignored="false" />
+    <file path="/Dummy.txt" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361139032594" ignored="false" />
     <file path="/fragment.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361053777962" ignored="false" />
     <file path="/a.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361028273612" ignored="false" />
     <file path="/ProductsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361024664529" ignored="false" />
@@ -74,7 +78,6 @@
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/SubMenu.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/MenuItem.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/MenuInflater.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
-    <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/Menu.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/CollapsibleActionView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806926" ignored="false" />
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/internal/widget/ScrollingTabContainerView.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806927" ignored="false" />
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/view/ActionMode.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361033806934" ignored="false" />
@@ -224,8 +227,12 @@
     <file path="/Applications/android-sdk-macosx/samples/android-16/XmlAdapters/res/values/strings.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361051094828" ignored="false" />
     <file path="/Applications/android-sdk-macosx/samples/android-16/XmlAdapters/gen/com/example/XmlAdapters/BuildConfig.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361051164614" ignored="false" />
     <file path="/itemsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361052991520" ignored="false" />
-    <file path="/products_list_entry.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361055625032" ignored="false" />
+    <file path="/products_list_entry.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361129349245" ignored="false" />
     <file path="/product.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361054772388" ignored="false" />
+    <file path="/ProductsListActivity.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361131900612" ignored="false" />
+    <file path="/products_list.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361129376095" ignored="false" />
+    <file path="/ProductsLoader.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361141376406" ignored="false" />
+    <file path="/ProductsJSONParser.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361141350049" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +247,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -275,6 +281,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -284,47 +291,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="18" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="12" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductsListActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ProductsListActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0">
+            <state line="117" column="16" selection-start="1206" selection-end="3905" vertical-scroll-proportion="0.67992425">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#580#588#0" expanded="true" />
-                <element signature="method#onCreate#0;class#ProductsListActivity#0" expanded="true" />
-                <element signature="method#getProducts#0;class#ProductsListActivity#0" expanded="true" />
-                <element signature="e#1621#1630#0" expanded="true" />
-                <element signature="method#get#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="e#815#823#0" expanded="true" />
                 <element signature="method#onTabReselected#0;class#ProductsListActivity#0" expanded="true" />
                 <element signature="method#onTabSelected#0;class#ProductsListActivity#0" expanded="true" />
                 <element signature="method#onTabUnselected#0;class#ProductsListActivity#0" expanded="true" />
+                <element signature="docComment;method#constructCategories#0;class#ProductsListActivity#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
+      <file leaf-file-name="ProductsLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="27" selection-start="526" selection-end="526" vertical-scroll-proportion="0.4785047">
+            <state line="31" column="34" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#ProductsLoader#0" expanded="true" />
+                <element signature="method#ProductsLoader#0;class#ProductsLoader#0" expanded="true" />
+                <element signature="docComment;method#doInBackground#0;class#ProductsLoader#0" expanded="true" />
+                <element signature="docComment;method#onPostExecute#0;class#ProductsLoader#0" expanded="true" />
+                <element signature="method#onPostExecute#0;class#ProductsLoader#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductsJSONParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsJSONParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="78" selection-start="913" selection-end="913" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="docComment;method#parse#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="method#parse#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="method#getProducts#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="e#1118#1143#0" expanded="true" />
+                <element signature="docComment;method#getProduct#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="method#getProduct#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="e#1874#1890#0" expanded="true" />
+                <element signature="docComment;method#getAttribute#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="method#getAttribute#0;class#ProductsJSONParser#0" expanded="true" />
+                <element signature="e#3789#3805#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/raw/products.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="13" selection-start="975" selection-end="975" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -336,7 +360,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="49" selection-start="256" selection-end="256" vertical-scroll-proportion="-2.9629629">
+            <state line="17" column="0" selection-start="738" selection-end="738" vertical-scroll-proportion="-10.074074">
               <folding />
             </state>
           </provider>
@@ -348,7 +372,16 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="1037" selection-end="1037" vertical-scroll-proportion="-15.407408">
+            <state line="41" column="38" selection-start="1581" selection-end="1581" vertical-scroll-proportion="-19.148148">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -372,28 +405,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/SampleList.java" />
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Cateogories.java" />
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Categories.java" />
-        <option value="$PROJECT_DIR$/res/layout/list.xml" />
         <option value="$PROJECT_DIR$/res/layout/products_lists.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/res/menu/menu.xml" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/itemsList.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsList.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/product.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsListActivity.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java" />
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/products_list.xml" />
         <option value="$PROJECT_DIR$/res/layout/products_list_entry.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsJSONParser.java" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsLoader.java" />
+        <option value="$PROJECT_DIR$/res/raw/products.json" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1442" />
+    <option name="width" value="1440" />
     <option name="height" value="874" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -440,16 +473,143 @@
       <hideEmptyPackages />
       <abbreviatePackageNames />
       <autoscrollToSource />
-      <autoscrollFromSource />
+      <autoscrollFromSource ProjectPane="true" />
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="DailyOffers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="os" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -512,6 +672,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="raw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyOffers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -536,7 +714,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -564,7 +741,7 @@
       <recent name="$PROJECT_DIR$/res" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.DailyOffers USB">
+  <component name="RunManager" selected="Android Application.DailyOffers Wildfire">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -684,11 +861,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1442" height="874" extended-state="6" />
+    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24426934" sideWeight="0.72179484" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21489972" sideWeight="0.72179484" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.49713466" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.6705128" order="3" side_tool="false" content_ui="tabs" />
@@ -696,18 +871,20 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32820514" sideWeight="0.49713466" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27820513" sideWeight="0.23137535" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2448718" sideWeight="0.23529412" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.49713466" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16025642" sideWeight="0.4913917" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27820513" sideWeight="0.7636103" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2448718" sideWeight="0.7596844" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20803443" sideWeight="0.72179484" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22435898" sideWeight="0.47994268" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20803443" sideWeight="0.775641" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22435898" sideWeight="0.47994268" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24426934" sideWeight="0.72179484" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21489972" sideWeight="0.72179484" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -773,62 +950,41 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DailyOffers.iml">
+    <entry file="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/android/support/v4/widget/SimpleCursorAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ant.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gen/me/javierferrer/dailyoffersapp/BuildConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="1" selection-start="172" selection-end="172" vertical-scroll-proportion="0.16161616">
-          <folding />
+        <state line="20" column="11" selection-start="803" selection-end="803" vertical-scroll-proportion="0.34901962">
+          <folding>
+            <element signature="method#SimpleCursorAdapter#1;class#SimpleCursorAdapter#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen/me/javierferrer/dailyoffersapp/Manifest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="19" selection-start="156" selection-end="156" vertical-scroll-proportion="0.096969694">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_refresh_inverse.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen/me/javierferrer/dailyoffersapp/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="1" selection-start="154" selection-end="154" vertical-scroll-proportion="0.12929294">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_refresh.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actionbarsherlock/res/values/abs__themes.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="17" selection-start="557" selection-end="557" vertical-scroll-proportion="0.3325">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_compose_inverse.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/android/support/v4/app/FragmentTransaction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="174" selection-end="174" vertical-scroll-proportion="-0.07002188">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_compose.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/org/json/JSONObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="12" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="18" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="169" column="11" selection-start="7139" selection-end="7139" vertical-scroll-proportion="0.33333334">
+          <folding>
+            <element signature="method#JSONObject#3;class#JSONObject#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -837,22 +993,24 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="49" selection-start="256" selection-end="256" vertical-scroll-proportion="-2.9629629">
+        <state line="17" column="0" selection-start="738" selection-end="738" vertical-scroll-proportion="-10.074074">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Applications/android-sdk-macosx/platforms/android-16/android.jar!/android/R.class">
+    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/content/ContextWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="633" column="32" selection-start="43818" selection-end="43818" vertical-scroll-proportion="0.3321033">
+        <state line="68" column="19" selection-start="2233" selection-end="2233" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/widget/ArrayAdapter.java">
+    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="378" column="0" selection-start="12540" selection-end="12540" vertical-scroll-proportion="0.33271027">
-          <folding />
+        <state line="532" column="53" selection-start="21408" selection-end="21408" vertical-scroll-proportion="0.33333334">
+          <folding>
+            <element signature="method#execute#0;class#AsyncTask#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -861,32 +1019,77 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="1037" selection-end="1037" vertical-scroll-proportion="-15.407408">
+        <state line="41" column="38" selection-start="1581" selection-end="1581" vertical-scroll-proportion="-19.148148">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/widget/ListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="453" column="0" selection-start="15802" selection-end="15802" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="34" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ProductsLoader#0" expanded="true" />
+            <element signature="method#ProductsLoader#0;class#ProductsLoader#0" expanded="true" />
+            <element signature="docComment;method#doInBackground#0;class#ProductsLoader#0" expanded="true" />
+            <element signature="docComment;method#onPostExecute#0;class#ProductsLoader#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#ProductsLoader#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsJSONParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="78" selection-start="913" selection-end="913" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="docComment;method#parse#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="method#parse#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="method#getProducts#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="e#1118#1143#0" expanded="true" />
+            <element signature="docComment;method#getProduct#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="method#getProduct#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="e#1874#1890#0" expanded="true" />
+            <element signature="docComment;method#getAttribute#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="method#getAttribute#0;class#ProductsJSONParser#0" expanded="true" />
+            <element signature="e#3789#3805#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/raw/products.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="13" selection-start="975" selection-end="975" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0">
+        <state line="117" column="16" selection-start="1206" selection-end="3905" vertical-scroll-proportion="0.67992425">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#580#588#0" expanded="true" />
-            <element signature="method#onCreate#0;class#ProductsListActivity#0" expanded="true" />
-            <element signature="method#getProducts#0;class#ProductsListActivity#0" expanded="true" />
-            <element signature="e#1621#1630#0" expanded="true" />
-            <element signature="method#get#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="e#815#823#0" expanded="true" />
             <element signature="method#onTabReselected#0;class#ProductsListActivity#0" expanded="true" />
             <element signature="method#onTabSelected#0;class#ProductsListActivity#0" expanded="true" />
             <element signature="method#onTabUnselected#0;class#ProductsListActivity#0" expanded="true" />
+            <element signature="docComment;method#constructCategories#0;class#ProductsListActivity#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="27" selection-start="526" selection-end="526" vertical-scroll-proportion="0.4785047">
-          <folding />
         </state>
       </provider>
     </entry>
