@@ -60,24 +60,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/menu/products_list_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsAdapter.java" afterPath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" afterPath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsLoader.java" afterPath="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/raw/products.json" afterPath="$PROJECT_DIR$/res/raw/products.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/products_list_entry.xml" afterPath="$PROJECT_DIR$/res/layout/products_list_entry.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DailyOffers.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361222589653" ignored="false" />
+    <file path="/Dummy.txt" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361228590990" ignored="false" />
     <file path="/fragment.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361225438544" ignored="false" />
     <file path="/a.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361028273612" ignored="false" />
     <file path="/ProductsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361024664529" ignored="false" />
     <file path="/productsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361055075496" ignored="false" />
-    <file path="/a.dummy" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361223900956" ignored="false" />
+    <file path="/a.dummy" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361229181150" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361146543923" ignored="false" />
     <file path="/main.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361028241681" ignored="false" />
     <file path="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-e5c2d1c/samples/demos/AndroidManifest.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361038944895" ignored="false" />
@@ -236,7 +229,7 @@
     <file path="/itemsList.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361052991520" ignored="false" />
     <file path="/products_list_entry.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361129349245" ignored="false" />
     <file path="/product.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361054772388" ignored="false" />
-    <file path="/ProductsListActivity.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361228083172" ignored="false" />
+    <file path="/ProductsListActivity.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361229143199" ignored="false" />
     <file path="/products_list.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361215074151" ignored="false" />
     <file path="/ProductsLoader.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361219565803" ignored="false" />
     <file path="/ProductsJSONParser.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361218638858" ignored="false" />
@@ -247,6 +240,8 @@
     <file path="/ProductsAdapter.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361222217893" ignored="false" />
     <file path="/products_list_menu.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361224209954" ignored="false" />
     <file path="$PROJECT_DIR$/actionbarsherlock/src/com/actionbarsherlock/app/SherlockActivity.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361224621068" ignored="false" />
+    <file path="/webview.xml" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361228610328" ignored="false" />
+    <file path="/WebViewActivity.java" changelist="b05eb1cb-dbb6-4a7a-8bd2-534f442e4916" time="1361229195082" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,17 +303,28 @@
       <file leaf-file-name="ProductsListActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="118" selection-end="118" vertical-scroll-proportion="0.10071942">
+            <state line="146" column="27" selection-start="4079" selection-end="4079" vertical-scroll-proportion="0.44604316">
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#onCreate#0;class#ProductsListActivity#0" expanded="true" />
                 <element signature="method#setListListeners#0;class#ProductsListActivity#0" expanded="true" />
-                <element signature="e#1641#2009#0" expanded="true" />
-                <element signature="e#2004#2005#0" expanded="true" />
+                <element signature="e#1672#2040#0" expanded="true" />
+                <element signature="e#2035#2036#0" expanded="true" />
                 <element signature="docComment;method#constructCategories#0;class#ProductsListActivity#0" expanded="true" />
                 <element signature="method#constructCategories#0;class#ProductsListActivity#0" expanded="true" />
                 <element signature="docComment;method#constructTabs#0;class#ProductsListActivity#0" expanded="true" />
                 <element signature="method#onCreateContextMenu#0;class#ProductsListActivity#0" expanded="true" />
-                <element signature="method#onContextItemSelected#0;class#ProductsListActivity#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebViewActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/WebViewActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="28" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -370,30 +376,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="18" selection-start="1166" selection-end="1166" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="docComment;class#Product#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ProductsJSONParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsJSONParser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="22" column="11" selection-start="410" selection-end="428" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="products.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/raw/products.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="36" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -417,21 +403,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/product.java" />
-        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/productsListActivity.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/DailyOffersApplication.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/MyCustomAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/products_list.xml" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsJSONParser.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsLoader.java" />
         <option value="$PROJECT_DIR$/res/layout/products_list_entry.xml" />
-        <option value="$PROJECT_DIR$/res/raw/products.json" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsAdapter.java" />
         <option value="$PROJECT_DIR$/res/values/products_list_menu.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/menu/products_list_menu.xml" />
+        <option value="$PROJECT_DIR$/res/layout/webview.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/res/raw/products.json" />
+        <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/WebViewActivity.java" />
         <option value="$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java" />
       </list>
     </option>
@@ -497,206 +483,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="DailyOffers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="os" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Android 4.1.2 Platform &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -817,86 +603,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionbarsherlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionbarsherlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionbarsherlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionbarsherlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionbarsherlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DailyOffers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actionbarsherlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -928,7 +634,7 @@
       <recent name="$PROJECT_DIR$/res/values" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.DailyOffers Wildfire">
+  <component name="RunManager" selected="Android Application.DailyOffers USB">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -1137,29 +843,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="913" selection-end="913" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/widget/ListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="13" selection-start="2267" selection-end="2267" vertical-scroll-proportion="0.33190578">
-          <folding>
-            <element signature="method#setAdapter#0;class#ListView#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/android-sdk-macosx/sources/android-16/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14918" column="18" selection-start="569826" selection-end="569826" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Applications/android-sdk-macosx/sources/android-16/java/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="323" column="26" selection-start="10836" selection-end="10836" vertical-scroll-proportion="0.33333334">
@@ -1184,13 +867,6 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="42" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/raw/products.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="36" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1240,19 +916,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="18" selection-start="1166" selection-end="1166" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;class#Product#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsJSONParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="11" selection-start="410" selection-end="428" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/webview.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="34" selection-start="141" selection-end="141" vertical-scroll-proportion="0.082051285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="879" selection-end="879" vertical-scroll-proportion="0.7290168">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/raw/products.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="83" selection-start="1203" selection-end="1208" vertical-scroll-proportion="0.9232614">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="18" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.33168316">
+          <folding>
+            <element signature="docComment;class#Product#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1266,19 +966,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/WebViewActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="28" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/javierferrer/dailyoffersapp/ProductsListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="118" selection-end="118" vertical-scroll-proportion="0.10071942">
+        <state line="146" column="27" selection-start="4079" selection-end="4079" vertical-scroll-proportion="0.44604316">
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onCreate#0;class#ProductsListActivity#0" expanded="true" />
             <element signature="method#setListListeners#0;class#ProductsListActivity#0" expanded="true" />
-            <element signature="e#1641#2009#0" expanded="true" />
-            <element signature="e#2004#2005#0" expanded="true" />
+            <element signature="e#1672#2040#0" expanded="true" />
+            <element signature="e#2035#2036#0" expanded="true" />
             <element signature="docComment;method#constructCategories#0;class#ProductsListActivity#0" expanded="true" />
             <element signature="method#constructCategories#0;class#ProductsListActivity#0" expanded="true" />
             <element signature="docComment;method#constructTabs#0;class#ProductsListActivity#0" expanded="true" />
             <element signature="method#onCreateContextMenu#0;class#ProductsListActivity#0" expanded="true" />
-            <element signature="method#onContextItemSelected#0;class#ProductsListActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>

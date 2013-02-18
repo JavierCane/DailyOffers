@@ -1,5 +1,6 @@
 package me.javierferrer.dailyoffersapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
@@ -134,7 +135,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	public boolean onContextItemSelected( android.view.MenuItem item )
 	{
 		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) item.getMenuInfo();
-//		IcsAdapterView.AdapterContextMenuInfo info = ( IcsAdapterView.AdapterContextMenuInfo ) item.getMenuInfo();
 
 		Product selected_product = ( Product ) products_list_view.getItemAtPosition( info.position );
 
@@ -144,7 +144,14 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 				Toast.makeText( getApplicationContext(), "View item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
 				return true;
 			case R.id.mi_buy:
-				Toast.makeText( getApplicationContext(), "Buy item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
+				Intent intent = new Intent( this.getBaseContext(), WebViewActivity.class );
+
+				Bundle bundle = new Bundle();
+				bundle.putString( "url", selected_product.getBuy_url() );
+				intent.putExtras( bundle );
+
+				startActivity( intent );
+
 				return true;
 			default:
 				return super.onContextItemSelected( item );
