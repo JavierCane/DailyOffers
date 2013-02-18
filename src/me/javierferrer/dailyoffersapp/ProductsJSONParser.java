@@ -1,12 +1,12 @@
 package me.javierferrer.dailyoffersapp;
 
+import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Products JSON Parser
@@ -18,21 +18,22 @@ public class ProductsJSONParser
 	 * Parses a list of products based on a JSONArray
 	 *
 	 * @param products_json_array
-	 * @return a List of String-String HashMaps with one list item per product
+	 * @return a List of Products
 	 */
-	public List<HashMap<String, String>> parseProducts( JSONArray products_json_array )
+	public ArrayList<Product> parseProducts( JSONArray products_json_array )
 	{
 		int num_products = products_json_array.length();
-		List<HashMap<String, String>> products_list = new ArrayList<HashMap<String, String>>();
-		HashMap<String, String> product = null;
+		ArrayList<Product> products_list = new ArrayList<Product>();
+		Product product = null;
 
 		/** Taking each country, parses and adds to list object */
 		for ( int i = 0; i < num_products; i++ )
 		{
 			try
 			{
-				/** Call getProduct with country JSON object to parse the country */
+				// Parse the current product JSON
 				product = getProduct( ( JSONObject ) products_json_array.get( i ) );
+
 				products_list.add( product );
 			}
 			catch ( JSONException e )
@@ -50,24 +51,26 @@ public class ProductsJSONParser
 	 * @param product_json
 	 * @return product properties in a String-String HashMap based on a JSON product object
 	 */
-	private HashMap<String, String> getProduct( JSONObject product_json )
+	private Product getProduct( JSONObject product_json )
 	{
+		Product product = null;
 
-		HashMap<String, String> product = new HashMap<String, String>();
 		String name;
+		String details_url;
+		String buy_url;
 		String image;
 		String price;
 		String offer_price;
 		String producer;
 		String category_root;
 		String category_last_child;
-		String attributes = "";
-		HashMap<String, String> attribute;
-		JSONArray attributes_json;
+		ArrayList<HashMap<String, String>> attributes = new ArrayList<HashMap<String, String>>();
 
 		try
 		{
 			name = product_json.getString( "name" );
+			details_url = product_json.getString( "details_url" );
+			buy_url = product_json.getString( "buy_url" );
 			image = product_json.getString( "image" );
 			price = product_json.getString( "price" );
 			offer_price = product_json.getString( "offer_price" );
@@ -75,22 +78,15 @@ public class ProductsJSONParser
 			category_root = product_json.getJSONObject( "categories" ).getString( "root" );
 			category_last_child = product_json.getJSONObject( "categories" ).getString( "last_child" );
 
-			attributes_json = product_json.getJSONArray( "attributes" );
+			// Parse attributes
+			JSONArray attributes_json = product_json.getJSONArray( "attributes" );
 
-			int num_attributes = attributes_json.length();
-
-			for ( int i = 0; i < num_attributes; i++ )
+			for ( int i = 0; i < attributes_json.length(); i++ )
 			{
 				try
 				{
 					// Parse the attributes array object
-					attribute = getAttribute( ( JSONObject ) attributes_json.get( i ) );
-
-					attributes += attribute.get( "key" ) + ": " + attribute.get( "value" );
-					if ( i < num_attributes - 1 )
-					{
-						attributes += "\n";
-					}
+					attributes.add( getAttribute( ( JSONObject ) attributes_json.get( i ) ) );
 				}
 				catch ( JSONException e )
 				{
@@ -98,19 +94,7 @@ public class ProductsJSONParser
 				}
 			}
 
-			String details = "Price: " + price + "\n" +
-			                 "Offer price: " + offer_price + "\n" +
-			                 "Producer: " + producer + "\n" +
-			                 "Category: " + category_last_child + " (" + category_root + ")";
-
-			if ( !attributes.isEmpty() )
-			{
-				details += "\n" + attributes;
-			}
-
-			product.put( "name", name );
-			product.put( "image", image );
-			product.put( "details", details );
+			product = new Product( name, details_url, buy_url, image, price, offer_price, producer, category_root, category_last_child, attributes );
 		}
 		catch ( JSONException e )
 		{
