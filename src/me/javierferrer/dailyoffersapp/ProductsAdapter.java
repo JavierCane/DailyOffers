@@ -1,7 +1,5 @@
 package me.javierferrer.dailyoffersapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,31 +13,30 @@ public class ProductsAdapter extends ArrayAdapter<Product>
 {
 
 	ProductsListActivity products_list_activity;
-	int textViewResourceId;
-	Product current_product;
-	ArrayList<Product> products;
+	ArrayList<Product> products_list;
+	int text_view_id;
 
-	public ProductsAdapter( ProductsListActivity activity, int text_view_id, ArrayList<Product> products )
+	public ProductsAdapter( ProductsListActivity products_list_activity, int text_view_id, ArrayList<Product> products_list )
 	{
-		super( activity, text_view_id, products );
+		super( products_list_activity, text_view_id, products_list );
 
-		this.textViewResourceId = text_view_id;
-		this.products_list_activity = activity;
-		this.products = products;
+		this.products_list_activity = products_list_activity;
+		this.text_view_id = text_view_id;
+		this.products_list = products_list;
 	}
 
 	@Override
-	public View getView( int position, View convertView, ViewGroup parent )
+	public View getView( int position, View view, ViewGroup parent_view_group )
 	{
-		View row = convertView;
-		MyStringReaderHolder holder;
+		View row = view;
+		ProductViewHolder holder;
 
 		if ( row == null )
 		{
 			LayoutInflater inflater = products_list_activity.getLayoutInflater();
-			row = inflater.inflate( textViewResourceId, parent, false );
+			row = inflater.inflate( text_view_id, parent_view_group, false );
 
-			holder = new MyStringReaderHolder();
+			holder = new ProductViewHolder();
 
 			holder.name = ( TextView ) row.findViewById( R.id.tv_product_name );
 			holder.image = ( ImageView ) row.findViewById( R.id.iv_product_image );
@@ -49,21 +46,21 @@ public class ProductsAdapter extends ArrayAdapter<Product>
 		}
 		else
 		{
-			holder = ( MyStringReaderHolder ) row.getTag();
+			holder = ( ProductViewHolder ) row.getTag();
 		}
 
-		Product product = products.get( position );
+		Product product = products_list.get( position );
 
 		holder.name.setText( product.getName() );
-//		holder.image.setImageDrawable( context.getIdentifier( product.getImage() ) );
-		holder.image.setImageResource( android.R.drawable.arrow_up_float );
+//		holder.image.setImageResource( products_list_activity.getResources().getIdentifier( product.getImage(), "drawable", products_list_activity.getPackageName() ) );
 		holder.details.setText( product.getPrice() );
 
 		return row;
 	}
 
-	static class MyStringReaderHolder
+	static class ProductViewHolder
 	{
+
 		TextView name, details;
 		ImageView image;
 	}

@@ -2,15 +2,14 @@ package me.javierferrer.dailyoffersapp;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	private static FragmentTransaction transaction;
 	private static ListView products_list_view;
 
-	public ProductsAdapter products_adapter;
 	private final ArrayList<String> categories = new ArrayList<String>();
 
 	@Override
@@ -46,10 +44,11 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		// Set products list listeners
 		products_list_view = ( ListView ) findViewById( R.id.products_list );
+		registerForContextMenu( products_list_view ); // Set the list view long clickable and responding with a context menu
 		setListListeners();
 
 		// Parse JSON products in a non-ui thread
-		ProductsLoader products_loader = new ProductsLoader( this, products_list_view, products_adapter );
+		ProductsLoader products_loader = new ProductsLoader( this, products_list_view );
 
 		// Parse JSON file
 		products_loader.execute();
@@ -57,27 +56,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 	private void setListListeners()
 	{
-		registerForContextMenu( products_list_view ); // Set the list view long clickable and responding with a context menu
-
-		products_list_view.setOnCreateContextMenuListener( new View.OnCreateContextMenuListener()
-		{
-
-			@Override
-			public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menu_info )
-			{
-				if ( v.getId() == products_list_view.getId() )
-				{
-					AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menu_info;
-
-					Product selected_product = ( Product ) products_list_view.getItemAtPosition( info.position );
-
-					menu.setHeaderTitle( selected_product.getName() );
-					menu.add( Menu.NONE, 0, 0, "View details" );
-					menu.add( Menu.NONE, 0, 1, "Buy" );
-				}
-			}
-		} );
-
 		products_list_view.setOnItemClickListener( new AdapterView.OnItemClickListener()
 		{
 
@@ -135,5 +113,41 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		this.tab = tab;
 		this.transaction = transaction;
+	}
+
+	@Override
+	public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menu_info )
+	{
+//		if ( v.getId() == products_list_view.getId() )
+//		{
+		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menu_info;
+
+		Product selected_product = ( Product ) products_list_view.getItemAtPosition( info.position );
+
+		menu.setHeaderTitle( selected_product.getName() );
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate( R.menu.products_list_menu, menu );
+//		}
+	}
+
+	@Override
+	public boolean onContextItemSelected( android.view.MenuItem item )
+	{
+		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) item.getMenuInfo();
+//		IcsAdapterView.AdapterContextMenuInfo info = ( IcsAdapterView.AdapterContextMenuInfo ) item.getMenuInfo();
+
+		Product selected_product = ( Product ) products_list_view.getItemAtPosition( info.position );
+
+		switch ( item.getItemId() )
+		{
+			case R.id.mi_view_details:
+				Toast.makeText( getApplicationContext(), "View item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
+				return true;
+			case R.id.mi_buy:
+				Toast.makeText( getApplicationContext(), "Buy item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
+				return true;
+			default:
+				return super.onContextItemSelected( item );
+		}
 	}
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/mi_view_details"
+            android:title="@string/desc_mi_view_details"
+            android:alphabeticShortcut="v"
+            android:numericShortcut="1"
+            android:orderInCategory="0"/>
+
+    <item
+            android:id="@+id/mi_buy"
+            android:title="@string/desc_mi_buy"
+            android:alphabeticShortcut="b"
+            android:numericShortcut="2"
+            android:orderInCategory="1"/>
+</menu>

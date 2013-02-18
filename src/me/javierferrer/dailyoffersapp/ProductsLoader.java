@@ -18,13 +18,11 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 
 	ProductsListActivity products_list_activity;
 	ListView products_list_view;
-	ProductsAdapter products_adapter;
 
-	public ProductsLoader( ProductsListActivity products_list_activity, ListView products_list_view, ProductsAdapter products_adapter )
+	public ProductsLoader( ProductsListActivity products_list_activity, ListView products_list_view )
 	{
 		this.products_list_activity = products_list_activity;
 		this.products_list_view = products_list_view;
-		this.products_adapter = products_adapter;
 	}
 
 	/**
@@ -77,11 +75,9 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 	{
 		super.onPostExecute( parsed_products );
 
-		products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, parsed_products );
+		ProductsAdapter products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, parsed_products );
 
 		products_list_view.setAdapter( products_adapter );
-
-		products_list_activity.products_adapter = products_adapter;
 
 		products_list_view.setVisibility( ListView.VISIBLE );
 	}
