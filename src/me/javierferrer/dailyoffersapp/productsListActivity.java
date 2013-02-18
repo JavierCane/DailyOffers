@@ -24,7 +24,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	private static ListView products_list_view;
 
 	public ProductsAdapter products_adapter;
-	public ArrayList<Product> products_list;
 	private final ArrayList<String> categories = new ArrayList<String>();
 
 	@Override
@@ -64,17 +63,15 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		{
 
 			@Override
-			public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo )
+			public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menu_info )
 			{
-				if ( v.getId() == android.R.id.list )
-
+				if ( v.getId() == products_list_view.getId() )
 				{
-					AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menuInfo;
+					AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menu_info;
 
 					Product selected_product = ( Product ) products_list_view.getItemAtPosition( info.position );
-					Toast.makeText( getApplicationContext(), "Click, item: " + selected_product.toString(), Toast.LENGTH_LONG ).show();
 
-					menu.setHeaderTitle( "Hi!" );
+					menu.setHeaderTitle( selected_product.getName() );
 					menu.add( Menu.NONE, 0, 0, "View details" );
 					menu.add( Menu.NONE, 0, 1, "Buy" );
 				}
@@ -87,9 +84,8 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			@Override
 			public void onItemClick( AdapterView<?> parent, View view, int position, long id )
 			{
-				Object o = products_list_view.getItemAtPosition( position );
-				String pen = o.toString();
-				Toast.makeText( getApplicationContext(), "Click, item: " + " " + pen, Toast.LENGTH_LONG ).show();
+				Product selected_product = ( Product ) products_list_view.getItemAtPosition( position );
+				Toast.makeText( getApplicationContext(), "Click, item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
 			}
 		} );
 	}
