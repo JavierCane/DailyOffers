@@ -15,34 +15,12 @@ public class ProductsJSONParser
 {
 
 	/**
-	 * Parses a list of products based on a JSONObject
-	 *
-	 * @param products_json
-	 * @return a List of String-String HashMaps with one list item per product
-	 */
-	public List<HashMap<String, String>> parse( JSONObject products_json )
-	{
-		JSONArray products_json_array = null;
-
-		try
-		{
-			products_json_array = products_json.getJSONArray( "products" );
-		}
-		catch ( JSONException e )
-		{
-			e.printStackTrace();
-		}
-
-		return getProducts( products_json_array );
-	}
-
-	/**
 	 * Parses a list of products based on a JSONArray
 	 *
 	 * @param products_json_array
 	 * @return a List of String-String HashMaps with one list item per product
 	 */
-	private List<HashMap<String, String>> getProducts( JSONArray products_json_array )
+	public List<HashMap<String, String>> parseProducts( JSONArray products_json_array )
 	{
 		int num_products = products_json_array.length();
 		List<HashMap<String, String>> products_list = new ArrayList<HashMap<String, String>>();

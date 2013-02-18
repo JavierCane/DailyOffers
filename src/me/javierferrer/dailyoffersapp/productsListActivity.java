@@ -44,84 +44,11 @@ public class ProductsListActivity extends SherlockListActivity implements Action
 		// Construct tabs
 		constructTabs();
 
-		String json_string =
-			"{ " +
-                "\"products\":" +
-				"[ " +
-	                 "{" +
-	                    "\"name\": \"Habana 7\"," +
-	                    "\"image\": " + R.drawable.ic_refresh_inverse + "," +
-	                    "\"price\": \"23.24\"," +
-	                    "\"offer_price\": \"19.27\"," +
-	                    "\"producer\": \"RhumJm\"," +
-                        "\"categories\": {" +
-		                    "\"root\": \"Spirits\", " +
-	                        "\"last_child\": \"Rum\" " +
-	                    "}," +
-	                    "\"attributes\":" +
-						"[ " +
-							"{" +
-		                        "\"key\": \"country\", " +
-		                        "\"value\": \"Cuba\" " +
-	                        "}," +
-	                        "{" +
-	                            "\"key\": \"volume\", " +
-	                            "\"value\": \"70 cl\" " +
-	                        "}" +
-                        "]" +
-	                 "}, " +
-	                 "{" +
-		                 "\"name\": \"Habana 5\"," +
-		                 "\"image\": " + R.drawable.ic_refresh_inverse + "," +
-		                 "\"price\": \"11.20\"," +
-		                 "\"offer_price\": \"10.20\"," +
-		                 "\"producer\": \"RhumJm\"," +
-		                 "\"categories\": {" +
-			                 "\"root\": \"Spirits\", " +
-			                 "\"last_child\": \"Rum\" " +
-		                 "}," +
-		                 "\"attributes\":" +
-		                 "[ " +
-		                 "{" +
-		                 "\"key\": \"country\", " +
-		                 "\"value\": \"Cuba\" " +
-		                 "}," +
-		                 "{" +
-		                 "\"key\": \"volume\", " +
-		                 "\"value\": \"70 cl\" " +
-		                 "}" +
-		                 "]" +
-	                 "}, " +
-	                 "{" +
-		                 "\"name\": \"Habana 3\"," +
-		                 "\"image\": " + R.drawable.ic_refresh_inverse + "," +
-		                 "\"price\": \"10.90\"," +
-		                 "\"offer_price\": \"9.90\"," +
-		                 "\"producer\": \"RhumJm\"," +
-		                 "\"categories\": {" +
-			                 "\"root\": \"Spirits\", " +
-			                 "\"last_child\": \"Rum\" " +
-		                 "}," +
-		                 "\"attributes\":" +
-		                 "[ " +
-		                 "{" +
-		                 "\"key\": \"country\", " +
-		                 "\"value\": \"Cuba\" " +
-		                 "}," +
-		                 "{" +
-		                 "\"key\": \"volume\", " +
-		                 "\"value\": \"70 cl\" " +
-		                 "}" +
-		                 "]" +
-	                 "}" +
-                "]" +
-            "}";
-
-		/** The parsing of the xml data is done in a non-ui thread */
+		// Parse JSON data in a non-ui thread
 		ProductsLoader products_loader = new ProductsLoader( this );
 
-		/** Start parsing xml data */
-		products_loader.execute( json_string );
+		// Parse JSON file
+		products_loader.execute();
 	}
 
 	@Override
