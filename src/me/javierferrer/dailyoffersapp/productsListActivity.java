@@ -3,11 +3,13 @@ package me.javierferrer.dailyoffersapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -28,9 +30,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
-		// Application theme
-		setTheme( R.style.Theme_Sherlock_Light );
-
 		// Action Bar Sherlock compatibility
 		super.onCreate( savedInstanceState );
 
@@ -50,11 +49,12 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		// Parse JSON products in a non-ui thread
 		ProductsLoader products_loader = new ProductsLoader( this, products_list_view );
-
-		// Parse JSON file
-		products_loader.execute();
+		products_loader.execute(); // Call to doInBackground mehtod
 	}
 
+	/**
+	 * Set items click listener
+	 */
 	private void setListListeners()
 	{
 		products_list_view.setOnItemClickListener( new AdapterView.OnItemClickListener()
@@ -64,7 +64,12 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			public void onItemClick( AdapterView<?> parent, View view, int position, long id )
 			{
 				Product selected_product = ( Product ) products_list_view.getItemAtPosition( position );
-				Toast.makeText( getApplicationContext(), "Click, item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
+
+				Intent product_details_intent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
+
+				product_details_intent.putExtra( "Product", selected_product );
+
+				ProductsListActivity.this.startActivity( product_details_intent );
 			}
 		} );
 	}
@@ -72,7 +77,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	/**
 	 * Add to the categories array the current context categories
 	 */
-	public void constructCategories()
+	private void constructCategories()
 	{
 		categories.add( "Wines" );
 		categories.add( "Spirits" );
@@ -90,6 +95,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		{
 			Tab tab = getSupportActionBar().newTab();
 			tab.setText( category_name );
+			tab.setTag( category_name + "_tag" );
 			tab.setTabListener( this );
 			getSupportActionBar().addTab( tab );
 		}
@@ -107,6 +113,31 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		this.tab = tab;
 		this.transaction = transaction;
+		Log.d( "DO", "onTabSelected: tab getTag=" + tab.getTag());
+		Log.d( "DO", "onTabSelected: tab getContentDescription=" + tab.getContentDescription());
+		Log.d( "DO", "onTabSelected: tab getPosition=" + tab.getPosition());
+		Log.d( "DO", "onTabSelected: tab getText=" + tab.getText());
+/*
+02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getTag=null
+02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getContentDescription=null
+02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getPosition=1
+02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getText=Spirits
+ */
+//		switch (mTabHost.getCurrentTab()) {
+//			case 0:
+//				myDevAdapter.getFilter().filter("all");
+//				break;
+//			case 1:
+//				myDevAdapter.getFilter().filter("type1");
+//				break;
+//			case 2:
+//				myDevAdapter.getFilter().filter("type2");
+//				break;
+//
+//			default:
+//				Log.d(debugTag,"error in onTabChanged");
+//				break;
+//		}
 	}
 
 	@Override
@@ -119,6 +150,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	@Override
 	public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menu_info )
 	{
+		// TODO: Revisar si en otras pantallas sale el menú o no
 //		if ( v.getId() == products_list_view.getId() )
 //		{
 		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menu_info;
@@ -131,6 +163,12 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 //		}
 	}
 
+	/**
+	 * Context menu item selected (view details and buy options)
+	 *
+	 * @param item
+	 * @return
+	 */
 	@Override
 	public boolean onContextItemSelected( android.view.MenuItem item )
 	{
@@ -140,9 +178,16 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		switch ( item.getItemId() )
 		{
+			// In case of view product details menu item click, create an intent to the product details activity
 			case R.id.mi_view_details:
-				Toast.makeText( getApplicationContext(), "View item: " + selected_product.getName(), Toast.LENGTH_SHORT ).show();
+				Intent product_details_intent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
+
+				product_details_intent.putExtra( "Product", selected_product );
+
+				startActivity( product_details_intent );
+
 				return true;
+			// In case of buy product menu item click, create an intent to redirect to the product buy site
 			case R.id.mi_buy:
 				Intent intent = new Intent( this.getBaseContext(), WebViewActivity.class );
 

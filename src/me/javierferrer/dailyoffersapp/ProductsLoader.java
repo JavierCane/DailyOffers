@@ -34,10 +34,11 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 	@Override
 	protected ArrayList<Product> doInBackground( String... params )
 	{
-		ArrayList<Product> parsed_products = new ArrayList<Product>();
+		ArrayList<Product> parsed_products_list = new ArrayList<Product>();
 
 		ProductsJSONParser products_json_parser = new ProductsJSONParser();
 
+		// Parse the products JSON file using the ProductsJSONParser class
 		try
 		{
 			// Open a buffer in order to read from the products JSON file
@@ -56,14 +57,15 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 			JSONObject products_json = new JSONObject( json_tokener );
 
 			// Parse the JSON products object into the List<HashMap<String, String>>
-			parsed_products = products_json_parser.parseProducts( products_json.getJSONArray( "products" ) );
+			parsed_products_list = products_json_parser.parseProducts( products_json.getJSONArray( "products" ) );
 		}
 		catch ( Exception e )
 		{
 			Log.e( "Exception trying to parse the json source: ", e.toString() );
 		}
 
-		return parsed_products;
+		// Return the parsed products list in order to revieve it in onPostExecute method as input
+		return parsed_products_list;
 	}
 
 	/**
@@ -71,11 +73,11 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 	 * Invoked by the Android system on "doInBackground"
 	 */
 	@Override
-	protected void onPostExecute( ArrayList<Product> parsed_products )
+	protected void onPostExecute( ArrayList<Product> parsed_products_list )
 	{
-		super.onPostExecute( parsed_products );
+		super.onPostExecute( parsed_products_list );
 
-		ProductsAdapter products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, parsed_products );
+		ProductsAdapter products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, parsed_products_list );
 
 		products_list_view.setAdapter( products_adapter );
 

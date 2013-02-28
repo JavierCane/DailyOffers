@@ -1,12 +1,13 @@
 package me.javierferrer.dailyoffersapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Product class
  */
-public class Product
+public class Product implements Serializable
 {
 
 	private String name;
