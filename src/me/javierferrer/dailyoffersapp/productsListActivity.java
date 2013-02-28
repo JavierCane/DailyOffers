@@ -3,14 +3,11 @@ package me.javierferrer.dailyoffersapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -112,7 +109,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	 * Tab change event listener
 	 * fills the current category tab with the required products
 	 *
-	 * @param tab The tab that was selected
+	 * @param tab         The tab that was selected
 	 * @param transaction
 	 */
 	@Override
