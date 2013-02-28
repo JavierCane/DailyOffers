@@ -108,36 +108,20 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		this.transaction = transaction;
 	}
 
+	/**
+	 * Tab change event listener
+	 * fills the current category tab with the required products
+	 *
+	 * @param tab The tab that was selected
+	 * @param transaction
+	 */
 	@Override
 	public void onTabSelected( Tab tab, FragmentTransaction transaction )
 	{
 		this.tab = tab;
 		this.transaction = transaction;
-		Log.d( "DO", "onTabSelected: tab getTag=" + tab.getTag());
-		Log.d( "DO", "onTabSelected: tab getContentDescription=" + tab.getContentDescription());
-		Log.d( "DO", "onTabSelected: tab getPosition=" + tab.getPosition());
-		Log.d( "DO", "onTabSelected: tab getText=" + tab.getText());
-/*
-02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getTag=null
-02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getContentDescription=null
-02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getPosition=1
-02-24 20:21:33.484: DEBUG/DO(24516): onTabSelected: tab getText=Spirits
- */
-//		switch (mTabHost.getCurrentTab()) {
-//			case 0:
-//				myDevAdapter.getFilter().filter("all");
-//				break;
-//			case 1:
-//				myDevAdapter.getFilter().filter("type1");
-//				break;
-//			case 2:
-//				myDevAdapter.getFilter().filter("type2");
-//				break;
-//
-//			default:
-//				Log.d(debugTag,"error in onTabChanged");
-//				break;
-//		}
+
+		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
 	}
 
 	@Override
@@ -201,5 +185,14 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			default:
 				return super.onContextItemSelected( item );
 		}
+	}
+
+	/**
+	 * Method called when ProductsLoader has finished the products parsing process.
+	 * It's necessary because it's possible to call to fillCategoryTab method without having finished the parsing process.
+	 */
+	public static void productsParseCompleted()
+	{
+		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
 	}
 }

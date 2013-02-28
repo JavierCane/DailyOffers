@@ -16,8 +16,9 @@ import java.util.ArrayList;
 public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 {
 
-	ProductsListActivity products_list_activity;
-	ListView products_list_view;
+	private static ProductsListActivity products_list_activity;
+	private static ListView products_list_view;
+	private static ArrayList<Product> complete_products_list = new ArrayList<Product>();
 
 	public ProductsLoader( ProductsListActivity products_list_activity, ListView products_list_view )
 	{
@@ -73,14 +74,34 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 	 * Invoked by the Android system on "doInBackground"
 	 */
 	@Override
-	protected void onPostExecute( ArrayList<Product> parsed_products_list )
+	protected void onPostExecute( ArrayList<Product> complete_products_list )
 	{
-		super.onPostExecute( parsed_products_list );
+		super.onPostExecute( complete_products_list );
 
-		ProductsAdapter products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, parsed_products_list );
+		// Set the complete product array list
+		this.complete_products_list = complete_products_list;
 
-		products_list_view.setAdapter( products_adapter );
+		// Call to ProductsListActivity method in order to notify that we'va finished the products parsing process
+		ProductsListActivity.productsParseCompleted();
+	}
 
-		products_list_view.setVisibility( ListView.VISIBLE );
+	/**
+	 * Fills each products_list_entry layout with one product from complete_products_list throug the ProductsAdapter class
+	 *
+	 * @param tab_tag
+	 */
+	public static void fillCategoryTab( String tab_tag )
+	{
+		// If we already have parsed all products and we've them on the complete_products_list variable, fill up the layout entries trough the adapter
+		// Since we call to this method from ProductsListActivity.onTabSelected method which is called while initializing the app,
+		// is possible to arrive here without having all products parsed
+		if ( !complete_products_list.isEmpty() )
+		{
+			ProductsAdapter products_adapter = new ProductsAdapter( ProductsLoader.products_list_activity, R.layout.products_list_entry, complete_products_list );
+
+			products_list_view.setAdapter( products_adapter );
+
+			products_list_view.setVisibility( ListView.VISIBLE );
+		}
 	}
 }
