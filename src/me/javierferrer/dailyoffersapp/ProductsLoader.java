@@ -9,16 +9,17 @@ import org.json.JSONTokener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Products loader
  */
-public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
+public class ProductsLoader extends AsyncTask<String, Void, HashMap<String, ArrayList<Product>>>
 {
 
 	private static ProductsListActivity products_list_activity;
 	private static ListView products_list_view;
-	private static ArrayList<Product> complete_products_list = new ArrayList<Product>();
+	private static HashMap<String, ArrayList<Product>> complete_products_list = new HashMap<String, ArrayList<Product>>();
 
 	public ProductsLoader( ProductsListActivity products_list_activity, ListView products_list_view )
 	{
@@ -33,9 +34,9 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 	 * @return
 	 */
 	@Override
-	protected ArrayList<Product> doInBackground( String... params )
+	protected HashMap<String, ArrayList<Product>> doInBackground( String... params )
 	{
-		ArrayList<Product> parsed_products_list = new ArrayList<Product>();
+		HashMap<String, ArrayList<Product>> parsed_products_list = new HashMap<String, ArrayList<Product>>();
 
 		ProductsJSONParser products_json_parser = new ProductsJSONParser();
 
@@ -74,7 +75,7 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 	 * Invoked by the Android system on "doInBackground"
 	 */
 	@Override
-	protected void onPostExecute( ArrayList<Product> complete_products_list )
+	protected void onPostExecute( HashMap<String, ArrayList<Product>> complete_products_list )
 	{
 		super.onPostExecute( complete_products_list );
 
@@ -97,11 +98,18 @@ public class ProductsLoader extends AsyncTask<String, Void, ArrayList<Product>>
 		// is possible to arrive here without having all products parsed
 		if ( !complete_products_list.isEmpty() )
 		{
-			ProductsAdapter products_adapter = new ProductsAdapter( ProductsLoader.products_list_activity, R.layout.products_list_entry, complete_products_list );
+			// Get the products from the selected category
+			ArrayList<Product> category_products = complete_products_list.get( tab_tag );
 
-			products_list_view.setAdapter( products_adapter );
+			// If there'is any product inside the selected category
+			if ( category_products != null )
+			{
+				ProductsAdapter products_adapter = new ProductsAdapter( ProductsLoader.products_list_activity, R.layout.products_list_entry, category_products );
 
-			products_list_view.setVisibility( ListView.VISIBLE );
+				products_list_view.setAdapter( products_adapter );
+
+				products_list_view.setVisibility( ListView.VISIBLE );
+			}
 		}
 	}
 }

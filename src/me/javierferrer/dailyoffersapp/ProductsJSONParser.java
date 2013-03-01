@@ -15,14 +15,15 @@ public class ProductsJSONParser
 
 	/**
 	 * Parses a list of products based on a JSONArray
+	 * Returns the products in a hashmap with the products category_root as the hashmap key and an ArrayList of Product as the HashMap values
 	 *
 	 * @param products_json_array
 	 * @return a List of Products
 	 */
-	public ArrayList<Product> parseProducts( JSONArray products_json_array )
+	public HashMap<String, ArrayList<Product>> parseProducts( JSONArray products_json_array )
 	{
 		int num_products = products_json_array.length();
-		ArrayList<Product> products_list = new ArrayList<Product>();
+		HashMap<String, ArrayList<Product>> products_list = new HashMap<String, ArrayList<Product>>();
 		Product product = null;
 
 		/** Taking each country, parses and adds to list object */
@@ -33,7 +34,17 @@ public class ProductsJSONParser
 				// Parse the current product JSON
 				product = getProduct( ( JSONObject ) products_json_array.get( i ) );
 
-				products_list.add( product );
+				// If we've already parsed products from the same category, add it to the same ArrayList
+				if ( products_list.get( product.getCategoryRoot() ) != null )
+				{
+					products_list.get( product.getCategoryRoot() ).add( product );
+				}
+				else // If we don't have any product in the same category key, create it
+				{
+					ArrayList<Product> category_products = new ArrayList<Product>();
+					category_products.add( product );
+					products_list.put( product.getCategoryRoot(), category_products );
+				}
 			}
 			catch ( JSONException e )
 			{
@@ -74,8 +85,8 @@ public class ProductsJSONParser
 			price = product_json.getString( "price" );
 			offer_price = product_json.getString( "offer_price" );
 			producer = product_json.getString( "producer" );
-			category_root = product_json.getJSONObject( "categories" ).getString( "root" );
-			category_last_child = product_json.getJSONObject( "categories" ).getString( "last_child" );
+			category_root = product_json.getString( "category_root" );
+			category_last_child = product_json.getString( "category_last_child" );
 
 			// Parse attributes
 			JSONArray attributes_json = product_json.getJSONArray( "attributes" );

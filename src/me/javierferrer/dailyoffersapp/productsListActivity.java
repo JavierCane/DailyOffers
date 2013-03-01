@@ -92,7 +92,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		{
 			Tab tab = getSupportActionBar().newTab();
 			tab.setText( category_name );
-			tab.setTag( category_name + "_tag" );
+			tab.setTag( category_name );
 			tab.setTabListener( this );
 			getSupportActionBar().addTab( tab );
 		}
@@ -173,7 +173,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 				Intent intent = new Intent( this.getBaseContext(), WebViewActivity.class );
 
 				Bundle bundle = new Bundle();
-				bundle.putString( "url", selected_product.getBuy_url() );
+				bundle.putString( "url", selected_product.getBuyUrl() );
 				intent.putExtras( bundle );
 
 				startActivity( intent );

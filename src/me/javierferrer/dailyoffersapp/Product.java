@@ -31,8 +31,8 @@ public class Product implements Serializable
 		this.price = price;
 		this.offer_price = offer_price;
 		this.producer = producer;
-		this.producer = category_root;
-		this.producer = category_last_child;
+		this.category_root = category_root;
+		this.category_last_child = category_last_child;
 		this.attributes = attributes;
 	}
 
@@ -41,12 +41,12 @@ public class Product implements Serializable
 		return name;
 	}
 
-	public String getDetails_url()
+	public String getDetailsUrl()
 	{
 		return details_url;
 	}
 
-	public String getBuy_url()
+	public String getBuyUrl()
 	{
 		return buy_url;
 	}
@@ -61,7 +61,7 @@ public class Product implements Serializable
 		return price;
 	}
 
-	public String getOffer_price()
+	public String getOfferPrice()
 	{
 		return offer_price;
 	}
@@ -71,12 +71,12 @@ public class Product implements Serializable
 		return producer;
 	}
 
-	public String getCategory_root()
+	public String getCategoryRoot()
 	{
 		return category_root;
 	}
 
-	public String getCategory_last_child()
+	public String getCategoryLastChild()
 	{
 		return category_last_child;
 	}
@@ -84,5 +84,13 @@ public class Product implements Serializable
 	public ArrayList<HashMap<String, String>> getAttributes()
 	{
 		return attributes;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "[name: " + name + ", details_url:" + details_url + ", buy_url:" + buy_url + ", image:" + image + ", price:" + price +
+		       ", offer_price:" + offer_price + ", " + "producer:" + producer + ", category_root:" + category_root +
+		       ", category_last_child:" + category_last_child + ", attributes:" + attributes.toString() + "]";
 	}
 }
