@@ -20,6 +20,8 @@ public class ProductDetailsActivity extends SherlockActivity
 	{
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.product_details );
+		getSupportActionBar().setHomeButtonEnabled( true );
+		getSupportActionBar().setDisplayHomeAsUpEnabled( true );
 
 		TextView tv_product_name = ( TextView ) findViewById( R.id.tv_product_name );
 

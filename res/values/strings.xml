@@ -4,4 +4,8 @@
     <string name="desc_iv_product_image">Product image</string>
     <string name="desc_mi_view_details">View details</string>
     <string name="desc_mi_buy">Buy</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search…</string>
+    <string name="more">More</string>
+    <string name="search_hint">Search products...</string>
 </resources>

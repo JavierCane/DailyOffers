@@ -19,12 +19,24 @@ public class ProductsLoader extends AsyncTask<String, Void, HashMap<String, Arra
 
 	private static ProductsListActivity products_list_activity;
 	private static ListView products_list_view;
-	private static HashMap<String, ArrayList<Product>> complete_products_list = new HashMap<String, ArrayList<Product>>();
+	private static HashMap<String, ArrayList<Product>> products_by_category = new HashMap<String, ArrayList<Product>>();
+
+	private static ArrayList<Product> products_list = new ArrayList<Product>();
 
 	public ProductsLoader( ProductsListActivity products_list_activity, ListView products_list_view )
 	{
 		this.products_list_activity = products_list_activity;
 		this.products_list_view = products_list_view;
+	}
+
+	/**
+	 * products_list getter
+	 *
+	 * @return products_list
+	 */
+	public ArrayList<Product> getProductsList()
+	{
+		return products_list;
 	}
 
 	/**
@@ -75,41 +87,77 @@ public class ProductsLoader extends AsyncTask<String, Void, HashMap<String, Arra
 	 * Invoked by the Android system on "doInBackground"
 	 */
 	@Override
-	protected void onPostExecute( HashMap<String, ArrayList<Product>> complete_products_list )
+	protected void onPostExecute( HashMap<String, ArrayList<Product>> products_by_category )
 	{
-		super.onPostExecute( complete_products_list );
+		super.onPostExecute( products_by_category );
 
-		// Set the complete product array list
-		this.complete_products_list = complete_products_list;
+		// Set the structured by category product array list
+		this.products_by_category = products_by_category;
+
+		// Set the complete products list
+		for ( ArrayList<Product> category_products : products_by_category.values() )
+		{
+			this.products_list.addAll( category_products );
+		}
 
 		// Call to ProductsListActivity method in order to notify that we'va finished the products parsing process
 		ProductsListActivity.productsParseCompleted();
 	}
 
 	/**
-	 * Fills each products_list_entry layout with one product from complete_products_list throug the ProductsAdapter class
+	 * Fills each products_list_entry layout with one product from products_by_category throug the ProductsAdapter class
 	 *
 	 * @param tab_tag
 	 */
 	public static void fillCategoryTab( String tab_tag )
 	{
-		// If we already have parsed all products and we've them on the complete_products_list variable, fill up the layout entries trough the adapter
+		// If we already have parsed all products and we've them on the products_by_category variable, fill up the layout entries trough the adapter
 		// Since we call to this method from ProductsListActivity.onTabSelected method which is called while initializing the app,
 		// is possible to arrive here without having all products parsed
-		if ( !complete_products_list.isEmpty() )
+		if ( !products_by_category.isEmpty() )
 		{
 			// Get the products from the selected category
-			ArrayList<Product> category_products = complete_products_list.get( tab_tag );
+			ArrayList<Product> category_products = products_by_category.get( tab_tag );
 
 			// If there'is any product inside the selected category
 			if ( category_products != null )
 			{
-				ProductsAdapter products_adapter = new ProductsAdapter( ProductsLoader.products_list_activity, R.layout.products_list_entry, category_products );
+				ProductsAdapter products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, category_products );
 
 				products_list_view.setAdapter( products_adapter );
 
 				products_list_view.setVisibility( ListView.VISIBLE );
 			}
 		}
+	}
+
+	public static ArrayList<Product> getFilteredProducts( CharSequence search )
+	{
+		ArrayList<Product> results = new ArrayList<Product>();
+
+		if ( search.length() != 0 )
+		{
+			for ( Product product : products_list )
+			{
+				if ( product.getName().toLowerCase().contains( search.toString().toLowerCase() ) )
+				{
+					results.add( product );
+				}
+			}
+		}
+
+		return results;
+	}
+
+	/**
+	 * Fills each products_list_entry layout with one product from products_by_category throug the ProductsAdapter class
+	 */
+	public static void fillProductsList( ArrayList<Product> products_list )
+	{
+		ProductsAdapter products_adapter = new ProductsAdapter( products_list_activity, R.layout.products_list_entry, products_list );
+
+		products_list_view.setAdapter( products_adapter );
+
+		products_list_view.setVisibility( ListView.VISIBLE );
 	}
 }

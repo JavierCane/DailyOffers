@@ -1,15 +1,22 @@
 package me.javierferrer.dailyoffersapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -21,8 +28,11 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	private static Tab tab;
 	private static FragmentTransaction transaction;
 	private static ListView products_list_view;
+	private static ActionBar action_bar;
 
 	private final ArrayList<String> categories = new ArrayList<String>();
+
+	private static final String TAG = "DO";
 
 	@Override
 	public void onCreate( Bundle savedInstanceState )
@@ -34,10 +44,10 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		setContentView( R.layout.products_list );
 
 		// Get categories
-		constructCategories();
+		initCategories();
 
 		// Construct tabs
-		constructTabs();
+		initTabs();
 
 		// Set products list listeners
 		products_list_view = ( ListView ) findViewById( R.id.products_list );
@@ -47,7 +57,13 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		// Parse JSON products in a non-ui thread
 		ProductsLoader products_loader = new ProductsLoader( this, products_list_view );
 		products_loader.execute(); // Call to doInBackground mehtod
+
+		action_bar.setHomeButtonEnabled( true );
 	}
+
+	/******************************************************************************************************
+	 * Product list
+	 *****************************************************************************************************/
 
 	/**
 	 * Set items click listener
@@ -72,62 +88,12 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	}
 
 	/**
-	 * Add to the categories array the current context categories
-	 */
-	private void constructCategories()
-	{
-		categories.add( "Wines" );
-		categories.add( "Spirits" );
-		categories.add( "Beers" );
-	}
-
-	/**
-	 * Construct categories tabs
-	 */
-	private void constructTabs()
-	{
-		getSupportActionBar().setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
-
-		for ( String category_name : categories )
-		{
-			Tab tab = getSupportActionBar().newTab();
-			tab.setText( category_name );
-			tab.setTag( category_name );
-			tab.setTabListener( this );
-			getSupportActionBar().addTab( tab );
-		}
-	}
-
-	@Override
-	public void onTabReselected( Tab tab, FragmentTransaction transaction )
-	{
-		this.tab = tab;
-		this.transaction = transaction;
-	}
-
-	/**
-	 * Tab change event listener
-	 * fills the current category tab with the required products
+	 * Context menu for list items (view products details and buy product options)
 	 *
-	 * @param tab         The tab that was selected
-	 * @param transaction
+	 * @param menu
+	 * @param v
+	 * @param menu_info
 	 */
-	@Override
-	public void onTabSelected( Tab tab, FragmentTransaction transaction )
-	{
-		this.tab = tab;
-		this.transaction = transaction;
-
-		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
-	}
-
-	@Override
-	public void onTabUnselected( Tab tab, FragmentTransaction transaction )
-	{
-		this.tab = tab;
-		this.transaction = transaction;
-	}
-
 	@Override
 	public void onCreateContextMenu( ContextMenu menu, View v, ContextMenu.ContextMenuInfo menu_info )
 	{
@@ -192,4 +158,150 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
 	}
+
+	/******************************************************************************************************
+	 * Tabs
+	 *****************************************************************************************************/
+
+	/**
+	 * Add to the categories array the current context categories
+	 */
+	private void initCategories()
+	{
+		categories.add( "Wines" );
+		categories.add( "Spirits" );
+		categories.add( "Beers" );
+	}
+
+	/**
+	 * Construct categories tabs
+	 */
+	private void initTabs()
+	{
+		this.action_bar = getSupportActionBar();
+
+		for ( String category_name : categories )
+		{
+			Tab tab = action_bar.newTab();
+			tab.setText( category_name );
+			tab.setTag( category_name );
+			tab.setTabListener( this );
+			action_bar.addTab( tab );
+		}
+
+		// Set tabs navigation mode
+		showTabs();
+	}
+
+	/**
+	 * Set navigation mode tabs in order to show the constructed tabs
+	 * Also called by ProductsSearchView in onActionViewCollapsed event trigger
+	 */
+	public static void showTabs()
+	{
+		action_bar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
+	}
+
+	/**
+	 * Mandatory override
+	 *
+	 * @param tab         The tab that was reselected.
+	 * @param transaction
+	 */
+	@Override
+	public void onTabReselected( Tab tab, FragmentTransaction transaction )
+	{
+		this.tab = tab;
+		this.transaction = transaction;
+	}
+
+	/**
+	 * Tab change event listener
+	 * fills the current category tab with the required products
+	 *
+	 * @param tab         The tab that was selected
+	 * @param transaction
+	 */
+	@Override
+	public void onTabSelected( Tab tab, FragmentTransaction transaction )
+	{
+		this.tab = tab;
+		this.transaction = transaction;
+
+		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
+	}
+
+	/**
+	 * Mandatory override
+	 *
+	 * @param tab         The tab that was unselected
+	 * @param transaction
+	 */
+	@Override
+	public void onTabUnselected( Tab tab, FragmentTransaction transaction )
+	{
+		this.tab = tab;
+		this.transaction = transaction;
+	}
+
+	/******************************************************************************************************
+	 * Action Bar (search and settings)
+	 *****************************************************************************************************/
+
+	/**
+	 * Creates Action Bar menus items (search and settings)
+	 *
+	 * @param menu
+	 * @return
+	 */
+	@Override
+	public boolean onCreateOptionsMenu( Menu menu )
+	{
+		getSupportMenuInflater().inflate( R.menu.products_list_action_bar_menu, menu );
+
+		ProductsSearchView search_view = ( ProductsSearchView ) menu.findItem( R.id.search_btn ).getActionView();
+		search_view.setQueryHint( getResources().getString( R.string.search_hint ) ); // Set search query hint
+
+		return super.onCreateOptionsMenu( menu );
+	}
+
+	@Override
+	public boolean onOptionsItemSelected( MenuItem item )
+	{
+		switch ( item.getItemId() )
+		{
+			case R.id.search_btn:
+				// Hide tabs changing the navigation mode to standard
+				action_bar.setNavigationMode( ActionBar.NAVIGATION_MODE_STANDARD );
+
+				// Get the search edit text and add the on change listener
+				EditText search = ( EditText ) item.getActionView().findViewById( R.id.abs__search_src_text );
+				search.addTextChangedListener( filter_products_text_watcher );
+				search.requestFocus();
+				InputMethodManager imm = ( InputMethodManager ) getSystemService( Context.INPUT_METHOD_SERVICE );
+				imm.toggleSoftInput( InputMethodManager.SHOW_FORCED, 0 );
+				break;
+			default:
+				return super.onOptionsItemSelected( item );
+		}
+
+		return true;
+	}
+
+	private TextWatcher filter_products_text_watcher = new TextWatcher()
+	{
+
+		public void afterTextChanged( Editable search )
+		{
+		}
+
+		public void beforeTextChanged( CharSequence search, int start, int count, int after )
+		{
+		}
+
+		public void onTextChanged( CharSequence search, int start, int before, int count )
+		{
+			ProductsLoader.fillProductsList( ProductsLoader.getFilteredProducts( search ) );
+		}
+	};
 }
