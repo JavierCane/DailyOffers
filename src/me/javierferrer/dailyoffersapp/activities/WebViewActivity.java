@@ -1,8 +1,9 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
+import me.javierferrer.dailyoffersapp.R;
 
 public class WebViewActivity extends Activity
 {

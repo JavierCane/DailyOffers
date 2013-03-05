@@ -1,4 +1,4 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -16,6 +16,11 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import me.javierferrer.dailyoffersapp.R;
+import me.javierferrer.dailyoffersapp.models.Product;
+import me.javierferrer.dailyoffersapp.models.ProductsList;
+import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
+import me.javierferrer.dailyoffersapp.widgets.ProductsSearchView;
 
 import java.util.ArrayList;
 

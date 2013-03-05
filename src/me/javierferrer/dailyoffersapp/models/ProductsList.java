@@ -1,8 +1,10 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.models;
 
 import android.content.res.Resources;
 import android.util.Log;
-import android.widget.ListView;
+import me.javierferrer.dailyoffersapp.utils.ProductsJSONParser;
+import me.javierferrer.dailyoffersapp.activities.ProductsListActivity;
+import me.javierferrer.dailyoffersapp.R;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 

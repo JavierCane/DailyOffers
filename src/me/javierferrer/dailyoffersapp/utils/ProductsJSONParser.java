@@ -1,5 +1,6 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.utils;
 
+import me.javierferrer.dailyoffersapp.models.Product;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

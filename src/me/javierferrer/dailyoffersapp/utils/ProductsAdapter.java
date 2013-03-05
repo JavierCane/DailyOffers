@@ -1,4 +1,4 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.utils;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import me.javierferrer.dailyoffersapp.activities.ProductsListActivity;
+import me.javierferrer.dailyoffersapp.R;
+import me.javierferrer.dailyoffersapp.models.Product;
 
 import java.util.ArrayList;
 

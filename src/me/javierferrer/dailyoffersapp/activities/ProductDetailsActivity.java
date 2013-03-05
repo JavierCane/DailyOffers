@@ -1,4 +1,4 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import me.javierferrer.dailyoffersapp.R;
+import me.javierferrer.dailyoffersapp.models.Product;
 
 /**
  * Created with IntelliJ IDEA.

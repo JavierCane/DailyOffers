@@ -1,4 +1,4 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

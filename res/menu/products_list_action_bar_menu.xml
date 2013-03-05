@@ -5,7 +5,7 @@
             android:icon="@drawable/abs__ic_search_api_holo_light"
             android:title="@string/search"
             android:showAsAction="ifRoom|collapseActionView"
-            android:actionViewClass="me.javierferrer.dailyoffersapp.ProductsSearchView"
+            android:actionViewClass="me.javierferrer.dailyoffersapp.widgets.ProductsSearchView"
             />
     <item
             android:id="@+id/more_btn"

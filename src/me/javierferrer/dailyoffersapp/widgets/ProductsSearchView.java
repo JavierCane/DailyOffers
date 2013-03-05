@@ -1,7 +1,8 @@
-package me.javierferrer.dailyoffersapp;
+package me.javierferrer.dailyoffersapp.widgets;
 
 import android.content.Context;
 import com.actionbarsherlock.widget.SearchView;
+import me.javierferrer.dailyoffersapp.activities.ProductsListActivity;
 
 /**
  * Custom SearchView
