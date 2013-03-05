@@ -1,17 +1,16 @@
 package me.javierferrer.dailyoffersapp;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -29,6 +28,8 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	private static FragmentTransaction transaction;
 	private static ListView products_list_view;
 	private static ActionBar action_bar;
+	private static LayoutInflater layout_inflater;
+	private static ProductsListActivity products_list_activity;
 
 	private final ArrayList<String> categories = new ArrayList<String>();
 
@@ -37,11 +38,48 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
+		Log.d( TAG, "ProductsListActivity: onCreate" );
+
 		// Action Bar Sherlock compatibility
 		super.onCreate( savedInstanceState );
 
+		// Firstly we need to ensure that the products list has been loaded and if not, try to load it!
+		ProductsList.getInstance().ensureLoaded( getResources() );
+
 		// Layout
 		setContentView( R.layout.products_list );
+
+		// Configure the Action Bar
+		action_bar = getSupportActionBar();
+		products_list_view = ( ListView ) findViewById( R.id.products_list );
+		layout_inflater = this.getLayoutInflater();
+		products_list_activity = this;
+
+		Log.d( TAG, "ProductsListActivity: onCreate: Ready to handle the intent. Action bar: " + action_bar.toString() + ", products_list_view: " + products_list_view.toString() );
+
+		// Handle possible search intent
+		handleIntent( getIntent() );
+
+		Log.d( TAG, "ProductsListActivity: onCreate: Intent hadled" );
+
+		// Set products list listeners
+		registerForContextMenu( products_list_view ); // Set the list view long clickable and responding with a context menu
+		setListListeners();
+
+		Log.d( TAG, "ProductsListActivity: onCreate: Listeners set" );
+	}
+
+	@Override
+	protected void onNewIntent( Intent intent )
+	{
+		Log.d( TAG, "ProductsListActivity: onNewIntent: " + intent.toString() );
+
+		handleIntent( intent );
+	}
+
+	private void handleIntent( Intent intent )
+	{
+		Log.d( TAG, "ProductsListActivity: handleIntent: " + intent.toString() );
 
 		// Get categories
 		initCategories();
@@ -49,16 +87,40 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		// Construct tabs
 		initTabs();
 
-		// Set products list listeners
-		products_list_view = ( ListView ) findViewById( R.id.products_list );
-		registerForContextMenu( products_list_view ); // Set the list view long clickable and responding with a context menu
-		setListListeners();
+		if ( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
+		{
+			hideTabs();
 
-		// Parse JSON products in a non-ui thread
-		ProductsLoader products_loader = new ProductsLoader( this, products_list_view );
-		products_loader.execute(); // Call to doInBackground mehtod
+			String query = intent.getStringExtra( SearchManager.QUERY );
 
-		action_bar.setHomeButtonEnabled( true );
+			action_bar.setTitle( getResources().getString( R.string.search ) + ": \"" + query + "\"" );
+
+			Log.d( TAG, "ProductsListActivity: handleIntent: search intent, query: " + query );
+
+			ProductsAdapter products_adapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query ) );
+			products_list_view.setAdapter( products_adapter );
+			products_list_view.setVisibility( ListView.VISIBLE );
+//			mTextView.setText(getString(R.string.search_results, query));
+//			mList.setOnItemClickListener(wordAdapter);
+		}
+		else // if ( Intent.ACTION_MAIN.equals( intent.getAction() ) )
+		{
+			Log.d( TAG, "ProductsListActivity: handleIntent: main action intent detected" );
+
+			// Set tabs navigation mode
+			showTabs();
+
+			Log.d( TAG, "ProductsListActivity: handleIntent: products_list_view: " + products_list_view.toString() );
+
+			if ( ProductsList.getInstance().isLoaded() )
+			{
+				ProductsAdapter products_adapter =
+						new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) );
+				products_list_view.setAdapter( products_adapter );
+				products_list_view.setVisibility( ListView.VISIBLE );
+//			    products_list_view.setOnItemClickListener( products_adapter );
+			}
+		}
 	}
 
 	/******************************************************************************************************
@@ -151,16 +213,21 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	}
 
 	/**
-	 * Method called when ProductsLoader has finished the products parsing process.
+	 * Method called when ProductsList has finished the products parsing process.
 	 * It's necessary because it's possible to call to fillCategoryTab method without having finished the parsing process.
 	 */
 	public static void productsParseCompleted()
 	{
-		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
+		Log.d( TAG, "ProductsListActivity: productsParseCompleted" );
+
+		ProductsAdapter products_adapter =
+				new ProductsAdapter( products_list_activity, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) );
+		products_list_view.setAdapter( products_adapter );
+		products_list_view.setVisibility( ListView.VISIBLE );
 	}
 
 	/******************************************************************************************************
-	 * Tabs
+	 * Categories & tabs
 	 *****************************************************************************************************/
 
 	/**
@@ -178,8 +245,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	 */
 	private void initTabs()
 	{
-		this.action_bar = getSupportActionBar();
-
 		for ( String category_name : categories )
 		{
 			Tab tab = action_bar.newTab();
@@ -188,9 +253,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			tab.setTabListener( this );
 			action_bar.addTab( tab );
 		}
-
-		// Set tabs navigation mode
-		showTabs();
 	}
 
 	/**
@@ -200,6 +262,22 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	public static void showTabs()
 	{
 		action_bar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
+
+		action_bar.setHomeButtonEnabled( false );
+		action_bar.setDisplayHomeAsUpEnabled( false );
+
+		action_bar.setTitle( products_list_activity.getResources().getString( R.string.app_name ) );
+	}
+
+	/**
+	 * Hide tabs changing the navigation mode to standard
+	 */
+	public static void hideTabs()
+	{
+		action_bar.setNavigationMode( ActionBar.NAVIGATION_MODE_STANDARD );
+
+		action_bar.setHomeButtonEnabled( true );
+		action_bar.setDisplayHomeAsUpEnabled( true );
 	}
 
 	/**
@@ -228,7 +306,13 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		this.tab = tab;
 		this.transaction = transaction;
 
-		ProductsLoader.fillCategoryTab( tab.getTag().toString() );
+		if ( ProductsList.getInstance().isLoaded() )
+		{
+			ProductsAdapter products_adapter =
+					new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) );
+			products_list_view.setAdapter( products_adapter );
+			products_list_view.setVisibility( ListView.VISIBLE );
+		}
 	}
 
 	/**
@@ -259,8 +343,10 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		getSupportMenuInflater().inflate( R.menu.products_list_action_bar_menu, menu );
 
+		// Associate searchable configuration with the SearchView (res/xml/searchable.xml)
+		SearchManager search_manager = ( SearchManager ) getSystemService( Context.SEARCH_SERVICE );
 		ProductsSearchView search_view = ( ProductsSearchView ) menu.findItem( R.id.search_btn ).getActionView();
-		search_view.setQueryHint( getResources().getString( R.string.search_hint ) ); // Set search query hint
+		search_view.setSearchableInfo( search_manager.getSearchableInfo( getComponentName() ) );
 
 		return super.onCreateOptionsMenu( menu );
 	}
@@ -268,40 +354,19 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	@Override
 	public boolean onOptionsItemSelected( MenuItem item )
 	{
+		Log.d( TAG, "ProductsListActivity: onOptionsItemSelected: " + item.getTitle() );
+
 		switch ( item.getItemId() )
 		{
 			case R.id.search_btn:
-				// Hide tabs changing the navigation mode to standard
-				action_bar.setNavigationMode( ActionBar.NAVIGATION_MODE_STANDARD );
-
-				// Get the search edit text and add the on change listener
-				EditText search = ( EditText ) item.getActionView().findViewById( R.id.abs__search_src_text );
-				search.addTextChangedListener( filter_products_text_watcher );
-				search.requestFocus();
-				InputMethodManager imm = ( InputMethodManager ) getSystemService( Context.INPUT_METHOD_SERVICE );
-				imm.toggleSoftInput( InputMethodManager.SHOW_FORCED, 0 );
-				break;
+				hideTabs();
+				products_list_view.setVisibility( ListView.INVISIBLE );
+				return true;
+			case android.R.id.home:
+				showTabs();
+				return true;
 			default:
 				return super.onOptionsItemSelected( item );
 		}
-
-		return true;
 	}
-
-	private TextWatcher filter_products_text_watcher = new TextWatcher()
-	{
-
-		public void afterTextChanged( Editable search )
-		{
-		}
-
-		public void beforeTextChanged( CharSequence search, int start, int count, int after )
-		{
-		}
-
-		public void onTextChanged( CharSequence search, int start, int before, int count )
-		{
-			ProductsLoader.fillProductsList( ProductsLoader.getFilteredProducts( search ) );
-		}
-	};
 }

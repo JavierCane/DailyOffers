@@ -6,7 +6,6 @@
             android:title="@string/search"
             android:showAsAction="ifRoom|collapseActionView"
             android:actionViewClass="me.javierferrer.dailyoffersapp.ProductsSearchView"
-            android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
             />
     <item
             android:id="@+id/more_btn"

@@ -3,6 +3,7 @@ package me.javierferrer.dailyoffersapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 
@@ -15,19 +16,23 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class ProductDetailsActivity extends SherlockActivity
 {
+	private static ActionBar action_bar;
+	private static Product product;
 
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.product_details );
-		getSupportActionBar().setHomeButtonEnabled( true );
-		getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
+		action_bar = getSupportActionBar();
+		Intent intent = getIntent();
+		product = ( Product ) intent.getSerializableExtra( "Product" );
+
+		action_bar.setHomeButtonEnabled( true );
+		action_bar.setDisplayHomeAsUpEnabled( true );
+		action_bar.setTitle( product.getName() );
 
 		TextView tv_product_name = ( TextView ) findViewById( R.id.tv_product_name );
-
-		Intent intent = getIntent();
-
-		Product product = ( Product ) intent.getSerializableExtra( "Product" );
 
 		tv_product_name.setText( product.getPrice() );
 	}
