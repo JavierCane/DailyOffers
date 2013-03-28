@@ -3,7 +3,9 @@ package me.javierferrer.dailyoffersapp.activities;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -23,8 +25,10 @@ import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 import me.javierferrer.dailyoffersapp.widgets.ProductsSearchView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.actionbarsherlock.app.ActionBar.Tab;
+import static java.util.Arrays.asList;
 
 public class ProductsListActivity extends SherlockActivity implements ActionBar.TabListener
 {
@@ -36,7 +40,8 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	private static LayoutInflater layout_inflater;
 	private static ProductsListActivity products_list_activity;
 
-	private final ArrayList<String> categories = new ArrayList<String>();
+	private static final List<String> all_categories = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
+	private static final List<String> visible_categories = new ArrayList<String>();
 
 	private static final String TAG = "DO";
 
@@ -62,6 +67,12 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		Log.d( TAG, "ProductsListActivity: onCreate: Ready to handle the intent. Action bar: " + action_bar.toString() + ", products_list_view: " + products_list_view.toString() );
 
+		// Get visible_categories
+		initCategories();
+
+		// Construct tabs
+		initTabs();
+
 		// Handle possible search intent
 		handleIntent( getIntent() );
 
@@ -72,6 +83,22 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		setListListeners();
 
 		Log.d( TAG, "ProductsListActivity: onCreate: Listeners set" );
+	}
+
+	/**
+	 * On start method overrided in order to re-initialize tabs when preferences has been changed
+	 * This is because the user could be set as hidden/shown some categories
+	 */
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// Get visible_categories
+		initCategories();
+
+		// Construct tabs
+		initTabs();
 	}
 
 	@Override
@@ -86,12 +113,6 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		Log.d( TAG, "ProductsListActivity: handleIntent: " + intent.toString() );
 
-		// Get categories
-		initCategories();
-
-		// Construct tabs
-		initTabs();
-
 		if ( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
 		{
 			hideTabs();
@@ -102,7 +123,20 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 			Log.d( TAG, "ProductsListActivity: handleIntent: search intent, query: " + query );
 
-			ProductsAdapter products_adapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query ) );
+			// Get the xml/preferences.xml preferences
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
+
+			// Check if the user has specified that the categories filters affects on search results
+			ProductsAdapter products_adapter;
+			if ( preferences.getBoolean( "visibility_affects_search", true ) )
+			{
+				products_adapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, visible_categories ) );
+			}
+			else
+			{
+				products_adapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, all_categories ) );
+			}
+
 			products_list_view.setAdapter( products_adapter );
 			products_list_view.setVisibility( ListView.VISIBLE );
 //			mTextView.setText(getString(R.string.search_results, query));
@@ -236,13 +270,22 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	 *****************************************************************************************************/
 
 	/**
-	 * Add to the categories array the current context categories
+	 * Add to the visible_categories array the current context visible_categories
 	 */
 	private void initCategories()
 	{
-		categories.add( "Wines" );
-		categories.add( "Spirits" );
-		categories.add( "Beers" );
+		visible_categories.clear();
+
+		// Get the xml/preferences.xml preferences
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
+
+		for ( String category_name : all_categories )
+		{
+			if ( preferences.getBoolean( category_name.toLowerCase() + "_visible", true ) )
+			{
+				visible_categories.add( category_name );
+			}
+		}
 	}
 
 	/**
@@ -250,7 +293,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	 */
 	private void initTabs()
 	{
-		for ( String category_name : categories )
+		action_bar.removeAllTabs();
+
+		for ( String category_name : visible_categories )
 		{
 			Tab tab = action_bar.newTab();
 			tab.setText( category_name );
@@ -370,6 +415,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			case android.R.id.home:
 				showTabs();
 				return true;
+			case R.id.settings_btn:
+				Intent settings_activity = new Intent( getBaseContext(), PreferencesActivity.class );
+				startActivity( settings_activity );
 			default:
 				return super.onOptionsItemSelected( item );
 		}

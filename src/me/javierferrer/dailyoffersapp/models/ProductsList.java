@@ -2,9 +2,9 @@ package me.javierferrer.dailyoffersapp.models;
 
 import android.content.res.Resources;
 import android.util.Log;
-import me.javierferrer.dailyoffersapp.utils.ProductsJSONParser;
-import me.javierferrer.dailyoffersapp.activities.ProductsListActivity;
 import me.javierferrer.dailyoffersapp.R;
+import me.javierferrer.dailyoffersapp.activities.ProductsListActivity;
+import me.javierferrer.dailyoffersapp.utils.ProductsJSONParser;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -119,7 +120,14 @@ public class ProductsList
 		loaded = true;
 	}
 
-	public ArrayList<Product> getFilteredProducts( String query )
+	/**
+	 * Get a list of products filtered by a string query on its name and a list of visible categories
+	 *
+	 * @param query
+	 * @param visible_categories
+	 * @return
+	 */
+	public ArrayList<Product> getFilteredProducts( String query, List<String> visible_categories )
 	{
 		ArrayList<Product> results = new ArrayList<Product>();
 
@@ -129,7 +137,7 @@ public class ProductsList
 			{
 				for ( Product product : products_list )
 				{
-					if ( product.getName().toLowerCase().contains( query.toLowerCase() ) )
+					if ( visible_categories.contains( product.getCategoryRoot() ) && product.getName().toLowerCase().contains( query.toLowerCase() ) )
 					{
 						results.add( product );
 					}

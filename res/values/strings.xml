@@ -8,4 +8,10 @@
     <string name="search">Search</string>
     <string name="more">More</string>
     <string name="search_hint">Search products...</string>
+    <string name="edit_categopries">Edit categories</string>
+    <string name="app_info">Daily Offers App info</string>
+    <string name="hidden_category">This category will be hidden from the products list</string>
+    <string name="visible_category">This category will be shown in the products list</string>
+    <string name="affect_search">Only products from checked categories will be shown in search results</string>
+    <string name="no_affect_search">Products from all categories will be shown in search results</string>
 </resources>

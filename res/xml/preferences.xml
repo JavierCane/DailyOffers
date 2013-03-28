@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Categories preferences subscreen -->
+    <PreferenceScreen
+            android:key="categories_preferences"
+            android:title="@string/edit_categopries">
+
+        <CheckBoxPreference
+                android:key="visibility_affects_search"
+                android:title="Categories filter affects search results"
+                android:summaryOff="@string/no_affect_search"
+                android:summaryOn="@string/affect_search"
+                android:defaultValue="true" />
+
+        <PreferenceCategory
+                android:title="@string/edit_categopries">
+
+            <CheckBoxPreference
+                    android:key="wines_visible"
+                    android:title="Wines"
+                    android:summaryOff="@string/hidden_category"
+                    android:summaryOn="@string/visible_category"
+                    android:defaultValue="true" />
+            <CheckBoxPreference
+                    android:key="spirits_visible"
+                    android:title="Spirits"
+                    android:summaryOff="@string/hidden_category"
+                    android:summaryOn="@string/visible_category"
+                    android:defaultValue="true" />
+            <CheckBoxPreference
+                    android:key="beers_visible"
+                    android:title="Beers"
+                    android:summaryOff="@string/hidden_category"
+                    android:summaryOn="@string/visible_category"
+                    android:defaultValue="true" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <PreferenceCategory
+            android:title="@string/app_info">
+
+        <EditTextPreference
+                android:key="edittext_preference"
+                android:title="Título"
+                android:summary="Summary"
+                android:dialogTitle="Dialog title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
