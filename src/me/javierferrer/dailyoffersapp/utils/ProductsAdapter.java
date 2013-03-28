@@ -15,29 +15,36 @@ import java.util.ArrayList;
 public class ProductsAdapter extends ArrayAdapter<Product>
 {
 
-	ProductsListActivity products_list_activity;
-	ArrayList<Product> products_list;
-	int text_view_id;
+	private static ProductsListActivity sProductsListActivity;
+	private static ArrayList<Product> sProductsList;
+	private static int sTextViewId;
 
-	public ProductsAdapter( ProductsListActivity products_list_activity, int text_view_id, ArrayList<Product> products_list )
+	private static class ProductViewHolder
 	{
-		super( products_list_activity, text_view_id, products_list );
-
-		this.products_list_activity = products_list_activity;
-		this.text_view_id = text_view_id;
-		this.products_list = products_list;
+		TextView name, details;
+		ImageView image;
 	}
 
+	public ProductsAdapter( ProductsListActivity productsListActivity, int textViewId, ArrayList<Product> productsList )
+	{
+		super( productsListActivity, textViewId, productsList );
+
+		this.sProductsListActivity = productsListActivity;
+		this.sTextViewId = textViewId;
+		this.sProductsList = productsList;
+	}
+
+
 	@Override
-	public View getView( int position, View view, ViewGroup parent_view_group )
+	public View getView( int position, View view, ViewGroup parentViewGroup )
 	{
 		View row = view;
 		ProductViewHolder holder;
 
 		if ( row == null )
 		{
-			LayoutInflater inflater = products_list_activity.getLayoutInflater();
-			row = inflater.inflate( text_view_id, parent_view_group, false );
+			LayoutInflater inflater = sProductsListActivity.getLayoutInflater();
+			row = inflater.inflate( sTextViewId, parentViewGroup, false );
 
 			holder = new ProductViewHolder();
 
@@ -52,19 +59,13 @@ public class ProductsAdapter extends ArrayAdapter<Product>
 			holder = ( ProductViewHolder ) row.getTag();
 		}
 
-		Product product = products_list.get( position );
+		Product product = sProductsList.get( position );
 
 		holder.name.setText( product.getName() );
-//		holder.image.setImageResource( products_list_activity.getResources().getIdentifier( product.getImage(), "drawable", products_list_activity.getPackageName() ) );
+//		holder.image.setImageResource( sProductsListActivity.getResources().getIdentifier( product.getImage(), "drawable", sProductsListActivity.getPackageName() ) );
 		holder.details.setText( product.getPrice() );
 
 		return row;
 	}
 
-	static class ProductViewHolder
-	{
-
-		TextView name, details;
-		ImageView image;
-	}
 }

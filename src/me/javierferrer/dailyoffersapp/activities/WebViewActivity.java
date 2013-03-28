@@ -8,7 +8,7 @@ import me.javierferrer.dailyoffersapp.R;
 public class WebViewActivity extends Activity
 {
 
-	private WebView webView;
+	private WebView mWebView;
 
 	public void onCreate( Bundle savedInstanceState )
 	{
@@ -19,8 +19,8 @@ public class WebViewActivity extends Activity
 		Bundle bundle = getIntent().getExtras();
 		String url = bundle.getString( "url" );
 
-		webView = ( WebView ) findViewById( R.id.web_view );
-		webView.getSettings().setJavaScriptEnabled( true );
-		webView.loadUrl( url );
+		mWebView = ( WebView ) findViewById( R.id.web_view );
+		mWebView.getSettings().setJavaScriptEnabled( true );
+		mWebView.loadUrl( url );
 	}
 }

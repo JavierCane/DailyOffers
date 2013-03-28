@@ -18,25 +18,25 @@ import me.javierferrer.dailyoffersapp.models.Product;
  */
 public class ProductDetailsActivity extends SherlockActivity
 {
-	private static ActionBar action_bar;
-	private static Product product;
+	private static ActionBar sActionBar;
+	private static Product sProduct;
 
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.product_details );
 
-		action_bar = getSupportActionBar();
+		sActionBar = getSupportActionBar();
 		Intent intent = getIntent();
-		product = ( Product ) intent.getSerializableExtra( "Product" );
+		sProduct = ( Product ) intent.getSerializableExtra( "Product" );
 
-		action_bar.setHomeButtonEnabled( true );
-		action_bar.setDisplayHomeAsUpEnabled( true );
-		action_bar.setTitle( product.getName() );
+		sActionBar.setHomeButtonEnabled( true );
+		sActionBar.setDisplayHomeAsUpEnabled( true );
+		sActionBar.setTitle( sProduct.getName() );
 
 		TextView tv_product_name = ( TextView ) findViewById( R.id.tv_product_name );
 
-		tv_product_name.setText( product.getPrice() );
+		tv_product_name.setText( sProduct.getPrice() );
 	}
 
 	@Override

@@ -13,6 +13,16 @@ import java.util.HashMap;
  */
 public class ProductsJSONParser
 {
+	private static final ProductsJSONParser sProductsJSONParserInstance = new ProductsJSONParser();
+
+	private ProductsJSONParser()
+	{
+	}
+
+	public static ProductsJSONParser getInstance()
+	{
+		return sProductsJSONParserInstance;
+	}
 
 	/**
 	 * Parses a list of products based on a JSONArray
@@ -21,7 +31,7 @@ public class ProductsJSONParser
 	 * @param products_json_array
 	 * @return a List of Products
 	 */
-	public HashMap<String, ArrayList<Product>> parseProducts( JSONArray products_json_array )
+	public static HashMap<String, ArrayList<Product>> parseProducts( JSONArray products_json_array )
 	{
 		int num_products = products_json_array.length();
 		HashMap<String, ArrayList<Product>> products_list = new HashMap<String, ArrayList<Product>>();
@@ -62,7 +72,7 @@ public class ProductsJSONParser
 	 * @param product_json
 	 * @return product properties in a String-String HashMap based on a JSON product object
 	 */
-	private Product getProduct( JSONObject product_json )
+	private static Product getProduct( JSONObject product_json )
 	{
 		Product product = null;
 
@@ -118,7 +128,7 @@ public class ProductsJSONParser
 	/**
 	 * Parse the product attribute JSON object
 	 */
-	private HashMap<String, String> getAttribute( JSONObject attribute_json )
+	private static HashMap<String, String> getAttribute( JSONObject attribute_json )
 	{
 
 		HashMap<String, String> attribute = new HashMap<String, String>();

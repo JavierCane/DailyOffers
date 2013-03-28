@@ -26,30 +26,28 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ProductsList
 {
 
-	private static final ProductsList instance = new ProductsList();
-
-	public static ProductsList getInstance()
-	{
-		return instance;
-	}
-
-	private Map<String, ArrayList<Product>> products_by_category = new ConcurrentHashMap<String, ArrayList<Product>>();
-	private final ArrayList<Product> products_list = new ArrayList<Product>();
+	private static final ProductsList sProductsListInstance = new ProductsList();
+	private static Map<String, ArrayList<Product>> sProductsByCategory = new ConcurrentHashMap<String, ArrayList<Product>>();
+	private static final ArrayList<Product> sProductsList = new ArrayList<Product>();
+	private static boolean sLoaded = false;
 
 	private ProductsList()
 	{
 	}
 
-	private boolean loaded = false;
+	public static ProductsList getInstance()
+	{
+		return sProductsListInstance;
+	}
 
 	/**
-	 * Loads the words and definitions if they haven't been loaded already.
+	 * Loads the words and definitions if they haven't been sLoaded already.
 	 *
 	 * @param resources Used to load the file containing the words and definitions.
 	 */
-	public synchronized void ensureLoaded( final Resources resources )
+	public static synchronized void ensureLoaded( final Resources resources )
 	{
-		if ( !loaded )
+		if ( !sLoaded )
 		{
 			new Thread( new Runnable()
 			{
@@ -69,13 +67,11 @@ public class ProductsList
 		}
 	}
 
-	private synchronized void loadProducts( Resources resources ) throws IOException
+	private static synchronized void loadProducts( Resources resources ) throws IOException
 	{
-		if ( !loaded )
+		if ( !sLoaded )
 		{
 			Log.d( "DO", "ProductsList: Loading products" );
-
-			ProductsJSONParser products_json_parser = new ProductsJSONParser();
 
 			// Open a buffer in order to read from the products JSON file
 			BufferedReader json_reader = new BufferedReader( new InputStreamReader( resources.openRawResource( R.raw.products ) ) );
@@ -96,15 +92,15 @@ public class ProductsList
 				JSONObject products_json = new JSONObject( json_tokener );
 
 				// Parse the JSON products object into the HashMap<String, ArrayList<Product>>
-				products_by_category = products_json_parser.parseProducts( products_json.getJSONArray( "products" ) );
+				sProductsByCategory = ProductsJSONParser.getInstance().parseProducts( products_json.getJSONArray( "products" ) );
 
 				// For each product category, add them to the complete products list
-				for ( ArrayList<Product> category_products : products_by_category.values() )
+				for ( ArrayList<Product> category_products : sProductsByCategory.values() )
 				{
-					products_list.addAll( category_products );
+					sProductsList.addAll( category_products );
 				}
 
-				Log.d( "DO", "ProductsList: Products loaded" );
+				Log.d( "DO", "ProductsList: Products sLoaded" );
 				ProductsListActivity.productsParseCompleted();
 			}
 			catch ( Exception e )
@@ -117,7 +113,7 @@ public class ProductsList
 			}
 		}
 
-		loaded = true;
+		sLoaded = true;
 	}
 
 	/**
@@ -127,15 +123,15 @@ public class ProductsList
 	 * @param visible_categories
 	 * @return
 	 */
-	public ArrayList<Product> getFilteredProducts( String query, List<String> visible_categories )
+	public static ArrayList<Product> getFilteredProducts( String query, List<String> visible_categories )
 	{
 		ArrayList<Product> results = new ArrayList<Product>();
 
-		if ( loaded )
+		if ( sLoaded )
 		{
 			if ( query.length() != 0 )
 			{
-				for ( Product product : products_list )
+				for ( Product product : sProductsList )
 				{
 					if ( visible_categories.contains( product.getCategoryRoot() ) && product.getName().toLowerCase().contains( query.toLowerCase() ) )
 					{
@@ -146,24 +142,24 @@ public class ProductsList
 		}
 		else
 		{
-			Log.d( "DO", "products_list not loaded yet." );
+			Log.d( "DO", "products_list not sLoaded yet." );
 		}
 
 		return results;
 	}
 
-	public Map<String, ArrayList<Product>> getProductsByCategory()
+	public static Map<String, ArrayList<Product>> getProductsByCategory()
 	{
-		return products_by_category;
+		return sProductsByCategory;
 	}
 
-	public ArrayList<Product> getCategoryProductsList( String category )
+	public static ArrayList<Product> getCategoryProductsList( String category )
 	{
-		return products_by_category.get( category );
+		return sProductsByCategory.get( category );
 	}
 
-	public boolean isLoaded()
+	public static boolean isLoaded()
 	{
-		return loaded;
+		return sLoaded;
 	}
 }

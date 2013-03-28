@@ -10,87 +10,87 @@ import java.util.HashMap;
 public class Product implements Serializable
 {
 
-	private String name;
-	private String details_url;
-	private String buy_url;
-	private String image;
-	private String price;
-	private String offer_price;
-	private String producer;
-	private String category_root;
-	private String category_last_child;
-	private ArrayList<HashMap<String, String>> attributes;
+	private String mName;
+	private String mDetailsUrl;
+	private String mBuyUrl;
+	private String mImage;
+	private String mPrice;
+	private String mOfferPrice;
+	private String mProducer;
+	private String mCategoryRoot;
+	private String mCategoryLastChild;
+	private ArrayList<HashMap<String, String>> mAttributes;
 
-	public Product( String name, String details_url, String buy_url, String image, String price, String offer_price, String producer, String category_root,
-	                String category_last_child, ArrayList<HashMap<String, String>> attributes )
+	public Product( String name, String detailsUrl, String buyUrl, String image, String price, String offerPrice, String producer, String categoryRoot,
+	                String categoryLastChild, ArrayList<HashMap<String, String>> attributes )
 	{
-		this.name = name;
-		this.details_url = details_url;
-		this.buy_url = buy_url;
-		this.image = image;
-		this.price = price;
-		this.offer_price = offer_price;
-		this.producer = producer;
-		this.category_root = category_root;
-		this.category_last_child = category_last_child;
-		this.attributes = attributes;
+		this.mName = name;
+		this.mDetailsUrl = detailsUrl;
+		this.mBuyUrl = buyUrl;
+		this.mImage = image;
+		this.mPrice = price;
+		this.mOfferPrice = offerPrice;
+		this.mProducer = producer;
+		this.mCategoryRoot = categoryRoot;
+		this.mCategoryLastChild = categoryLastChild;
+		this.mAttributes = attributes;
 	}
 
 	public String getName()
 	{
-		return name;
+		return mName;
 	}
 
 	public String getDetailsUrl()
 	{
-		return details_url;
+		return mDetailsUrl;
 	}
 
 	public String getBuyUrl()
 	{
-		return buy_url;
+		return mBuyUrl;
 	}
 
 	public String getImage()
 	{
-		return image;
+		return mImage;
 	}
 
 	public String getPrice()
 	{
-		return price;
+		return mPrice;
 	}
 
 	public String getOfferPrice()
 	{
-		return offer_price;
+		return mOfferPrice;
 	}
 
 	public String getProducer()
 	{
-		return producer;
+		return mProducer;
 	}
 
 	public String getCategoryRoot()
 	{
-		return category_root;
+		return mCategoryRoot;
 	}
 
 	public String getCategoryLastChild()
 	{
-		return category_last_child;
+		return mCategoryLastChild;
 	}
 
 	public ArrayList<HashMap<String, String>> getAttributes()
 	{
-		return attributes;
+		return mAttributes;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "[name: " + name + ", details_url:" + details_url + ", buy_url:" + buy_url + ", image:" + image + ", price:" + price +
-		       ", offer_price:" + offer_price + ", " + "producer:" + producer + ", category_root:" + category_root +
-		       ", category_last_child:" + category_last_child + ", attributes:" + attributes.toString() + "]";
+		return "[mName: " + mName + ", mDetailsUrl:" + mDetailsUrl + ", mBuyUrl:" + mBuyUrl + ", mImage:" + mImage + ", mPrice:" + mPrice +
+		       ", mOfferPrice:" + mOfferPrice + ", " + "mProducer:" + mProducer + ", mCategoryRoot:" + mCategoryRoot +
+		       ", mCategoryLastChild:" + mCategoryLastChild + ", mAttributes:" + mAttributes.toString() + "]";
 	}
 }
