@@ -65,7 +65,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		sLayoutInflater = this.getLayoutInflater();
 		sProductsListActivity = this;
 
-		Log.d( TAG, "ProductsListActivity: onCreate: Ready to handle the intent. Action bar: " + sActionBar.toString() + ", sProductsListView: " + sProductsListView.toString() );
+		Log.d( TAG, "ProductsListActivity: onCreate: Ready to handle the intent" );
 
 		// Get sVisibleCategories
 		initCategories();
@@ -76,7 +76,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		// Handle possible search intent
 		handleIntent( getIntent() );
 
-		Log.d( TAG, "ProductsListActivity: onCreate: Intent hadled" );
+		Log.d( TAG, "ProductsListActivity: onCreate: Intent handled" );
 
 		// Set products list listeners
 		registerForContextMenu( sProductsListView ); // Set the list view long clickable and responding with a context menu
@@ -217,7 +217,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		// If the selected product is currently bookmarked, change the menu item title from "Bookmark this product" to "Remove from bookmarks"
 		if ( selectedProduct.isBookmarked() )
 		{
-			menu.findItem( R.id.mi_bookmark ).setTitle( getResources().getString( R.string.remove_bookmark ) );
+			menu.findItem( R.id.mi_bookmark_product ).setTitle( getResources().getString( R.string.remove_bookmark ) );
 		}
 	}
 
@@ -257,7 +257,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 				return true;
 			// In case of add/remove from bookmarks menu item click
-			case R.id.mi_bookmark:
+			case R.id.mi_bookmark_product:
 				// Set the product bookmarked flag to the opposite of the current value
 				selectedProduct.setBookmarked( !selectedProduct.isBookmarked() );
 
@@ -398,7 +398,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	}
 
 	/******************************************************************************************************
-	 * Action Bar (search and settings)
+	 * Action Bar (search, bookmarks and settings)
 	 *****************************************************************************************************/
 
 	/**
@@ -427,18 +427,36 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		switch ( item.getItemId() )
 		{
+			case android.R.id.home:
+				showTabs();
+				return true;
 			case R.id.mi_search:
 				hideTabs();
 				sProductsListView.setVisibility( ListView.INVISIBLE );
 				return true;
-			case android.R.id.home:
-				showTabs();
+			case R.id.mi_bookmarks_list:
+				showBookmarksList();
 				return true;
 			case R.id.mi_settings:
 				Intent settingsActivity = new Intent( getBaseContext(), PreferencesActivity.class );
 				startActivity( settingsActivity );
+				return true;
 			default:
 				return super.onOptionsItemSelected( item );
+		}
+	}
+
+	private void showBookmarksList()
+	{
+		hideTabs();
+
+		if ( ProductsList.getInstance().isLoaded() )
+		{
+			ProductsAdapter productsAdapter =
+					new ProductsAdapter( this, R.layout.products_list_entry,
+							ProductsList.getInstance().getBookmarkedProducts() );
+			sProductsListView.setAdapter( productsAdapter );
+			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
 }

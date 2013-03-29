@@ -17,7 +17,7 @@
             android:orderInCategory="1"/>
 
     <item
-            android:id="@+id/mi_bookmark"
+            android:id="@+id/mi_bookmark_product"
             android:title="@string/add_bookmark"
             android:alphabeticShortcut="a"
             android:numericShortcut="3"

@@ -28,7 +28,7 @@ public class ProductsList
 	private static final ProductsList sProductsListInstance = new ProductsList();
 	private static Map<String, ArrayList<Product>> sProductsByCategory = new ConcurrentHashMap<String, ArrayList<Product>>();
 	private static final List<Product> sProductsList = new ArrayList<Product>();
-	private static List<Integer> sBookmarkedProducts = new ArrayList<Integer>();
+	private static List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
 	private static boolean sLoaded = false;
 
 	private static final String BM_PRODUCTS_FILE_NAME = "bookmarked_products";
@@ -109,7 +109,7 @@ public class ProductsList
 				JSONObject productsJson = new JSONObject( jsonTokener );
 
 				// Parse the JSON products object into the HashMap<String, ArrayList<Product>>
-				sProductsByCategory = ProductsJSONParser.getInstance().parseAllProducts( productsJson.getJSONArray( "products" ), sBookmarkedProducts );
+				sProductsByCategory = ProductsJSONParser.getInstance().parseAllProducts( productsJson.getJSONArray( "products" ), sBookmarkedProductsIds );
 
 				// For each product category, add them to the complete products list
 				for ( ArrayList<Product> categoryProducts : sProductsByCategory.values() )
@@ -183,9 +183,9 @@ public class ProductsList
 
 			ObjectInputStream ois = new ObjectInputStream( fis );
 
-			sBookmarkedProducts = ( List<Integer> ) ois.readObject();
+			sBookmarkedProductsIds = ( List<Integer> ) ois.readObject();
 
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: loaded: " + sBookmarkedProducts.toString() );
+			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
 
 			ois.close();
 		}
@@ -219,11 +219,11 @@ public class ProductsList
 
 			fos.flush();
 			ObjectOutputStream oos = new ObjectOutputStream( fos );
-			oos.writeObject( sBookmarkedProducts );
+			oos.writeObject( sBookmarkedProductsIds );
 			oos.flush();
 			oos.close();
 
-			Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: saved: " + sBookmarkedProducts.toString() );
+			Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
 		}
 		catch ( FileNotFoundException e )
 		{
@@ -244,19 +244,33 @@ public class ProductsList
 	 */
 	public static void setBookmarkedProduct( Context context, Integer productId, Boolean add )
 	{
-		Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: setBookmarkedProduct: " + sBookmarkedProducts.toString() );
-		Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: setBookmarkedProduct: " + productId.toString() );
-		Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: setBookmarkedProduct: " + add.toString() );
 		if ( add )
 		{
-			sBookmarkedProducts.add( productId );
-			Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: setBookmarkedProduct: " + sBookmarkedProducts.toString() );
+			sBookmarkedProductsIds.add( productId );
 		}
 		else
 		{
-			sBookmarkedProducts.remove( productId );
+			sBookmarkedProductsIds.remove( productId );
 		}
 
 		saveBookmarkedProducts( context );
+	}
+
+	public static ArrayList<Product> getBookmarkedProducts()
+	{
+		ArrayList<Product> bookmarkedProductsList = new ArrayList<Product>();
+
+		for ( Integer bookmarkedProductId : sBookmarkedProductsIds )
+		{
+			for ( Product product : sProductsList )
+			{
+				if ( bookmarkedProductId.equals( product.getId() ) )
+				{
+					bookmarkedProductsList.add( product );
+				}
+			}
+		}
+
+		return bookmarkedProductsList;
 	}
 }

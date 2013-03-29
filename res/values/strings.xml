@@ -16,4 +16,5 @@
     <string name="no_affect_search">Products from all categories will be shown in search results</string>
     <string name="add_bookmark">Bookmark this product</string>
     <string name="remove_bookmark">Remove from bookmarks</string>
+    <string name="bookmarks">Bookmarks</string>
 </resources>
