@@ -28,33 +28,33 @@ public class ProductsJSONParser
 	 * Parses a list of products based on a JSONArray
 	 * Returns the products in a hashmap with the products category_root as the hashmap key and an ArrayList of Product as the HashMap values
 	 *
-	 * @param products_json_array
+	 * @param productsJsonArray
 	 * @return a List of Products
 	 */
-	public static HashMap<String, ArrayList<Product>> parseProducts( JSONArray products_json_array )
+	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray )
 	{
-		int num_products = products_json_array.length();
-		HashMap<String, ArrayList<Product>> products_list = new HashMap<String, ArrayList<Product>>();
+		int numProducts = productsJsonArray.length();
+		HashMap<String, ArrayList<Product>> productsList = new HashMap<String, ArrayList<Product>>();
 		Product product = null;
 
 		/** Taking each country, parses and adds to list object */
-		for ( int i = 0; i < num_products; i++ )
+		for ( int i = 0; i < numProducts; i++ )
 		{
 			try
 			{
 				// Parse the current product JSON
-				product = getProduct( ( JSONObject ) products_json_array.get( i ) );
+				product = parseProduct( ( JSONObject ) productsJsonArray.get( i ) );
 
 				// If we've already parsed products from the same category, add it to the same ArrayList
-				if ( products_list.get( product.getCategoryRoot() ) != null )
+				if ( productsList.get( product.getCategoryRoot() ) != null )
 				{
-					products_list.get( product.getCategoryRoot() ).add( product );
+					productsList.get( product.getCategoryRoot() ).add( product );
 				}
 				else // If we don't have any product in the same category key, create it
 				{
-					ArrayList<Product> category_products = new ArrayList<Product>();
-					category_products.add( product );
-					products_list.put( product.getCategoryRoot(), category_products );
+					ArrayList<Product> categoryProducts = new ArrayList<Product>();
+					categoryProducts.add( product );
+					productsList.put( product.getCategoryRoot(), categoryProducts );
 				}
 			}
 			catch ( JSONException e )
@@ -63,51 +63,53 @@ public class ProductsJSONParser
 			}
 		}
 
-		return products_list;
+		return productsList;
 	}
 
 	/**
 	 * Parses an individual product
 	 *
-	 * @param product_json
+	 * @param productJson
 	 * @return product properties in a String-String HashMap based on a JSON product object
 	 */
-	private static Product getProduct( JSONObject product_json )
+	private static Product parseProduct( JSONObject productJson )
 	{
 		Product product = null;
 
+		Integer id;
 		String name;
-		String details_url;
-		String buy_url;
+		String detailsUrl;
+		String buyUrl;
 		String image;
 		String price;
-		String offer_price;
+		String offerPrice;
 		String producer;
-		String category_root;
-		String category_last_child;
+		String categoryRoot;
+		String categoryLastChild;
 		ArrayList<HashMap<String, String>> attributes = new ArrayList<HashMap<String, String>>();
 
 		try
 		{
-			name = product_json.getString( "name" );
-			details_url = product_json.getString( "details_url" );
-			buy_url = product_json.getString( "buy_url" );
-			image = product_json.getString( "image" );
-			price = product_json.getString( "price" );
-			offer_price = product_json.getString( "offer_price" );
-			producer = product_json.getString( "producer" );
-			category_root = product_json.getString( "category_root" );
-			category_last_child = product_json.getString( "category_last_child" );
+			id = productJson.getInt( "id" );
+			name = productJson.getString( "name" );
+			detailsUrl = productJson.getString( "details_url" );
+			buyUrl = productJson.getString( "buy_url" );
+			image = productJson.getString( "image" );
+			price = productJson.getString( "price" );
+			offerPrice = productJson.getString( "offer_price" );
+			producer = productJson.getString( "producer" );
+			categoryRoot = productJson.getString( "category_root" );
+			categoryLastChild = productJson.getString( "category_last_child" );
 
 			// Parse attributes
-			JSONArray attributes_json = product_json.getJSONArray( "attributes" );
+			JSONArray attributesJson = productJson.getJSONArray( "attributes" );
 
-			for ( int i = 0; i < attributes_json.length(); i++ )
+			for ( int i = 0; i < attributesJson.length(); i++ )
 			{
 				try
 				{
 					// Parse the attributes array object
-					attributes.add( getAttribute( ( JSONObject ) attributes_json.get( i ) ) );
+					attributes.add( getAttribute( ( JSONObject ) attributesJson.get( i ) ) );
 				}
 				catch ( JSONException e )
 				{
@@ -115,7 +117,7 @@ public class ProductsJSONParser
 				}
 			}
 
-			product = new Product( name, details_url, buy_url, image, price, offer_price, producer, category_root, category_last_child, attributes );
+			product = new Product( id, name, detailsUrl, buyUrl, image, price, offerPrice, producer, categoryRoot, categoryLastChild, attributes );
 		}
 		catch ( JSONException e )
 		{
@@ -128,15 +130,15 @@ public class ProductsJSONParser
 	/**
 	 * Parse the product attribute JSON object
 	 */
-	private static HashMap<String, String> getAttribute( JSONObject attribute_json )
+	private static HashMap<String, String> getAttribute( JSONObject attributesJson )
 	{
 
 		HashMap<String, String> attribute = new HashMap<String, String>();
 
 		try
 		{
-			attribute.put( "key", attribute_json.getString( "key" ) );
-			attribute.put( "value", attribute_json.getString( "value" ) );
+			attribute.put( "key", attributesJson.getString( "key" ) );
+			attribute.put( "value", attributesJson.getString( "value" ) );
 		}
 		catch ( JSONException e )
 		{

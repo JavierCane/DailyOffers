@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class Product implements Serializable
 {
 
+	private Integer mId;
 	private String mName;
 	private String mDetailsUrl;
 	private String mBuyUrl;
@@ -21,19 +22,25 @@ public class Product implements Serializable
 	private String mCategoryLastChild;
 	private ArrayList<HashMap<String, String>> mAttributes;
 
-	public Product( String name, String detailsUrl, String buyUrl, String image, String price, String offerPrice, String producer, String categoryRoot,
+	public Product( Integer id, String name, String detailsUrl, String buyUrl, String image, String price, String offerPrice, String producer, String categoryRoot,
 	                String categoryLastChild, ArrayList<HashMap<String, String>> attributes )
 	{
-		this.mName = name;
-		this.mDetailsUrl = detailsUrl;
-		this.mBuyUrl = buyUrl;
-		this.mImage = image;
-		this.mPrice = price;
-		this.mOfferPrice = offerPrice;
-		this.mProducer = producer;
-		this.mCategoryRoot = categoryRoot;
-		this.mCategoryLastChild = categoryLastChild;
-		this.mAttributes = attributes;
+		mId = id;
+		mName = name;
+		mDetailsUrl = detailsUrl;
+		mBuyUrl = buyUrl;
+		mImage = image;
+		mPrice = price;
+		mOfferPrice = offerPrice;
+		mProducer = producer;
+		mCategoryRoot = categoryRoot;
+		mCategoryLastChild = categoryLastChild;
+		mAttributes = attributes;
+	}
+
+	public Integer getId()
+	{
+		return mId;
 	}
 
 	public String getName()

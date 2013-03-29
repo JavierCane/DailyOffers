@@ -41,9 +41,9 @@ public class ProductsList
 	}
 
 	/**
-	 * Loads the words and definitions if they haven't been sLoaded already.
+	 * Loads the products if they haven't been sLoaded already.
 	 *
-	 * @param resources Used to load the file containing the words and definitions.
+	 * @param resources Used to load the file containing the products.
 	 */
 	public static synchronized void ensureLoaded( final Resources resources )
 	{
@@ -74,30 +74,30 @@ public class ProductsList
 			Log.d( "DO", "ProductsList: Loading products" );
 
 			// Open a buffer in order to read from the products JSON file
-			BufferedReader json_reader = new BufferedReader( new InputStreamReader( resources.openRawResource( R.raw.products ) ) );
+			BufferedReader jsonReader = new BufferedReader( new InputStreamReader( resources.openRawResource( R.raw.products ) ) );
 
 			// Parse the products JSON file using the ProductsJSONParser class
 			try
 			{
 				// Read all JSON file contents and put it in a StringBuilder
-				StringBuilder json_builder = new StringBuilder();
+				StringBuilder jsonBuilder = new StringBuilder();
 
-				for ( String line = null; ( line = json_reader.readLine() ) != null; )
+				for ( String line = null; ( line = jsonReader.readLine() ) != null; )
 				{
-					json_builder.append( line ).append( "\n" );
+					jsonBuilder.append( line ).append( "\n" );
 				}
 
 				// Parse StringBuilder into a JSON Object
-				JSONTokener json_tokener = new JSONTokener( json_builder.toString() );
-				JSONObject products_json = new JSONObject( json_tokener );
+				JSONTokener jsonTokener = new JSONTokener( jsonBuilder.toString() );
+				JSONObject productsJson = new JSONObject( jsonTokener );
 
 				// Parse the JSON products object into the HashMap<String, ArrayList<Product>>
-				sProductsByCategory = ProductsJSONParser.getInstance().parseProducts( products_json.getJSONArray( "products" ) );
+				sProductsByCategory = ProductsJSONParser.getInstance().parseAllProducts( productsJson.getJSONArray( "products" ) );
 
 				// For each product category, add them to the complete products list
-				for ( ArrayList<Product> category_products : sProductsByCategory.values() )
+				for ( ArrayList<Product> categoryProducts : sProductsByCategory.values() )
 				{
-					sProductsList.addAll( category_products );
+					sProductsList.addAll( categoryProducts );
 				}
 
 				Log.d( "DO", "ProductsList: Products sLoaded" );
@@ -109,7 +109,7 @@ public class ProductsList
 			}
 			finally
 			{
-				json_reader.close();
+				jsonReader.close();
 			}
 		}
 
@@ -120,10 +120,10 @@ public class ProductsList
 	 * Get a list of products filtered by a string query on its name and a list of visible categories
 	 *
 	 * @param query
-	 * @param visible_categories
+	 * @param visibleCategories
 	 * @return
 	 */
-	public static ArrayList<Product> getFilteredProducts( String query, List<String> visible_categories )
+	public static ArrayList<Product> getFilteredProducts( String query, List<String> visibleCategories )
 	{
 		ArrayList<Product> results = new ArrayList<Product>();
 
@@ -133,7 +133,7 @@ public class ProductsList
 			{
 				for ( Product product : sProductsList )
 				{
-					if ( visible_categories.contains( product.getCategoryRoot() ) && product.getName().toLowerCase().contains( query.toLowerCase() ) )
+					if ( visibleCategories.contains( product.getCategoryRoot() ) && product.getName().toLowerCase().contains( query.toLowerCase() ) )
 					{
 						results.add( product );
 					}

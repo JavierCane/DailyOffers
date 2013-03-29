@@ -127,17 +127,17 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
 
 			// Check if the user has specified that the categories filters affects on search results
-			ProductsAdapter products_adapter;
+			ProductsAdapter productsAdapter;
 			if ( preferences.getBoolean( "visibility_affects_search", true ) )
 			{
-				products_adapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sVisibleCategories ) );
+				productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sVisibleCategories ) );
 			}
 			else
 			{
-				products_adapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sAllCategories ) );
+				productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sAllCategories ) );
 			}
 
-			sProductsListView.setAdapter( products_adapter );
+			sProductsListView.setAdapter( productsAdapter );
 			sProductsListView.setVisibility( ListView.VISIBLE );
 //			mTextView.setText(getString(R.string.search_results, query));
 //			mList.setOnItemClickListener(wordAdapter);
@@ -153,9 +153,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 			if ( ProductsList.getInstance().isLoaded() )
 			{
-				ProductsAdapter products_adapter =
+				ProductsAdapter productsAdapter =
 						new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) );
-				sProductsListView.setAdapter( products_adapter );
+				sProductsListView.setAdapter( productsAdapter );
 				sProductsListView.setVisibility( ListView.VISIBLE );
 //			    sProductsListView.setOnItemClickListener( products_adapter );
 			}
@@ -177,13 +177,13 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			@Override
 			public void onItemClick( AdapterView<?> parent, View view, int position, long id )
 			{
-				Product selected_product = ( Product ) sProductsListView.getItemAtPosition( position );
+				Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( position );
 
-				Intent product_details_intent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
+				Intent productDetailsIntent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
 
-				product_details_intent.putExtra( "Product", selected_product );
+				productDetailsIntent.putExtra( "Product", selectedProduct );
 
-				ProductsListActivity.this.startActivity( product_details_intent );
+				ProductsListActivity.this.startActivity( productDetailsIntent );
 			}
 		} );
 	}
@@ -203,9 +203,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 //		{
 		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menuInfo;
 
-		Product selected_product = ( Product ) sProductsListView.getItemAtPosition( info.position );
+		Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( info.position );
 
-		menu.setHeaderTitle( selected_product.getName() );
+		menu.setHeaderTitle( selectedProduct.getName() );
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate( R.menu.products_list_menu, menu );
 //		}
@@ -222,17 +222,17 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) item.getMenuInfo();
 
-		Product selected_product = ( Product ) sProductsListView.getItemAtPosition( info.position );
+		Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( info.position );
 
 		switch ( item.getItemId() )
 		{
 			// In case of view product details menu item click, create an intent to the product details activity
 			case R.id.mi_view_details:
-				Intent product_details_intent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
+				Intent productDetailsIntent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
 
-				product_details_intent.putExtra( "Product", selected_product );
+				productDetailsIntent.putExtra( "Product", selectedProduct );
 
-				startActivity( product_details_intent );
+				startActivity( productDetailsIntent );
 
 				return true;
 			// In case of buy product menu item click, create an intent to redirect to the product buy site
@@ -240,7 +240,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 				Intent intent = new Intent( this.getBaseContext(), WebViewActivity.class );
 
 				Bundle bundle = new Bundle();
-				bundle.putString( "url", selected_product.getBuyUrl() );
+				bundle.putString( "url", selectedProduct.getBuyUrl() );
 				intent.putExtras( bundle );
 
 				startActivity( intent );
@@ -259,9 +259,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		Log.d( TAG, "ProductsListActivity: productsParseCompleted" );
 
-		ProductsAdapter products_adapter =
+		ProductsAdapter productsAdapter =
 				new ProductsAdapter( sProductsListActivity, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) );
-		sProductsListView.setAdapter( products_adapter );
+		sProductsListView.setAdapter( productsAdapter );
 		sProductsListView.setVisibility( ListView.VISIBLE );
 	}
 
@@ -279,11 +279,11 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
 
-		for ( String category_name : sAllCategories )
+		for ( String categoryName : sAllCategories )
 		{
-			if ( preferences.getBoolean( category_name.toLowerCase() + "_visible", true ) )
+			if ( preferences.getBoolean( categoryName.toLowerCase() + "_visible", true ) )
 			{
-				sVisibleCategories.add( category_name );
+				sVisibleCategories.add( categoryName );
 			}
 		}
 	}
@@ -295,11 +295,11 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	{
 		sActionBar.removeAllTabs();
 
-		for ( String category_name : sVisibleCategories )
+		for ( String categoryName : sVisibleCategories )
 		{
 			Tab tab = sActionBar.newTab();
-			tab.setText( category_name );
-			tab.setTag( category_name );
+			tab.setText( categoryName );
+			tab.setTag( categoryName );
 			tab.setTabListener( this );
 			sActionBar.addTab( tab );
 		}
@@ -358,9 +358,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
-			ProductsAdapter products_adapter =
+			ProductsAdapter productsAdapter =
 					new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) );
-			sProductsListView.setAdapter( products_adapter );
+			sProductsListView.setAdapter( productsAdapter );
 			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
@@ -394,9 +394,9 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		getSupportMenuInflater().inflate( R.menu.products_list_action_bar_menu, menu );
 
 		// Associate searchable configuration with the SearchView (res/xml/searchable.xml)
-		SearchManager search_manager = ( SearchManager ) getSystemService( Context.SEARCH_SERVICE );
-		ProductsSearchView search_view = ( ProductsSearchView ) menu.findItem( R.id.mi_search ).getActionView();
-		search_view.setSearchableInfo( search_manager.getSearchableInfo( getComponentName() ) );
+		SearchManager searchManager = ( SearchManager ) getSystemService( Context.SEARCH_SERVICE );
+		ProductsSearchView searchView = ( ProductsSearchView ) menu.findItem( R.id.mi_search ).getActionView();
+		searchView.setSearchableInfo( searchManager.getSearchableInfo( getComponentName() ) );
 
 		return super.onCreateOptionsMenu( menu );
 	}
@@ -416,8 +416,8 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 				showTabs();
 				return true;
 			case R.id.mi_settings:
-				Intent settings_activity = new Intent( getBaseContext(), PreferencesActivity.class );
-				startActivity( settings_activity );
+				Intent settingsActivity = new Intent( getBaseContext(), PreferencesActivity.class );
+				startActivity( settingsActivity );
 			default:
 				return super.onOptionsItemSelected( item );
 		}

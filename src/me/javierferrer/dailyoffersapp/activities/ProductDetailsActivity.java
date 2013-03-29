@@ -34,9 +34,9 @@ public class ProductDetailsActivity extends SherlockActivity
 		sActionBar.setDisplayHomeAsUpEnabled( true );
 		sActionBar.setTitle( sProduct.getName() );
 
-		TextView tv_product_name = ( TextView ) findViewById( R.id.tv_product_name );
+		TextView tvProductName = ( TextView ) findViewById( R.id.tv_product_name );
 
-		tv_product_name.setText( sProduct.getPrice() );
+		tvProductName.setText( sProduct.getPrice() );
 	}
 
 	@Override
