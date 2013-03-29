@@ -14,4 +14,6 @@
     <string name="visible_category">This category will be shown in the products list</string>
     <string name="affect_search">Only products from checked categories will be shown in search results</string>
     <string name="no_affect_search">Products from all categories will be shown in search results</string>
+    <string name="add_bookmark">Bookmark this product</string>
+    <string name="remove_bookmark">Remove from bookmarks</string>
 </resources>

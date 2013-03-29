@@ -21,9 +21,10 @@ public class Product implements Serializable
 	private String mCategoryRoot;
 	private String mCategoryLastChild;
 	private ArrayList<HashMap<String, String>> mAttributes;
+	private Boolean mBookmarked;
 
 	public Product( Integer id, String name, String detailsUrl, String buyUrl, String image, String price, String offerPrice, String producer, String categoryRoot,
-	                String categoryLastChild, ArrayList<HashMap<String, String>> attributes )
+	                String categoryLastChild, ArrayList<HashMap<String, String>> attributes, Boolean bookmarked )
 	{
 		mId = id;
 		mName = name;
@@ -36,6 +37,7 @@ public class Product implements Serializable
 		mCategoryRoot = categoryRoot;
 		mCategoryLastChild = categoryLastChild;
 		mAttributes = attributes;
+		mBookmarked = bookmarked;
 	}
 
 	public Integer getId()
@@ -93,11 +95,50 @@ public class Product implements Serializable
 		return mAttributes;
 	}
 
+	public Boolean isBookmarked()
+	{
+		return mBookmarked;
+	}
+
+	public void setBookmarked( Boolean bookmarked )
+	{
+		mBookmarked = bookmarked;
+	}
+
 	@Override
 	public String toString()
 	{
 		return "[mName: " + mName + ", mDetailsUrl:" + mDetailsUrl + ", mBuyUrl:" + mBuyUrl + ", mImage:" + mImage + ", mPrice:" + mPrice +
 		       ", mOfferPrice:" + mOfferPrice + ", " + "mProducer:" + mProducer + ", mCategoryRoot:" + mCategoryRoot +
-		       ", mCategoryLastChild:" + mCategoryLastChild + ", mAttributes:" + mAttributes.toString() + "]";
+		       ", mCategoryLastChild:" + mCategoryLastChild + ", mAttributes:" + mAttributes.toString() +
+		       ", mBookmarked:" + mBookmarked.toString() + "]";
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o )
+		{
+			return true;
+		}
+		if ( !( o instanceof Product ) )
+		{
+			return false;
+		}
+
+		Product product = ( Product ) o;
+
+		if ( !mId.equals( product.mId ) )
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return mId.hashCode();
 	}
 }

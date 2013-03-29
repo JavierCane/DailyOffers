@@ -15,4 +15,11 @@
             android:alphabeticShortcut="b"
             android:numericShortcut="2"
             android:orderInCategory="1"/>
+
+    <item
+            android:id="@+id/mi_bookmark"
+            android:title="@string/add_bookmark"
+            android:alphabeticShortcut="a"
+            android:numericShortcut="3"
+            android:orderInCategory="2"/>
 </menu>

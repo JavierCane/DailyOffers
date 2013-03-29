@@ -43,7 +43,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	private static final List<String> sAllCategories = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
 	private static final List<String> sVisibleCategories = new ArrayList<String>();
 
-	private static final String TAG = "DO";
+	public static final String TAG = "DO";
 
 	@Override
 	public void onCreate( Bundle savedInstanceState )
@@ -54,7 +54,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		super.onCreate( savedInstanceState );
 
 		// Firstly we need to ensure that the products list has been loaded and if not, try to load it!
-		ProductsList.getInstance().ensureLoaded( getResources() );
+		ProductsList.getInstance().ensureLoaded( getResources(), this.getApplicationContext() );
 
 		// Layout
 		setContentView( R.layout.products_list );
@@ -199,16 +199,26 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	public void onCreateContextMenu( ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo )
 	{
 		// TODO: Revisar si en otras pantallas sale el menú o no
-//		if ( v.getId() == sProductsListView.getId() )
-//		{
-		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menuInfo;
+		//if ( view.getId() == sProductsListView.getId() )
 
-		Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( info.position );
-
-		menu.setHeaderTitle( selectedProduct.getName() );
+		// Inflate the context menu with the appropiate menu resource
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate( R.menu.products_list_menu, menu );
-//		}
+
+		// Get the context menu info
+		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menuInfo;
+
+		// Get selected product
+		Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( info.position );
+
+		// Set the context menu title to the product name
+		menu.setHeaderTitle( selectedProduct.getName() );
+
+		// If the selected product is currently bookmarked, change the menu item title from "Bookmark this product" to "Remove from bookmarks"
+		if ( selectedProduct.isBookmarked() )
+		{
+			menu.findItem( R.id.mi_bookmark ).setTitle( getResources().getString( R.string.remove_bookmark ) );
+		}
 	}
 
 	/**
@@ -244,6 +254,15 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 				intent.putExtras( bundle );
 
 				startActivity( intent );
+
+				return true;
+			// In case of add/remove from bookmarks menu item click
+			case R.id.mi_bookmark:
+				// Set the product bookmarked flag to the opposite of the current value
+				selectedProduct.setBookmarked( !selectedProduct.isBookmarked() );
+
+				// Add/remove the selected product to the bookmarked products list
+				ProductsList.getInstance().setBookmarkedProduct( this.getApplicationContext(), selectedProduct.getId(), selectedProduct.isBookmarked() );
 
 				return true;
 			default:

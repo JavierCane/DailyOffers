@@ -7,18 +7,28 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Products JSON Parser
  */
 public class ProductsJSONParser
 {
+
 	private static final ProductsJSONParser sProductsJSONParserInstance = new ProductsJSONParser();
 
+	/**
+	 * Make a private constructor in order to do not allow public instantiation (Singleton class)
+	 */
 	private ProductsJSONParser()
 	{
 	}
 
+	/**
+	 * Returns the unique class instance (Singleton class)
+	 *
+	 * @return
+	 */
 	public static ProductsJSONParser getInstance()
 	{
 		return sProductsJSONParserInstance;
@@ -29,9 +39,10 @@ public class ProductsJSONParser
 	 * Returns the products in a hashmap with the products category_root as the hashmap key and an ArrayList of Product as the HashMap values
 	 *
 	 * @param productsJsonArray
+	 * @param sBookmarkedProducts
 	 * @return a List of Products
 	 */
-	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray )
+	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray, List<Integer> bookmarkedProducts )
 	{
 		int numProducts = productsJsonArray.length();
 		HashMap<String, ArrayList<Product>> productsList = new HashMap<String, ArrayList<Product>>();
@@ -43,7 +54,7 @@ public class ProductsJSONParser
 			try
 			{
 				// Parse the current product JSON
-				product = parseProduct( ( JSONObject ) productsJsonArray.get( i ) );
+				product = parseProduct( ( JSONObject ) productsJsonArray.get( i ), bookmarkedProducts );
 
 				// If we've already parsed products from the same category, add it to the same ArrayList
 				if ( productsList.get( product.getCategoryRoot() ) != null )
@@ -70,9 +81,10 @@ public class ProductsJSONParser
 	 * Parses an individual product
 	 *
 	 * @param productJson
+	 * @param bookmarkedProducts
 	 * @return product properties in a String-String HashMap based on a JSON product object
 	 */
-	private static Product parseProduct( JSONObject productJson )
+	private static Product parseProduct( JSONObject productJson, List<Integer> bookmarkedProducts )
 	{
 		Product product = null;
 
@@ -87,6 +99,7 @@ public class ProductsJSONParser
 		String categoryRoot;
 		String categoryLastChild;
 		ArrayList<HashMap<String, String>> attributes = new ArrayList<HashMap<String, String>>();
+		Boolean bookmarked;
 
 		try
 		{
@@ -100,6 +113,16 @@ public class ProductsJSONParser
 			producer = productJson.getString( "producer" );
 			categoryRoot = productJson.getString( "category_root" );
 			categoryLastChild = productJson.getString( "category_last_child" );
+
+			// Check if the current product has been saves as a bookmarked product
+			if ( bookmarkedProducts.contains( id ) )
+			{
+				bookmarked = true;
+			}
+			else
+			{
+				bookmarked = false;
+			}
 
 			// Parse attributes
 			JSONArray attributesJson = productJson.getJSONArray( "attributes" );
@@ -117,7 +140,7 @@ public class ProductsJSONParser
 				}
 			}
 
-			product = new Product( id, name, detailsUrl, buyUrl, image, price, offerPrice, producer, categoryRoot, categoryLastChild, attributes );
+			product = new Product( id, name, detailsUrl, buyUrl, image, price, offerPrice, producer, categoryRoot, categoryLastChild, attributes, bookmarked );
 		}
 		catch ( JSONException e )
 		{
