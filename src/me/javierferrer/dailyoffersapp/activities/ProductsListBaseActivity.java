@@ -21,7 +21,6 @@ import com.actionbarsherlock.widget.SearchView;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.Product;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
-import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ import static java.util.Arrays.asList;
 public abstract class ProductsListBaseActivity extends SherlockActivity
 {
 
-	protected static final List<String> sAllCategories = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
+	protected static final List<String> CATEGORIES = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
 	protected static ProductsListBaseActivity sProductsListBaseActivity;
 	protected static ListView sProductsListView;
 	protected static ActionBar sActionBar;
@@ -52,19 +51,18 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		// Set layout
 		setContentView( R.layout.products_list );
 
-		// Calls made in order to execute onCreateContextMenu() method (its initialize mSearchView attribute) before the handleIntent()
-//		openOptionsMenu();
-//		closeOptionsMenu();
-
+		// Initialize class attributes
 		sProductsListBaseActivity = this;
 		sProductsListView = ( ListView ) findViewById( R.id.products_list );
 		sActionBar = getSupportActionBar();
 
-		// Firstly we need to ensure that the products list has been loaded and if not, try to load it!
+		// Ensure that the products list has been loaded and if not, try to load it expecting a callback to the
+		// ProductsByCategoryActivity.productsParseCompleted() method
 		ProductsList.getInstance().ensureLoaded( getResources(), this.getApplicationContext() );
 
 		Log.d( TAG, "ProductsListBaseActivity: onCreate: Ready to handle the intent" );
 
+		// Call to the handleIntent method. It has to be implemented in the class child's
 		handleIntent( getIntent() );
 
 		Log.d( TAG, "ProductsListBaseActivity: onCreate: Intent handled" );
@@ -77,18 +75,13 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	}
 
 	/**
-	 * On start method overrided in order to re-initialize tabs when preferences has been changed
+	 * On start method overridden in order to re-initialize tabs when preferences has been changed
 	 * This is because the user could be set as hidden/shown some categories
 	 */
 	@Override
 	public void onStart()
 	{
 		Log.d( TAG, "ProductsListBaseActivity: onStart" );
-
-		if ( sProductsListBaseActivity == null )
-		{
-			Log.e( TAG, "ProductsListBaseActivity: onStart: sProductsListBaseActivity is null" );
-		}
 		super.onStart();
 
 		// Get mVisibleCategories
@@ -102,14 +95,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		setIntent( intent );
 		handleIntent( intent );
-	}
-
-	protected void preHandleIntent()
-	{
-		Log.d( TAG, "ProductsListBaseActivity: preHandleIntent" );
-
-		// Get mVisibleCategories
-		initVisibleCategories();
 	}
 
 	protected abstract void handleIntent( Intent intent );
@@ -227,7 +212,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	 *****************************************************************************************************/
 
 	/**
-	 * Add to the mVisibleCategories array the current context mVisibleCategories
+	 * Add to the mVisibleCategories array the categories set as visible by the user in the settings
 	 */
 	private void initVisibleCategories()
 	{
@@ -238,7 +223,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
 
-		for ( String categoryName : sAllCategories )
+		for ( String categoryName : CATEGORIES )
 		{
 			if ( preferences.getBoolean( categoryName.toLowerCase() + "_visible", true ) )
 			{
@@ -257,7 +242,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	/**
 	 * Set navigation mode tabs in order to show the constructed tabs
 	 */
-	public void showTabs()
+	protected void showTabs()
 	{
 		Log.d( TAG, "ProductsListBaseActivity: showTabs" );
 
@@ -272,7 +257,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	/**
 	 * Hide tabs changing the navigation mode to standard
 	 */
-	public void hideTabs()
+	protected void hideTabs()
 	{
 		Log.d( TAG, "ProductsListBaseActivity: hideTabs" );
 
@@ -302,7 +287,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		mSearchView = ( SearchView ) menu.findItem( R.id.mi_search ).getActionView();
 		mSearchView.setSearchableInfo( searchManager.getSearchableInfo( getComponentName() ) );
 
-		return super.onCreateOptionsMenu( menu );
+		return true;
 	}
 
 	@Override
@@ -312,34 +297,19 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		switch ( item.getItemId() )
 		{
-//			case android.R.id.home:
-//				showTabs();
-//				return true;
-//			case R.id.mi_search:
-//				hideTabs();
-//				sProductsListView.setVisibility( ListView.INVISIBLE );
-//				return true;
+			case android.R.id.home:
+				Intent intent = new Intent( this, ProductsByCategoryActivity.class );
+				intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+				startActivity( intent );
+				return true;
 			case R.id.mi_bookmarks_list:
-				showBookmarksList();
+				startActivity( new Intent( getBaseContext(), BookmarkedProductsActivity.class ) );
 				return true;
 			case R.id.mi_settings:
-				Intent settingsActivity = new Intent( getBaseContext(), PreferencesActivity.class );
-				startActivity( settingsActivity );
+				startActivity( new Intent( getBaseContext(), PreferencesActivity.class ) );
 				return true;
 			default:
 				return super.onOptionsItemSelected( item );
-		}
-	}
-
-	protected void showBookmarksList()
-	{
-		hideTabs();
-
-		if ( ProductsList.getInstance().isLoaded() )
-		{
-			ProductsAdapter productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getBookmarkedProducts() );
-			sProductsListView.setAdapter( productsAdapter );
-			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
 }

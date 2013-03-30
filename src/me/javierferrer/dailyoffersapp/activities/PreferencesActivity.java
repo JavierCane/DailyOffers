@@ -1,5 +1,6 @@
 package me.javierferrer.dailyoffersapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -32,7 +33,9 @@ public final class PreferencesActivity extends SherlockPreferenceActivity
 		switch ( item.getItemId() )
 		{
 			case android.R.id.home:
-				finish();
+				Intent intent = new Intent( this, ProductsByCategoryActivity.class );
+				intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+				startActivity( intent );
 			default:
 				return super.onOptionsItemSelected( item );
 		}

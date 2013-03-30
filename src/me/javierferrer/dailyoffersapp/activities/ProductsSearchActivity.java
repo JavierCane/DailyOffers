@@ -3,7 +3,6 @@ package me.javierferrer.dailyoffersapp.activities;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ListView;
@@ -13,12 +12,6 @@ import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
 public final class ProductsSearchActivity extends ProductsListBaseActivity
 {
-
-	@Override
-	public void onCreate( Bundle savedInstanceState )
-	{
-		super.onCreate( savedInstanceState );
-	}
 
 	@Override
 	protected void handleIntent( Intent intent )
@@ -34,12 +27,12 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		}
 		else
 		{
-			Log.e( TAG, "ProductsSearchActivity: handleIntent: Not expected intent: " + intent.toString() );
+			Log.e( TAG, "ProductsSearchActivity: handleIntent: Not expected intent: " + intent.getAction() );
 		}
 	}
 
 	/**
-	 * On start method overrided in order to re-initialize tabs when preferences has been changed
+	 * On start method overridden in order to re-initialize tabs when preferences has been changed
 	 * This is because the user could be set as hidden/shown some categories
 	 */
 	@Override
@@ -63,11 +56,13 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		ProductsAdapter productsAdapter;
 		if ( preferences.getBoolean( "visibility_affects_search", true ) )
 		{
-			productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, mVisibleCategories ) );
+			productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry,
+					ProductsList.getInstance().getFilteredProducts( query, mVisibleCategories ) );
 		}
 		else
 		{
-			productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sAllCategories ) );
+			productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry,
+					ProductsList.getInstance().getFilteredProducts( query, CATEGORIES ) );
 		}
 
 		sProductsListView.setAdapter( productsAdapter );

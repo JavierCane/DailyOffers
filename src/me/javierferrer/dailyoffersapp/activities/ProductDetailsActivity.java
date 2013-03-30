@@ -46,7 +46,10 @@ public final class ProductDetailsActivity extends SherlockActivity
 		switch ( item.getItemId() )
 		{
 			case android.R.id.home:
-				finish();
+				Intent intent = new Intent( this, ProductsByCategoryActivity.class );
+				intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+				startActivity( intent );
+				return true;
 			default:
 				return super.onOptionsItemSelected( item );
 		}

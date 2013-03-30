@@ -7,11 +7,8 @@ import android.util.Log;
 import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import me.javierferrer.dailyoffersapp.R;
-import me.javierferrer.dailyoffersapp.models.Product;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
-
-import java.util.ArrayList;
 
 import static com.actionbarsherlock.app.ActionBar.Tab;
 
@@ -49,12 +46,12 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 		}
 		else
 		{
-			Log.e( TAG, "ProductsSearchActivity: handleIntent: Not expected intent: " + intent.toString() );
+			Log.e( TAG, "ProductsSearchActivity: handleIntent: Not expected intent: " + intent.getAction() );
 		}
 	}
 
 	/**
-	 * On start method overrided in order to re-initialize tabs when preferences has been changed
+	 * On start method overridden in order to re-initialize tabs when preferences has been changed
 	 * This is because the user could be set as hidden/shown some categories
 	 */
 	@Override
@@ -88,13 +85,8 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 				sTab = sActionBar.getTabAt( 0 );
 			}
 
-			int l = R.layout.products_list_entry;
-			Object ta = sTab.getTag();
-			String t = ta.toString();
-			ArrayList<Product> pe = ProductsList.getInstance().getCategoryProductsList( t );
-
-			ProductsAdapter productsAdapter = new ProductsAdapter( sProductsListBaseActivity, l, pe );
-			sProductsListView.setAdapter( productsAdapter );
+			sProductsListView.setAdapter( new ProductsAdapter( sProductsListBaseActivity, R.layout.products_list_entry,
+					ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) ) );
 			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
@@ -157,9 +149,8 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
-			ProductsAdapter productsAdapter =
-					new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) );
-			sProductsListView.setAdapter( productsAdapter );
+			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+					ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) ) );
 			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}

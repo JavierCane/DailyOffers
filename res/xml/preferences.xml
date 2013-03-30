@@ -2,20 +2,15 @@
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Categories preferences subscreen -->
-    <PreferenceScreen
-            android:key="categories_preferences"
+    <PreferenceCategory
             android:title="@string/edit_categories">
 
-        <CheckBoxPreference
-                android:key="visibility_affects_search"
-                android:title="Categories filter affects search results"
-                android:summaryOff="@string/no_affect_search"
-                android:summaryOn="@string/affect_search"
-                android:defaultValue="true" />
-
-        <PreferenceCategory
-                android:title="@string/edit_categories">
+            <CheckBoxPreference
+                    android:key="visibility_affects_search"
+                    android:title="@string/visible_categories_affect_search"
+                    android:summaryOff="@string/no_affect_search"
+                    android:summaryOn="@string/affect_search"
+                    android:defaultValue="true" />
 
             <CheckBoxPreference
                     android:key="wines_visible"
@@ -36,6 +31,5 @@
                     android:summaryOn="@string/visible_category"
                     android:defaultValue="true" />
         </PreferenceCategory>
-    </PreferenceScreen>
 
 </PreferenceScreen>
