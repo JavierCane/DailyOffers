@@ -37,6 +37,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 	protected final List<String> mVisibleCategories = new ArrayList<String>();
 	protected SearchView mSearchView;
+	protected MenuItem mSearchMenuItem;
 
 	public static final String TAG = "DO";
 
@@ -280,6 +281,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	public boolean onCreateOptionsMenu( Menu menu )
 	{
 		getSupportMenuInflater().inflate( R.menu.products_list_action_bar_menu, menu );
+
+		mSearchMenuItem = menu.findItem( R.id.mi_search ); // Get search menu item
 
 		// Associate searchable configuration with the SearchView (res/xml/searchable.xml)
 		SearchManager searchManager = ( SearchManager ) getSystemService( Context.SEARCH_SERVICE );

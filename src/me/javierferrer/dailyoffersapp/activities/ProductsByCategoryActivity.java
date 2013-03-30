@@ -1,11 +1,14 @@
 package me.javierferrer.dailyoffersapp.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.internal.view.menu.MenuBuilder;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
@@ -60,8 +63,14 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 		Log.d( TAG, "ProductsByCategoryActivity: onStart" );
 		super.onStart();
 
-		// Construct tabs
 		initTabs();
+
+		// If we have previously set the search menu item, make sure it's collapsed (it's possible to come here from
+		// search results, in that case, we have to close the SearchView text input)
+		if ( mSearchMenuItem != null )
+		{
+			mSearchMenuItem.collapseActionView();
+		}
 	}
 
 	/******************************************************************************************************

@@ -6,13 +6,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.ListView;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
 public final class ProductsSearchActivity extends ProductsListBaseActivity
 {
+
+	private String mQuery;
 
 	@Override
 	public void onCreate( Bundle savedInstanceState )
@@ -29,11 +33,11 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		{
 			Log.d( TAG, "ProductsSearchActivity: handleIntent: search intent detected" );
 
-			String query = intent.getStringExtra( SearchManager.QUERY );
+			mQuery = intent.getStringExtra( SearchManager.QUERY );
 
-			sActionBar.setTitle( getResources().getString( R.string.search_results ) + ": \"" + query + "\"" );
+			sActionBar.setTitle( getResources().getString( R.string.search_results ) + ": \"" + mQuery + "\"" );
 
-			searchProducts( query );
+			searchProducts();
 		}
 		else
 		{
@@ -41,33 +45,58 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		}
 	}
 
-	/**
-	 * ***************************************************************************************************
+	/*****************************************************************************************************
 	 * Products list
-	 * ***************************************************************************************************
-	 */
+	 ****************************************************************************************************/
 
-	private void searchProducts( String query )
+	/**
+	 * Search products by name using the mQuery class attribute.
+	 * It takes into account if the user has specified some hidden categories and if it affects to the search scope.
+	 */
+	private void searchProducts()
 	{
-		Log.d( TAG, "ProductsSearchActivity: searchProducts: search intent, query: " + query );
+		Log.d( TAG, "ProductsSearchActivity: searchProducts: search intent, query: " + mQuery );
 
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
 
 		// Check if the user has specified that the categories filters affects on search results
-		ProductsAdapter productsAdapter;
 		if ( preferences.getBoolean( "visibility_affects_search", true ) )
 		{
-			productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry,
-					ProductsList.getInstance().getFilteredProducts( query, mVisibleCategories ) );
+			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+					ProductsList.getInstance().getFilteredProducts( mQuery, mVisibleCategories ) ) );
 		}
 		else
 		{
-			productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry,
-					ProductsList.getInstance().getFilteredProducts( query, CATEGORIES ) );
+			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+					ProductsList.getInstance().getFilteredProducts( mQuery, CATEGORIES ) ) );
 		}
+	}
 
-		sProductsListView.setAdapter( productsAdapter );
-		sProductsListView.setVisibility( ListView.VISIBLE ); // TODO: Necesario?
+	/******************************************************************************************************
+	 * Action Bar (search, bookmarks and settings)
+	 *****************************************************************************************************/
+
+	/**
+	 * Override options menu creation in order to delete My Bookmarks menu item
+	 *
+	 * @param menu
+	 * @return
+	 */
+	@Override
+	public boolean onCreateOptionsMenu( Menu menu )
+	{
+		super.onCreateOptionsMenu( menu );
+
+		// Set showAsAction property to "always" in order to be able to setIconifiedByDefault to false
+		mSearchMenuItem.setShowAsAction( MenuItem.SHOW_AS_ACTION_ALWAYS );
+
+		// Do not iconify the search view widget in order to make it more accesible
+		mSearchView.setIconifiedByDefault( false );
+
+		// Show the current query as the search input text
+		mSearchView.setQuery( mQuery, false );
+
+		return true;
 	}
 }

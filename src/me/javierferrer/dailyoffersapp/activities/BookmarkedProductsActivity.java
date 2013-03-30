@@ -98,9 +98,9 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 	{
 		super.onCreateOptionsMenu( menu );
 
-		MenuItem moreMenuItem = menu.findItem( R.id.mi_more ); // get my MenuItem with placeholder submenu
-		SubMenu moreSubMenu = moreMenuItem.getSubMenu();
-		moreSubMenu.removeItem( R.id.mi_bookmarks_list ); // delete place holder
+		MenuItem moreMenuItem = menu.findItem( R.id.mi_more ); // Get my "More" menu item
+		SubMenu moreSubMenu = moreMenuItem.getSubMenu(); // Get the submenu contained in the "More" item
+		moreSubMenu.removeItem( R.id.mi_bookmarks_list ); // Delete My Bookmarks submenu item
 
 		return true;
 	}
