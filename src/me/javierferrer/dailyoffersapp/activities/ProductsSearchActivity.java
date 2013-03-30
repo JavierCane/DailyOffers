@@ -3,6 +3,7 @@ package me.javierferrer.dailyoffersapp.activities;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ListView;
@@ -14,6 +15,14 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 {
 
 	@Override
+	public void onCreate( Bundle savedInstanceState )
+	{
+		super.onCreate( savedInstanceState );
+
+		hideTabs();
+	}
+
+	@Override
 	protected void handleIntent( Intent intent )
 	{
 		if ( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
@@ -22,8 +31,9 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 
 			String query = intent.getStringExtra( SearchManager.QUERY );
 
+			sActionBar.setTitle( getResources().getString( R.string.search_results ) + ": \"" + query + "\"" );
+
 			searchProducts( query );
-			customizeActionBar( query );
 		}
 		else
 		{
@@ -32,18 +42,10 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 	}
 
 	/**
-	 * On start method overridden in order to re-initialize tabs when preferences has been changed
-	 * This is because the user could be set as hidden/shown some categories
+	 * ***************************************************************************************************
+	 * Products list
+	 * ***************************************************************************************************
 	 */
-	@Override
-	public void onStart()
-	{
-		Log.d( TAG, "ProductsSearchActivity: onStart" );
-		super.onStart();
-
-		// hide tabs
-		hideTabs();
-	}
 
 	private void searchProducts( String query )
 	{
@@ -67,10 +69,5 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 
 		sProductsListView.setAdapter( productsAdapter );
 		sProductsListView.setVisibility( ListView.VISIBLE ); // TODO: Necesario?
-	}
-
-	private void customizeActionBar( String query )
-	{
-		sActionBar.setTitle( getResources().getString( R.string.search_results ) + ": \"" + query + "\"" );
 	}
 }

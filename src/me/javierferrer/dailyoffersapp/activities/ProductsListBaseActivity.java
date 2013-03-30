@@ -101,7 +101,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	protected abstract void handleIntent( Intent intent );
 
 	/******************************************************************************************************
-	 * Product list
+	 * Products list
 	 *****************************************************************************************************/
 
 	/**
@@ -136,9 +136,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	@Override
 	public void onCreateContextMenu( ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo )
 	{
-		// TODO: Revisar si en otras pantallas sale el menú o no
-		//if ( view.getId() == sProductsListView.getId() )
-
 		// Inflate the context menu with the appropiate menu resource
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate( R.menu.products_list_menu, menu );

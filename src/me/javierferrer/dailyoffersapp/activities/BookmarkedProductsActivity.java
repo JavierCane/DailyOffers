@@ -1,6 +1,7 @@
 package me.javierferrer.dailyoffersapp.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,6 +17,14 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 {
 
 	@Override
+	public void onCreate( Bundle savedInstanceState )
+	{
+		super.onCreate( savedInstanceState );
+
+		hideTabs();
+	}
+
+	@Override
 	protected void handleIntent( Intent intent )
 	{
 		Log.d( TAG, "BookmarkedProductsActivity: handleIntent: " + intent.getAction() );
@@ -23,25 +32,13 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 		showBookmarks();
 	}
 
-	/**
-	 * On start method overridden in order to re-initialize tabs when preferences has been changed
-	 * This is because the user could be set as hidden/shown some categories
-	 */
-	@Override
-	public void onStart()
-	{
-		Log.d( TAG, "BookmarkedProductsActivity: onStart" );
-		super.onStart();
-
-		hideTabs();
-	}
+	/******************************************************************************************************
+	 * Products list
+	 *****************************************************************************************************/
 
 	/**
-	 * ***************************************************************************************************
-	 * Product list
-	 * ***************************************************************************************************
+	 * Show bookmarked products
 	 */
-
 	private void showBookmarks()
 	{
 		Log.d( TAG, "BookmarkedProductsActivity: showBookmarks" );
