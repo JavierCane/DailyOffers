@@ -87,7 +87,6 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 
 			sProductsListView.setAdapter( new ProductsAdapter( sProductsListBaseActivity, R.layout.products_list_entry,
 					ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) ) );
-			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
 
@@ -151,7 +150,6 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 		{
 			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) ) );
-			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
 

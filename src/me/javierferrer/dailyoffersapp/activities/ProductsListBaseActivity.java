@@ -136,7 +136,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	@Override
 	public void onCreateContextMenu( ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo )
 	{
-		// Inflate the context menu with the appropiate menu resource
+		// Inflate the context menu with the appropriate menu resource
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate( R.menu.products_list_menu, menu );
 
@@ -235,7 +235,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		{
 			Toast.makeText( getApplicationContext(), getResources().getString( R.string.no_visible_categories ),
 					Toast.LENGTH_LONG ).show();
-			sProductsListView.setVisibility( ListView.INVISIBLE );
 		}
 	}
 

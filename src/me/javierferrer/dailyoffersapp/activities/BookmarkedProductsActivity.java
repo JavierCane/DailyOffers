@@ -47,7 +47,6 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 		{
 			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getBookmarkedProducts() ) );
-			sProductsListView.setVisibility( ListView.VISIBLE );
 		}
 	}
 
