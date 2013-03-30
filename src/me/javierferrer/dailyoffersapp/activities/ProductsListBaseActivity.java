@@ -68,7 +68,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		Log.d( TAG, "ProductsListBaseActivity: onCreate: Intent handled" );
 
 		// Set products list listeners
-		registerForContextMenu( sProductsListView ); // Set the list view long clickable and responding with a context menu
+		registerForContextMenu(
+				sProductsListView ); // Set the list view long clickable and responding with a context menu
 		setListListeners();
 
 		Log.d( TAG, "ProductsListBaseActivity: onCreate: Listeners set" );
@@ -199,7 +200,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 				selectedProduct.setBookmarked( !selectedProduct.isBookmarked() );
 
 				// Add/remove the selected product to the bookmarked products list
-				ProductsList.getInstance().setBookmarkedProduct( this.getApplicationContext(), selectedProduct.getId(), selectedProduct.isBookmarked() );
+				ProductsList.getInstance().setBookmarkedProduct( this.getApplicationContext(), selectedProduct.getId(),
+						selectedProduct.isBookmarked() );
 
 				return true;
 			default:
@@ -234,7 +236,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		// If the used has not set any category visible in settings, inform about it
 		if ( mVisibleCategories.isEmpty() )
 		{
-			Toast.makeText( getApplicationContext(), getResources().getString( R.string.no_visible_categories ), Toast.LENGTH_LONG ).show();
+			Toast.makeText( getApplicationContext(), getResources().getString( R.string.no_visible_categories ),
+					Toast.LENGTH_LONG ).show();
 			sProductsListView.setVisibility( ListView.INVISIBLE );
 		}
 	}

@@ -27,7 +27,8 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 		ImageView image;
 	}
 
-	public ProductsAdapter( ProductsListBaseActivity productsListBaseActivity, int textViewId, ArrayList<Product> productsList )
+	public ProductsAdapter( ProductsListBaseActivity productsListBaseActivity, int textViewId,
+	                        ArrayList<Product> productsList )
 	{
 		super( productsListBaseActivity, textViewId, productsList );
 
@@ -70,8 +71,9 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 		}
 		else
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsAdapter: getView: Trying to get an index that is greater than the current parsed products count: " + position + "/" +
-			                                     sProductsList.size() );
+			Log.e( ProductsListBaseActivity.TAG,
+					"ProductsAdapter: getView: Trying to get an index that is greater than the current parsed products count: " +
+					position + "/" + sProductsList.size() );
 		}
 
 		return row;

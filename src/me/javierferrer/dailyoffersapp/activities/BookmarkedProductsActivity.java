@@ -1,7 +1,6 @@
 package me.javierferrer.dailyoffersapp.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -37,9 +36,11 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 		hideTabs();
 	}
 
-	/******************************************************************************************************
+	/**
+	 * ***************************************************************************************************
 	 * Product list
-	 *****************************************************************************************************/
+	 * ***************************************************************************************************
+	 */
 
 	private void showBookmarks()
 	{
@@ -75,7 +76,8 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 				selectedProduct.setBookmarked( !selectedProduct.isBookmarked() );
 
 				// Add/remove the selected product to the bookmarked products list
-				ProductsList.getInstance().setBookmarkedProduct( this.getApplicationContext(), selectedProduct.getId(), selectedProduct.isBookmarked() );
+				ProductsList.getInstance().setBookmarkedProduct( this.getApplicationContext(), selectedProduct.getId(),
+						selectedProduct.isBookmarked() );
 
 				showBookmarks();
 

@@ -42,7 +42,8 @@ public final class ProductsJSONParser
 	 * @param sBookmarkedProducts
 	 * @return a List of Products
 	 */
-	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray, List<Integer> bookmarkedProducts )
+	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray,
+	                                                                    List<Integer> bookmarkedProducts )
 	{
 		int numProducts = productsJsonArray.length();
 		HashMap<String, ArrayList<Product>> productsList = new HashMap<String, ArrayList<Product>>();
@@ -140,7 +141,8 @@ public final class ProductsJSONParser
 				}
 			}
 
-			product = new Product( id, name, detailsUrl, buyUrl, image, price, offerPrice, producer, categoryRoot, categoryLastChild, attributes, bookmarked );
+			product = new Product( id, name, detailsUrl, buyUrl, image, price, offerPrice, producer, categoryRoot,
+					categoryLastChild, attributes, bookmarked );
 		}
 		catch ( JSONException e )
 		{
