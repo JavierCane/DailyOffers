@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Product class
  */
-public class Product implements Serializable
+public final class Product implements Serializable
 {
 
 	private Integer mId;

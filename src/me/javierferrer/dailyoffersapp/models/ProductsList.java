@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
 import me.javierferrer.dailyoffersapp.R;
-import me.javierferrer.dailyoffersapp.activities.ProductsListActivity;
+import me.javierferrer.dailyoffersapp.activities.ProductsByCategoryActivity;
+import me.javierferrer.dailyoffersapp.activities.ProductsListBaseActivity;
 import me.javierferrer.dailyoffersapp.utils.ProductsJSONParser;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -22,16 +24,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * Time: 23:21
  * To change this template use File | Settings | File Templates.
  */
-public class ProductsList
+public final class ProductsList
 {
 
 	private static final ProductsList sProductsListInstance = new ProductsList();
-	private static Map<String, ArrayList<Product>> sProductsByCategory = new ConcurrentHashMap<String, ArrayList<Product>>();
-	private static final List<Product> sProductsList = new ArrayList<Product>();
-	private static List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
-	private static boolean sLoaded = false;
+	private Map<String, ArrayList<Product>> sProductsByCategory = new ConcurrentHashMap<String, ArrayList<Product>>();
+	private final List<Product> sProductsList = new ArrayList<Product>();
+	private List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
+	private boolean sLoaded = false;
 
-	private static final String BM_PRODUCTS_FILE_NAME = "bookmarked_products";
+	private final String BM_PRODUCTS_FILE_NAME = "bookmarked_products";
 
 	/**
 	 * Make a private constructor in order to do not allow public instantiation (Singleton class)
@@ -50,7 +52,7 @@ public class ProductsList
 		return sProductsListInstance;
 	}
 
-	public static boolean isLoaded()
+	public boolean isLoaded()
 	{
 		return sLoaded;
 	}
@@ -61,7 +63,7 @@ public class ProductsList
 	 * @param resources Used to load the file containing the products.
 	 * @param context
 	 */
-	public static synchronized void ensureLoaded( final Resources resources, final Context context )
+	public synchronized void ensureLoaded( final Resources resources, final Context context )
 	{
 		if ( !sLoaded )
 		{
@@ -70,25 +72,18 @@ public class ProductsList
 
 				public void run()
 				{
-					try
-					{
-						loadBookmarkedProducts( context );
-						loadProducts( resources );
-					}
-					catch ( IOException e )
-					{
-						throw new RuntimeException( e );
-					}
+					loadBookmarkedProducts( context );
+					loadProducts( resources );
 				}
 			} ).start();
 		}
 	}
 
-	private static synchronized void loadProducts( Resources resources ) throws IOException
+	private synchronized void loadProducts( Resources resources )
 	{
 		if ( !sLoaded )
 		{
-			Log.d( ProductsListActivity.TAG, "ProductsList: Loading products" );
+			Log.d( ProductsListBaseActivity.TAG, "ProductsList: Loading products" );
 
 			// Open a buffer in order to read from the products JSON file
 			BufferedReader jsonReader = new BufferedReader( new InputStreamReader( resources.openRawResource( R.raw.products ) ) );
@@ -117,16 +112,28 @@ public class ProductsList
 					sProductsList.addAll( categoryProducts );
 				}
 
-				Log.d( ProductsListActivity.TAG, "ProductsList: Products sLoaded" );
-				ProductsListActivity.productsParseCompleted();
+				Log.d( ProductsListBaseActivity.TAG, "ProductsList: Products loaded" );
+
+				ProductsByCategoryActivity.productsParseCompleted();
 			}
-			catch ( Exception e )
+			catch ( JSONException e )
 			{
-				Log.e( "Exception trying to parse the json source: ", e.toString() );
+				Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadProducts: JSONException: " + e.toString() );
+			}
+			catch ( IOException e )
+			{
+				Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadProducts: IOException trying to read JSON: " + e.toString() );
 			}
 			finally
 			{
-				jsonReader.close();
+				try
+				{
+					jsonReader.close();
+				}
+				catch ( IOException e )
+				{
+					Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadProducts: IOException trying to close JSON reader: " + e.toString() );
+				}
 			}
 		}
 
@@ -140,7 +147,7 @@ public class ProductsList
 	 * @param visibleCategories
 	 * @return
 	 */
-	public static ArrayList<Product> getFilteredProducts( String query, List<String> visibleCategories )
+	public ArrayList<Product> getFilteredProducts( String query, List<String> visibleCategories )
 	{
 		ArrayList<Product> results = new ArrayList<Product>();
 
@@ -159,23 +166,23 @@ public class ProductsList
 		}
 		else
 		{
-			Log.d( ProductsListActivity.TAG, "products_list not sLoaded yet." );
+			Log.d( ProductsListBaseActivity.TAG, "products_list not sLoaded yet." );
 		}
 
 		return results;
 	}
 
-	public static Map<String, ArrayList<Product>> getProductsByCategory()
+	public Map<String, ArrayList<Product>> getProductsByCategory()
 	{
 		return sProductsByCategory;
 	}
 
-	public static ArrayList<Product> getCategoryProductsList( String category )
+	public ArrayList<Product> getCategoryProductsList( String category )
 	{
 		return sProductsByCategory.get( category );
 	}
 
-	private static void loadBookmarkedProducts( Context context )
+	private void loadBookmarkedProducts( Context context )
 	{
 		try
 		{
@@ -185,33 +192,33 @@ public class ProductsList
 
 			sBookmarkedProductsIds = ( List<Integer> ) ois.readObject();
 
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
+			Log.d( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
 
 			ois.close();
 		}
 		catch ( FileNotFoundException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: FileNotFoundException" );
+			Log.d( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: FileNotFoundException (Probably the user has not defined any bookmarked product yet)." );
 		}
 		catch ( StreamCorruptedException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: StreamCorruptedException" );
+			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: StreamCorruptedException" );
 		}
 		catch ( OptionalDataException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: OptionalDataException" );
+			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: OptionalDataException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: IOException" );
 		}
 		catch ( ClassNotFoundException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: ClassNotFoundException" );
+			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: ClassNotFoundException" );
 		}
 	}
 
-	private static void saveBookmarkedProducts( Context context )
+	private void saveBookmarkedProducts( Context context )
 	{
 		try
 		{
@@ -223,15 +230,15 @@ public class ProductsList
 			oos.flush();
 			oos.close();
 
-			Log.d( ProductsListActivity.TAG, "ProductsList: loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
+			Log.d( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
 		}
 		catch ( FileNotFoundException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: saveBookmarkedProducts: FileNotFoundException" );
+			Log.e( ProductsListBaseActivity.TAG, "ProductsList: saveBookmarkedProducts: FileNotFoundException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListActivity.TAG, "ProductsList: saveBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, "ProductsList: saveBookmarkedProducts: IOException" );
 		}
 	}
 
@@ -242,7 +249,7 @@ public class ProductsList
 	 * @param productId Product to add/remove ID
 	 * @param add       Boolean indicating if we have to add (true) or remove (false) the product
 	 */
-	public static void setBookmarkedProduct( Context context, Integer productId, Boolean add )
+	public void setBookmarkedProduct( Context context, Integer productId, Boolean add )
 	{
 		if ( add )
 		{
@@ -256,7 +263,7 @@ public class ProductsList
 		saveBookmarkedProducts( context );
 	}
 
-	public static ArrayList<Product> getBookmarkedProducts()
+	public ArrayList<Product> getBookmarkedProducts()
 	{
 		ArrayList<Product> bookmarkedProductsList = new ArrayList<Product>();
 

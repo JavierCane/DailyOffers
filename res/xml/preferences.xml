@@ -5,7 +5,7 @@
     <!-- Categories preferences subscreen -->
     <PreferenceScreen
             android:key="categories_preferences"
-            android:title="@string/edit_categopries">
+            android:title="@string/edit_categories">
 
         <CheckBoxPreference
                 android:key="visibility_affects_search"
@@ -15,7 +15,7 @@
                 android:defaultValue="true" />
 
         <PreferenceCategory
-                android:title="@string/edit_categopries">
+                android:title="@string/edit_categories">
 
             <CheckBoxPreference
                     android:key="wines_visible"
@@ -37,15 +37,5 @@
                     android:defaultValue="true" />
         </PreferenceCategory>
     </PreferenceScreen>
-
-    <PreferenceCategory
-            android:title="@string/app_info">
-
-        <EditTextPreference
-                android:key="edittext_preference"
-                android:title="Título"
-                android:summary="Summary"
-                android:dialogTitle="Dialog title" />
-    </PreferenceCategory>
 
 </PreferenceScreen>

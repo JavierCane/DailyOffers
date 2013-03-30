@@ -2,7 +2,6 @@ package me.javierferrer.dailyoffersapp.activities;
 
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import me.javierferrer.dailyoffersapp.R;
 
@@ -13,8 +12,9 @@ import me.javierferrer.dailyoffersapp.R;
  * Time: 21:17
  * To change this template use File | Settings | File Templates.
  */
-public class PreferencesActivity extends SherlockPreferenceActivity
+public final class PreferencesActivity extends SherlockPreferenceActivity
 {
+
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{

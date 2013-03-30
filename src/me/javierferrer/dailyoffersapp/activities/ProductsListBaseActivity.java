@@ -6,14 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -27,62 +26,54 @@ import me.javierferrer.dailyoffersapp.widgets.ProductsSearchView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.actionbarsherlock.app.ActionBar.Tab;
 import static java.util.Arrays.asList;
 
-public class ProductsListActivity extends SherlockActivity implements ActionBar.TabListener
+public abstract class ProductsListBaseActivity extends SherlockActivity
 {
 
-	private static Tab sTab;
-	private static FragmentTransaction sTransaction;
-	private static ListView sProductsListView;
-	private static ActionBar sActionBar;
-	private static LayoutInflater sLayoutInflater;
-	private static ProductsListActivity sProductsListActivity;
+	protected static final List<String> sAllCategories = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
+	protected static ProductsListBaseActivity sProductsListBaseActivity;
+	protected static ListView sProductsListView;
+	protected static ActionBar sActionBar;
 
-	private static final List<String> sAllCategories = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
-	private static final List<String> sVisibleCategories = new ArrayList<String>();
+	protected final List<String> mVisibleCategories = new ArrayList<String>();
+	protected ProductsSearchView mSearchView;
 
 	public static final String TAG = "DO";
 
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
-		Log.d( TAG, "ProductsListActivity: onCreate" );
+		Log.d( TAG, "ProductsListBaseActivity: onCreate" );
 
 		// Action Bar Sherlock compatibility
 		super.onCreate( savedInstanceState );
 
+		// Set layout
+		setContentView( R.layout.products_list );
+
+		// Calls made in order to execute onCreateContextMenu() method (its initialize mSearchView attribute) before the handleIntent()
+//		openOptionsMenu();
+//		closeOptionsMenu();
+
+		sProductsListBaseActivity = this;
+		sProductsListView = ( ListView ) findViewById( R.id.products_list );
+		sActionBar = getSupportActionBar();
+
 		// Firstly we need to ensure that the products list has been loaded and if not, try to load it!
 		ProductsList.getInstance().ensureLoaded( getResources(), this.getApplicationContext() );
 
-		// Layout
-		setContentView( R.layout.products_list );
+		Log.d( TAG, "ProductsListBaseActivity: onCreate: Ready to handle the intent" );
 
-		// Configure the Action Bar
-		sActionBar = getSupportActionBar();
-		sProductsListView = ( ListView ) findViewById( R.id.products_list );
-		sLayoutInflater = this.getLayoutInflater();
-		sProductsListActivity = this;
-
-		Log.d( TAG, "ProductsListActivity: onCreate: Ready to handle the intent" );
-
-		// Get sVisibleCategories
-		initCategories();
-
-		// Construct tabs
-		initTabs();
-
-		// Handle possible search intent
 		handleIntent( getIntent() );
 
-		Log.d( TAG, "ProductsListActivity: onCreate: Intent handled" );
+		Log.d( TAG, "ProductsListBaseActivity: onCreate: Intent handled" );
 
 		// Set products list listeners
 		registerForContextMenu( sProductsListView ); // Set the list view long clickable and responding with a context menu
 		setListListeners();
 
-		Log.d( TAG, "ProductsListActivity: onCreate: Listeners set" );
+		Log.d( TAG, "ProductsListBaseActivity: onCreate: Listeners set" );
 	}
 
 	/**
@@ -92,75 +83,36 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	@Override
 	public void onStart()
 	{
+		Log.d( TAG, "ProductsListBaseActivity: onStart" );
+
+		if ( sProductsListBaseActivity == null )
+		{
+			Log.e( TAG, "ProductsListBaseActivity: onStart: sProductsListBaseActivity is null" );
+		}
 		super.onStart();
 
-		// Get sVisibleCategories
-		initCategories();
-
-		// Construct tabs
-		initTabs();
+		// Get mVisibleCategories
+		initVisibleCategories();
 	}
 
 	@Override
 	protected void onNewIntent( Intent intent )
 	{
-		Log.d( TAG, "ProductsListActivity: onNewIntent: " + intent.toString() );
+		Log.d( TAG, "ProductsListBaseActivity: onNewIntent: " + intent.toString() );
 
+		setIntent( intent );
 		handleIntent( intent );
 	}
 
-	private void handleIntent( Intent intent )
+	protected void preHandleIntent()
 	{
-		Log.d( TAG, "ProductsListActivity: handleIntent: " + intent.toString() );
+		Log.d( TAG, "ProductsListBaseActivity: preHandleIntent" );
 
-		if ( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
-		{
-			hideTabs();
-
-			String query = intent.getStringExtra( SearchManager.QUERY );
-
-			sActionBar.setTitle( getResources().getString( R.string.search ) + ": \"" + query + "\"" );
-
-			Log.d( TAG, "ProductsListActivity: handleIntent: search intent, query: " + query );
-
-			// Get the xml/preferences.xml preferences
-			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
-
-			// Check if the user has specified that the categories filters affects on search results
-			ProductsAdapter productsAdapter;
-			if ( preferences.getBoolean( "visibility_affects_search", true ) )
-			{
-				productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sVisibleCategories ) );
-			}
-			else
-			{
-				productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getFilteredProducts( query, sAllCategories ) );
-			}
-
-			sProductsListView.setAdapter( productsAdapter );
-			sProductsListView.setVisibility( ListView.VISIBLE );
-//			mTextView.setText(getString(R.string.search_results, query));
-//			mList.setOnItemClickListener(wordAdapter);
-		}
-		else // if ( Intent.ACTION_MAIN.equals( intent.getAction() ) )
-		{
-			Log.d( TAG, "ProductsListActivity: handleIntent: main action intent detected" );
-
-			// Set tabs navigation mode
-			showTabs();
-
-			Log.d( TAG, "ProductsListActivity: handleIntent: sProductsListView: " + sProductsListView.toString() );
-
-			if ( ProductsList.getInstance().isLoaded() )
-			{
-				ProductsAdapter productsAdapter =
-						new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) );
-				sProductsListView.setAdapter( productsAdapter );
-				sProductsListView.setVisibility( ListView.VISIBLE );
-//			    sProductsListView.setOnItemClickListener( products_adapter );
-			}
-		}
+		// Get mVisibleCategories
+		initVisibleCategories();
 	}
+
+	protected abstract void handleIntent( Intent intent );
 
 	/******************************************************************************************************
 	 * Product list
@@ -179,11 +131,11 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 			{
 				Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( position );
 
-				Intent productDetailsIntent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
+				Intent productDetailsIntent = new Intent( ProductsListBaseActivity.this, ProductDetailsActivity.class );
 
 				productDetailsIntent.putExtra( "Product", selectedProduct );
 
-				ProductsListActivity.this.startActivity( productDetailsIntent );
+				ProductsListBaseActivity.this.startActivity( productDetailsIntent );
 			}
 		} );
 	}
@@ -238,7 +190,7 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		{
 			// In case of view product details menu item click, create an intent to the product details activity
 			case R.id.mi_view_details:
-				Intent productDetailsIntent = new Intent( ProductsListActivity.this, ProductDetailsActivity.class );
+				Intent productDetailsIntent = new Intent( ProductsListBaseActivity.this, ProductDetailsActivity.class );
 
 				productDetailsIntent.putExtra( "Product", selectedProduct );
 
@@ -270,30 +222,18 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		}
 	}
 
-	/**
-	 * Method called when ProductsList has finished the products parsing process.
-	 * It's necessary because it's possible to call to fillCategoryTab method without having finished the parsing process.
-	 */
-	public static void productsParseCompleted()
-	{
-		Log.d( TAG, "ProductsListActivity: productsParseCompleted" );
-
-		ProductsAdapter productsAdapter =
-				new ProductsAdapter( sProductsListActivity, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) );
-		sProductsListView.setAdapter( productsAdapter );
-		sProductsListView.setVisibility( ListView.VISIBLE );
-	}
-
 	/******************************************************************************************************
 	 * Categories & tabs
 	 *****************************************************************************************************/
 
 	/**
-	 * Add to the sVisibleCategories array the current context sVisibleCategories
+	 * Add to the mVisibleCategories array the current context mVisibleCategories
 	 */
-	private void initCategories()
+	private void initVisibleCategories()
 	{
-		sVisibleCategories.clear();
+		Log.d( TAG, "ProductsListBaseActivity: initVisibleCategories" );
+
+		mVisibleCategories.clear();
 
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
@@ -302,25 +242,15 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		{
 			if ( preferences.getBoolean( categoryName.toLowerCase() + "_visible", true ) )
 			{
-				sVisibleCategories.add( categoryName );
+				mVisibleCategories.add( categoryName );
 			}
 		}
-	}
 
-	/**
-	 * Construct categories tabs
-	 */
-	private void initTabs()
-	{
-		sActionBar.removeAllTabs();
-
-		for ( String categoryName : sVisibleCategories )
+		// If the used has not set any category visible in settings, inform about it
+		if ( mVisibleCategories.isEmpty() )
 		{
-			Tab tab = sActionBar.newTab();
-			tab.setText( categoryName );
-			tab.setTag( categoryName );
-			tab.setTabListener( this );
-			sActionBar.addTab( tab );
+			Toast.makeText( getApplicationContext(), getResources().getString( R.string.no_visible_categories ), Toast.LENGTH_LONG ).show();
+			sProductsListView.setVisibility( ListView.INVISIBLE );
 		}
 	}
 
@@ -328,73 +258,29 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	 * Set navigation mode tabs in order to show the constructed tabs
 	 * Also called by ProductsSearchView in onActionViewCollapsed event trigger
 	 */
-	public static void showTabs()
+	public void showTabs()
 	{
+		Log.d( TAG, "ProductsListBaseActivity: showTabs" );
+
 		sActionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
 
 		sActionBar.setHomeButtonEnabled( false );
 		sActionBar.setDisplayHomeAsUpEnabled( false );
 
-		sActionBar.setTitle( sProductsListActivity.getResources().getString( R.string.app_name ) );
+		sActionBar.setTitle( sProductsListBaseActivity.getResources().getString( R.string.app_name ) );
 	}
 
 	/**
 	 * Hide tabs changing the navigation mode to standard
 	 */
-	public static void hideTabs()
+	public void hideTabs()
 	{
+		Log.d( TAG, "ProductsListBaseActivity: hideTabs" );
+
 		sActionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_STANDARD );
 
 		sActionBar.setHomeButtonEnabled( true );
 		sActionBar.setDisplayHomeAsUpEnabled( true );
-	}
-
-	/**
-	 * Mandatory override
-	 *
-	 * @param tab         The sTab that was reselected.
-	 * @param transaction
-	 */
-	@Override
-	public void onTabReselected( Tab tab, FragmentTransaction transaction )
-	{
-		this.sTab = tab;
-		this.sTransaction = transaction;
-	}
-
-	/**
-	 * Tab change event listener
-	 * fills the current category sTab with the required products
-	 *
-	 * @param tab         The sTab that was selected
-	 * @param transaction
-	 */
-	@Override
-	public void onTabSelected( Tab tab, FragmentTransaction transaction )
-	{
-		this.sTab = tab;
-		this.sTransaction = transaction;
-
-		if ( ProductsList.getInstance().isLoaded() )
-		{
-			ProductsAdapter productsAdapter =
-					new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) );
-			sProductsListView.setAdapter( productsAdapter );
-			sProductsListView.setVisibility( ListView.VISIBLE );
-		}
-	}
-
-	/**
-	 * Mandatory override
-	 *
-	 * @param tab         The sTab that was unselected
-	 * @param transaction
-	 */
-	@Override
-	public void onTabUnselected( Tab tab, FragmentTransaction transaction )
-	{
-		this.sTab = tab;
-		this.sTransaction = transaction;
 	}
 
 	/******************************************************************************************************
@@ -414,8 +300,8 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 
 		// Associate searchable configuration with the SearchView (res/xml/searchable.xml)
 		SearchManager searchManager = ( SearchManager ) getSystemService( Context.SEARCH_SERVICE );
-		ProductsSearchView searchView = ( ProductsSearchView ) menu.findItem( R.id.mi_search ).getActionView();
-		searchView.setSearchableInfo( searchManager.getSearchableInfo( getComponentName() ) );
+		mSearchView = ( ProductsSearchView ) menu.findItem( R.id.mi_search ).getActionView();
+		mSearchView.setSearchableInfo( searchManager.getSearchableInfo( getComponentName() ) );
 
 		return super.onCreateOptionsMenu( menu );
 	}
@@ -423,17 +309,17 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 	@Override
 	public boolean onOptionsItemSelected( MenuItem item )
 	{
-		Log.d( TAG, "ProductsListActivity: onOptionsItemSelected: " + item.getTitle() );
+		Log.d( TAG, "ProductsListBaseActivity: onOptionsItemSelected: " + item.getTitle() );
 
 		switch ( item.getItemId() )
 		{
-			case android.R.id.home:
-				showTabs();
-				return true;
-			case R.id.mi_search:
-				hideTabs();
-				sProductsListView.setVisibility( ListView.INVISIBLE );
-				return true;
+//			case android.R.id.home:
+//				showTabs();
+//				return true;
+//			case R.id.mi_search:
+//				hideTabs();
+//				sProductsListView.setVisibility( ListView.INVISIBLE );
+//				return true;
 			case R.id.mi_bookmarks_list:
 				showBookmarksList();
 				return true;
@@ -446,15 +332,13 @@ public class ProductsListActivity extends SherlockActivity implements ActionBar.
 		}
 	}
 
-	private void showBookmarksList()
+	protected void showBookmarksList()
 	{
 		hideTabs();
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
-			ProductsAdapter productsAdapter =
-					new ProductsAdapter( this, R.layout.products_list_entry,
-							ProductsList.getInstance().getBookmarkedProducts() );
+			ProductsAdapter productsAdapter = new ProductsAdapter( this, R.layout.products_list_entry, ProductsList.getInstance().getBookmarkedProducts() );
 			sProductsListView.setAdapter( productsAdapter );
 			sProductsListView.setVisibility( ListView.VISIBLE );
 		}

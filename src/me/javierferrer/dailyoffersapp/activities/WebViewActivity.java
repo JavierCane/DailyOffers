@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import me.javierferrer.dailyoffersapp.R;
 
-public class WebViewActivity extends Activity
+public final class WebViewActivity extends Activity
 {
 
 	private WebView mWebView;

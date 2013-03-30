@@ -16,8 +16,9 @@ import me.javierferrer.dailyoffersapp.models.Product;
  * Time: 19:13
  * To change this template use File | Settings | File Templates.
  */
-public class ProductDetailsActivity extends SherlockActivity
+public final class ProductDetailsActivity extends SherlockActivity
 {
+
 	private static ActionBar sActionBar;
 	private static Product sProduct;
 

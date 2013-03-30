@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Products JSON Parser
  */
-public class ProductsJSONParser
+public final class ProductsJSONParser
 {
 
 	private static final ProductsJSONParser sProductsJSONParserInstance = new ProductsJSONParser();
