@@ -17,11 +17,11 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.Product;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
-import me.javierferrer.dailyoffersapp.widgets.ProductsSearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	protected static ActionBar sActionBar;
 
 	protected final List<String> mVisibleCategories = new ArrayList<String>();
-	protected ProductsSearchView mSearchView;
+	protected SearchView mSearchView;
 
 	public static final String TAG = "DO";
 
@@ -256,7 +256,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 	/**
 	 * Set navigation mode tabs in order to show the constructed tabs
-	 * Also called by ProductsSearchView in onActionViewCollapsed event trigger
 	 */
 	public void showTabs()
 	{
@@ -300,7 +299,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		// Associate searchable configuration with the SearchView (res/xml/searchable.xml)
 		SearchManager searchManager = ( SearchManager ) getSystemService( Context.SEARCH_SERVICE );
-		mSearchView = ( ProductsSearchView ) menu.findItem( R.id.mi_search ).getActionView();
+		mSearchView = ( SearchView ) menu.findItem( R.id.mi_search ).getActionView();
 		mSearchView.setSearchableInfo( searchManager.getSearchableInfo( getComponentName() ) );
 
 		return super.onCreateOptionsMenu( menu );
