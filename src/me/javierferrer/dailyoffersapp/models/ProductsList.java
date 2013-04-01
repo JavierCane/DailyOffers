@@ -1,9 +1,8 @@
 package me.javierferrer.dailyoffersapp.models;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.util.Log;
-import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.activities.ProductsByCategoryActivity;
 import me.javierferrer.dailyoffersapp.activities.ProductsListBaseActivity;
 import me.javierferrer.dailyoffersapp.utils.ProductsJSONParser;
@@ -23,18 +22,18 @@ import java.util.Map;
  * Time: 23:21
  * To change this template use File | Settings | File Templates.
  */
-public final class ProductsList
+public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 {
 
-	private static final String BM_PRODUCTS_FILE_NAME = "bookmarked_products";
+	private static final String BOOKMARKS_FILE_NAME = "bookmarked_products";
 	private static final ProductsList sProductsListInstance = new ProductsList();
 
 	private final List<Product> sProductsList = new ArrayList<Product>();
 	private Map<String, ArrayList<Product>> sProductsByCategory;
-	private List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
-	private boolean sLoaded = false;
+	private static List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
+	private static boolean sLoaded = false;
 
-	private final String mClassName = this.getClass().getSimpleName();
+	private static final String sClassName = "ProductsList";
 
 	/**
 	 * Make a private constructor in order to do not allow public instantiation (Singleton class)
@@ -58,94 +57,89 @@ public final class ProductsList
 		return sLoaded;
 	}
 
-	/**
-	 * Loads the products if they haven't been sLoaded already.
-	 *
-	 * @param resources Used to load the file containing the products.
-	 * @param context
-	 */
-	public synchronized void ensureLoaded( final Resources resources, final Context context )
+	public static String getBookmarksFileName()
 	{
-		if ( !sLoaded )
-		{
-			new Thread( new Runnable()
-			{
-
-				@Override
-				public void run()
-				{
-					loadBookmarkedProducts( context );
-					loadProducts( resources );
-				}
-			} ).start();
-		}
+		return BOOKMARKS_FILE_NAME;
 	}
 
-	private synchronized void loadProducts( Resources resources )
+	@Override
+	protected Void doInBackground( InputStream... productsJsonFile )
 	{
+		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t" + "doInBackground: sLoaded: " + sLoaded );
+
 		if ( !sLoaded )
 		{
-			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "loadProducts: Loading products" );
+			loadProducts( productsJsonFile );
+		}
 
-			// Open a buffer in order to read from the products JSON file
-			BufferedReader jsonReader =
-					new BufferedReader( new InputStreamReader( resources.openRawResource( R.raw.products ) ) );
+		return null;
+	}
 
-			// Parse the products JSON file using the ProductsJSONParser class
+	@Override
+	protected void onPostExecute( Void dummyVariable )
+	{
+		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t" + "onPostExecute" );
+		sLoaded = true;
+		ProductsByCategoryActivity.productsParseCallback();
+	}
+
+	private void loadProducts( InputStream[] productsJsonFile )
+	{
+		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadProducts: Loading products" );
+
+		// Open a buffer in order to read from the products JSON file
+		BufferedReader jsonReader = new BufferedReader( new InputStreamReader( productsJsonFile[0] ) );
+
+		// Parse the products JSON file using the ProductsJSONParser class
+		try
+		{
+			// Read all JSON file contents and put it in a StringBuilder
+			StringBuilder jsonBuilder = new StringBuilder();
+
+			for ( String line = null; ( line = jsonReader.readLine() ) != null; )
+			{
+				jsonBuilder.append( line ).append( "\n" );
+			}
+
+			// Parse StringBuilder into a JSON Object
+			JSONTokener jsonTokener = new JSONTokener( jsonBuilder.toString() );
+			JSONObject productsJson = new JSONObject( jsonTokener );
+
+			// Parse the JSON products object into the HashMap<String, ArrayList<Product>>
+			sProductsByCategory = ProductsJSONParser.getInstance()
+					.parseAllProducts( productsJson.getJSONArray( "products" ), sBookmarkedProductsIds );
+
+			// For each product category, add them to the complete products list
+			for ( ArrayList<Product> categoryProducts : sProductsByCategory.values() )
+			{
+				sProductsList.addAll( categoryProducts );
+			}
+
+			Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadProducts: Products loaded" );
+		}
+		catch ( JSONException e )
+		{
+			Log.e( ProductsListBaseActivity.TAG,
+					sClassName + "\t\t\t\t" + "loadProducts: JSONException: " + e.toString() );
+		}
+		catch ( IOException e )
+		{
+			Log.e( ProductsListBaseActivity.TAG,
+					sClassName + "\t\t\t\t" + "loadProducts: IOException trying to read JSON: " + e.toString() );
+		}
+		finally
+		{
 			try
 			{
-				// Read all JSON file contents and put it in a StringBuilder
-				StringBuilder jsonBuilder = new StringBuilder();
-
-				for ( String line = null; ( line = jsonReader.readLine() ) != null; )
-				{
-					jsonBuilder.append( line ).append( "\n" );
-				}
-
-				// Parse StringBuilder into a JSON Object
-				JSONTokener jsonTokener = new JSONTokener( jsonBuilder.toString() );
-				JSONObject productsJson = new JSONObject( jsonTokener );
-
-				// Parse the JSON products object into the HashMap<String, ArrayList<Product>>
-				sProductsByCategory = ProductsJSONParser.getInstance()
-						.parseAllProducts( productsJson.getJSONArray( "products" ), sBookmarkedProductsIds );
-
-				// For each product category, add them to the complete products list
-				for ( ArrayList<Product> categoryProducts : sProductsByCategory.values() )
-				{
-					sProductsList.addAll( categoryProducts );
-				}
-
-				Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "loadProducts: Products loaded" );
-
-				ProductsByCategoryActivity.productsParseCompleted();
-			}
-			catch ( JSONException e )
-			{
-				Log.e( ProductsListBaseActivity.TAG,
-						mClassName + "\t\t\t\t" + "loadProducts: JSONException: " + e.toString() );
+				jsonReader.close();
 			}
 			catch ( IOException e )
 			{
 				Log.e( ProductsListBaseActivity.TAG,
-						mClassName + "\t\t\t\t" + "loadProducts: IOException trying to read JSON: " + e.toString() );
-			}
-			finally
-			{
-				try
-				{
-					jsonReader.close();
-				}
-				catch ( IOException e )
-				{
-					Log.e( ProductsListBaseActivity.TAG,
-							mClassName + "\t\t\t\t" + "loadProducts: IOException trying to close JSON reader: " +
-							e.toString() );
-				}
+						sClassName + "\t\t\t\t" + "loadProducts: IOException trying to close JSON reader: " +
+						e.toString() );
 			}
 		}
-
-		sLoaded = true;
 	}
 
 	/**
@@ -175,7 +169,7 @@ public final class ProductsList
 		}
 		else
 		{
-			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "sProductsList not sLoaded yet." );
+			Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "sProductsList not sLoaded yet." );
 		}
 
 		return results;
@@ -191,44 +185,37 @@ public final class ProductsList
 		return sProductsByCategory.get( category );
 	}
 
-	private void loadBookmarkedProducts( Context context )
+	public static void loadBookmarkedProducts( FileInputStream bookmarksFileInputStream )
 	{
 		try
 		{
-			FileInputStream fis = context.openFileInput( BM_PRODUCTS_FILE_NAME );
-
-			ObjectInputStream ois = new ObjectInputStream( fis );
+			ObjectInputStream ois = new ObjectInputStream( bookmarksFileInputStream );
 
 			sBookmarkedProductsIds = ( List<Integer> ) ois.readObject();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
+					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
 
 			ois.close();
-		}
-		catch ( FileNotFoundException e )
-		{
-			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" +
-			                                     "loadBookmarkedProducts: FileNotFoundException (Probably the user has not defined any bookmarked product yet)." );
 		}
 		catch ( StreamCorruptedException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: StreamCorruptedException" );
+					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: StreamCorruptedException" );
 		}
 		catch ( OptionalDataException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: OptionalDataException" );
+					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: OptionalDataException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "loadBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadBookmarkedProducts: IOException" );
 		}
 		catch ( ClassNotFoundException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: ClassNotFoundException" );
+					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: ClassNotFoundException" );
 		}
 	}
 
@@ -236,7 +223,7 @@ public final class ProductsList
 	{
 		try
 		{
-			OutputStream fos = context.openFileOutput( BM_PRODUCTS_FILE_NAME, Context.MODE_PRIVATE );
+			OutputStream fos = context.openFileOutput( BOOKMARKS_FILE_NAME, Context.MODE_PRIVATE );
 
 			fos.flush();
 			ObjectOutputStream oos = new ObjectOutputStream( fos );
@@ -245,16 +232,16 @@ public final class ProductsList
 			oos.close();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
+					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
 		}
 		catch ( FileNotFoundException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					mClassName + "\t\t\t\t" + "saveBookmarkedProducts: FileNotFoundException" );
+					sClassName + "\t\t\t\t" + "saveBookmarkedProducts: FileNotFoundException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "saveBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "saveBookmarkedProducts: IOException" );
 		}
 	}
 

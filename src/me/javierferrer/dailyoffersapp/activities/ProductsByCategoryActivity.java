@@ -25,7 +25,7 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	public void onCreate( Bundle savedInstanceState )
 	{
 		// We have to initialize sProductsByCategoryActivity in order to make it accessible when
-		// we receive the productsParseCompleted method callback
+		// we receive the productsParseCallback method callback
 		sProductsByCategoryActivity = this;
 
 		super.onCreate( savedInstanceState );
@@ -63,7 +63,7 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 
 			if ( ProductsList.getInstance().isLoaded() )
 			{
-				productsParseCompleted();
+				productsParseCallback();
 			}
 		}
 		else
@@ -80,9 +80,9 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	 * Method called when ProductsList has finished the products parsing process.
 	 * It's necessary because it's possible to call to fillCategoryTab method without having finished the parsing process.
 	 */
-	public static void productsParseCompleted()
+	public static void productsParseCallback()
 	{
-		Log.d( TAG, "ProductsByCategoryActivity" + "\t" + "productsParseCompleted" );
+		Log.d( TAG, "ProductsByCategoryActivity" + "\t" + "productsParseCallback" );
 
 		// If we have any tab at the Action Bar and we have not set any one yet or the current set tab is not marked as visible,
 		// change the selected tab to the first one
@@ -172,6 +172,10 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 
 			productsLisView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) ) );
+		}
+		else
+		{
+			Log.d( TAG, mClassName + "\t" + "onTabSelected: Products list not parsed yet." );
 		}
 
 		this.sTab = tab;

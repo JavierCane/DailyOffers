@@ -55,11 +55,8 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 	{
 		Log.d( TAG, mClassName + "\t" + "showBookmarks" );
 
-		if ( ProductsList.getInstance().isLoaded() )
-		{
-			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
-					ProductsList.getInstance().getBookmarkedProducts() ) );
-		}
+		sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+				ProductsList.getInstance().getBookmarkedProducts() ) );
 	}
 
 	/**

@@ -22,6 +22,7 @@ import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.Product;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,8 +60,24 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		initActivity();
 
 		// Ensure that the products list has been loaded and if not, try to load it expecting a callback to the
-		// ProductsByCategoryActivity.productsParseCompleted() method
-		ProductsList.getInstance().ensureLoaded( getResources(), this.getApplicationContext() );
+		// ProductsByCategoryActivity.productsParseCallback() method
+		try
+		{
+			ProductsList.getInstance().loadBookmarkedProducts(
+					getApplicationContext().openFileInput( ProductsList.getBookmarksFileName() ) );
+		}
+		catch ( FileNotFoundException e )
+		{
+			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" +
+			                                     "onCreate: FileNotFoundException (Probably the user has not defined any bookmarked product yet)." );
+		}
+
+		Log.d( TAG, mClassName + "\t" + "onCreate: ProductsList isLoaded: " + ProductsList.getInstance().isLoaded() );
+
+		if ( !ProductsList.getInstance().isLoaded() )
+		{
+			ProductsList.getInstance().execute( getResources().openRawResource( R.raw.products ) );
+		}
 
 		setNavigationWithoutTabs();
 
