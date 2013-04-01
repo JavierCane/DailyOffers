@@ -15,7 +15,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,13 +26,15 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class ProductsList
 {
 
+	private static final String BM_PRODUCTS_FILE_NAME = "bookmarked_products";
 	private static final ProductsList sProductsListInstance = new ProductsList();
-	private Map<String, ArrayList<Product>> sProductsByCategory = new ConcurrentHashMap<String, ArrayList<Product>>();
+
 	private final List<Product> sProductsList = new ArrayList<Product>();
-	private List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
+	private Map<String, ArrayList<Product>> sProductsByCategory;
+	private List<Integer> sBookmarkedProductsIds;
 	private boolean sLoaded = false;
 
-	private final String BM_PRODUCTS_FILE_NAME = "bookmarked_products";
+	private final String mClassName = this.getClass().getSimpleName();
 
 	/**
 	 * Make a private constructor in order to do not allow public instantiation (Singleton class)
@@ -83,7 +84,7 @@ public final class ProductsList
 	{
 		if ( !sLoaded )
 		{
-			Log.d( ProductsListBaseActivity.TAG, "ProductsList: Loading products" );
+			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "loadProducts: Loading products" );
 
 			// Open a buffer in order to read from the products JSON file
 			BufferedReader jsonReader =
@@ -114,18 +115,19 @@ public final class ProductsList
 					sProductsList.addAll( categoryProducts );
 				}
 
-				Log.d( ProductsListBaseActivity.TAG, "ProductsList: Products loaded" );
+				Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "loadProducts: Products loaded" );
 
 				ProductsByCategoryActivity.productsParseCompleted();
 			}
 			catch ( JSONException e )
 			{
-				Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadProducts: JSONException: " + e.toString() );
+				Log.e( ProductsListBaseActivity.TAG,
+						mClassName + "\t\t\t\t" + "loadProducts: JSONException: " + e.toString() );
 			}
 			catch ( IOException e )
 			{
 				Log.e( ProductsListBaseActivity.TAG,
-						"ProductsList: loadProducts: IOException trying to read JSON: " + e.toString() );
+						mClassName + "\t\t\t\t" + "loadProducts: IOException trying to read JSON: " + e.toString() );
 			}
 			finally
 			{
@@ -136,7 +138,8 @@ public final class ProductsList
 				catch ( IOException e )
 				{
 					Log.e( ProductsListBaseActivity.TAG,
-							"ProductsList: loadProducts: IOException trying to close JSON reader: " + e.toString() );
+							mClassName + "\t\t\t\t" + "loadProducts: IOException trying to close JSON reader: " +
+							e.toString() );
 				}
 			}
 		}
@@ -171,7 +174,7 @@ public final class ProductsList
 		}
 		else
 		{
-			Log.d( ProductsListBaseActivity.TAG, "products_list not sLoaded yet." );
+			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "sProductsList not sLoaded yet." );
 		}
 
 		return results;
@@ -198,30 +201,33 @@ public final class ProductsList
 			sBookmarkedProductsIds = ( List<Integer> ) ois.readObject();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					"ProductsList: loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
+					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
 
 			ois.close();
 		}
 		catch ( FileNotFoundException e )
 		{
-			Log.d( ProductsListBaseActivity.TAG,
-					"ProductsList: loadBookmarkedProducts: FileNotFoundException (Probably the user has not defined any bookmarked product yet)." );
+			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" +
+			                                     "loadBookmarkedProducts: FileNotFoundException (Probably the user has not defined any bookmarked product yet)." );
 		}
 		catch ( StreamCorruptedException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: StreamCorruptedException" );
+			Log.e( ProductsListBaseActivity.TAG,
+					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: StreamCorruptedException" );
 		}
 		catch ( OptionalDataException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: OptionalDataException" );
+			Log.e( ProductsListBaseActivity.TAG,
+					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: OptionalDataException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "loadBookmarkedProducts: IOException" );
 		}
 		catch ( ClassNotFoundException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsList: loadBookmarkedProducts: ClassNotFoundException" );
+			Log.e( ProductsListBaseActivity.TAG,
+					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: ClassNotFoundException" );
 		}
 	}
 
@@ -238,15 +244,16 @@ public final class ProductsList
 			oos.close();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					"ProductsList: loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
+					mClassName + "\t\t\t\t" + "loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
 		}
 		catch ( FileNotFoundException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsList: saveBookmarkedProducts: FileNotFoundException" );
+			Log.e( ProductsListBaseActivity.TAG,
+					mClassName + "\t\t\t\t" + "saveBookmarkedProducts: FileNotFoundException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, "ProductsList: saveBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" + "saveBookmarkedProducts: IOException" );
 		}
 	}
 

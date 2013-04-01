@@ -1,14 +1,11 @@
 package me.javierferrer.dailyoffersapp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.internal.view.menu.MenuBuilder;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
@@ -17,6 +14,8 @@ import static com.actionbarsherlock.app.ActionBar.Tab;
 
 public final class ProductsByCategoryActivity extends ProductsListBaseActivity implements ActionBar.TabListener
 {
+
+	protected final String mClassName = this.getClass().getSimpleName();
 
 	private static ProductsByCategoryActivity sProductsByCategoryActivity;
 	private static Tab sTab;
@@ -31,26 +30,7 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 
 		super.onCreate( savedInstanceState );
 
-		initTabs();
-		showTabs();
-	}
-
-	@Override
-	protected void handleIntent( Intent intent )
-	{
-		if ( Intent.ACTION_MAIN.equals( intent.getAction() ) )
-		{
-			Log.d( TAG, "ProductsByCategoryActivity: handleIntent: main action intent detected" );
-
-			if ( ProductsList.getInstance().isLoaded() )
-			{
-				productsParseCompleted();
-			}
-		}
-		else
-		{
-			Log.e( TAG, "ProductsSearchActivity: handleIntent: Not expected intent: " + intent.getAction() );
-		}
+		Log.d( TAG, mClassName + "\t" + "onCreate" );
 	}
 
 	/**
@@ -60,16 +40,35 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	@Override
 	public void onStart()
 	{
-		Log.d( TAG, "ProductsByCategoryActivity: onStart" );
 		super.onStart();
 
-		initTabs();
+		setNavigationWithTabs();
+
+		Log.d( TAG, mClassName + "\t" + "onStart" );
 
 		// If we have previously set the search menu item, make sure it's collapsed (it's possible to come here from
 		// search results, in that case, we have to close the SearchView text input)
 		if ( mSearchMenuItem != null )
 		{
 			mSearchMenuItem.collapseActionView();
+		}
+	}
+
+	@Override
+	protected void handleIntent( Intent intent )
+	{
+		if ( Intent.ACTION_MAIN.equals( intent.getAction() ) )
+		{
+			Log.d( TAG, mClassName + "\t" + "handleIntent: main action intent detected" );
+
+			if ( ProductsList.getInstance().isLoaded() )
+			{
+				productsParseCompleted();
+			}
+		}
+		else
+		{
+			Log.e( TAG, mClassName + "\t" + "handleIntent: Not expected intent: " + intent.getAction() );
 		}
 	}
 
@@ -83,7 +82,7 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	 */
 	public static void productsParseCompleted()
 	{
-		Log.d( TAG, "ProductsByCategoryActivity: productsParseCompleted" );
+		Log.d( TAG, "ProductsByCategoryActivity" + "\t" + "productsParseCompleted" );
 
 		// If we have any tab at the Action Bar and we have not set any one yet or the current set tab is not marked as visible,
 		// change the selected tab to the first one
@@ -106,9 +105,12 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	/**
 	 * Construct categories tabs
 	 */
-	private void initTabs()
+	@Override
+	protected void initVisibleCategories()
 	{
-		Log.d( TAG, "ProductsByCategoryActivity: initTabs" );
+		super.initVisibleCategories();
+
+		Log.d( TAG, mClassName + "\t" + "constructTabs" );
 
 		sActionBar.removeAllTabs();
 
@@ -119,6 +121,15 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 			tab.setTag( categoryName );
 			tab.setTabListener( sProductsByCategoryActivity );
 			sActionBar.addTab( tab );
+		}
+
+		if ( sTab == null )
+		{
+			Log.d( TAG, mClassName + "\t" + "constructTabs: sTab: null" );
+		}
+		else
+		{
+			Log.d( TAG, mClassName + "\t" + "constructTabs:sTab: " + sTab.getTag() );
 		}
 
 		// If we have any tab at the Action Bar and we have not set any one yet or the current set tab is not marked as visible,
@@ -152,14 +163,19 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	@Override
 	public void onTabSelected( Tab tab, FragmentTransaction transaction )
 	{
-		this.sTab = tab;
-		this.sTransaction = transaction;
+		Log.d( TAG, mClassName + "\t" + "onTabSelected: previous tab: " + sTab.getTag() +
+		            ", current tab: " + tab.getTag() );
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
-			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+			ListView productsLisView = ( ListView ) findViewById( R.id.products_list );
+
+			productsLisView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) ) );
 		}
+
+		this.sTab = tab;
+		this.sTransaction = transaction;
 	}
 
 	/**

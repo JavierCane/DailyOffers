@@ -20,8 +20,9 @@ public final class ProductDetailsActivity extends SherlockActivity
 {
 
 	private static ActionBar sActionBar;
-	private static Product sProduct;
+	private Product mProduct;
 
+	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
@@ -29,15 +30,15 @@ public final class ProductDetailsActivity extends SherlockActivity
 
 		sActionBar = getSupportActionBar();
 		Intent intent = getIntent();
-		sProduct = ( Product ) intent.getSerializableExtra( "Product" );
+		mProduct = ( Product ) intent.getSerializableExtra( "Product" );
 
 		sActionBar.setHomeButtonEnabled( true );
 		sActionBar.setDisplayHomeAsUpEnabled( true );
-		sActionBar.setTitle( sProduct.getName() );
+		sActionBar.setTitle( mProduct.getName() );
 
 		TextView tvProductName = ( TextView ) findViewById( R.id.tv_product_name );
 
-		tvProductName.setText( sProduct.getPrice() );
+		tvProductName.setText( mProduct.getPrice() );
 	}
 
 	@Override

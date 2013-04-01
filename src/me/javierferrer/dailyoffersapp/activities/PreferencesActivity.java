@@ -1,7 +1,9 @@
 package me.javierferrer.dailyoffersapp.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 import me.javierferrer.dailyoffersapp.R;
@@ -16,6 +18,20 @@ import me.javierferrer.dailyoffersapp.R;
 public final class PreferencesActivity extends SherlockPreferenceActivity
 {
 
+	/**
+	 * Set a preferences change listener in order to redraw application tabs when the user
+	 * changes the categories visibility
+	 */
+	private final SharedPreferences.OnSharedPreferenceChangeListener mPreferenceChangeListener =
+			new SharedPreferences.OnSharedPreferenceChangeListener()
+			{
+
+				public void onSharedPreferenceChanged( SharedPreferences preferences, String key )
+				{
+					ProductsListBaseActivity.setCategoriesVisibilityChanged( true );
+				}
+			};
+
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{
@@ -25,6 +41,10 @@ public final class PreferencesActivity extends SherlockPreferenceActivity
 		getSupportActionBar().setDisplayHomeAsUpEnabled( true );
 
 		addPreferencesFromResource( R.xml.preferences );
+
+		// Set preferences listener in order to redraw application tabs when the user changes the categories visibility
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getApplicationContext() );
+		preferences.registerOnSharedPreferenceChangeListener( mPreferenceChangeListener );
 	}
 
 	@Override

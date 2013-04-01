@@ -35,45 +35,45 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	protected static ListView sProductsListView;
 	protected static ActionBar sActionBar;
 
+	protected final String mClassName = "ProductsListBaseActivity";
 	protected final List<String> mVisibleCategories = new ArrayList<String>();
 	protected SearchView mSearchView;
 	protected MenuItem mSearchMenuItem;
+
+	/**
+	 * Boolean to indicate if the categories visibility has changed from the preferences activity or not.
+	 * If it's set to true, when we re-create the activity, we'll redraw the categories tabs
+	 */
+	protected static Boolean sCategoriesVisibilityChanged = false;
 
 	public static final String TAG = "DO";
 
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
-		Log.d( TAG, "ProductsListBaseActivity: onCreate" );
-
 		// Action Bar Sherlock compatibility
 		super.onCreate( savedInstanceState );
 
-		// Set layout
-		setContentView( R.layout.products_list );
+		Log.d( TAG, mClassName + "\t" + "onCreate" );
 
-		// Initialize class attributes
-		sProductsListBaseActivity = this;
-		sProductsListView = ( ListView ) findViewById( R.id.products_list );
-		sActionBar = getSupportActionBar();
+		initActivity();
 
 		// Ensure that the products list has been loaded and if not, try to load it expecting a callback to the
 		// ProductsByCategoryActivity.productsParseCompleted() method
 		ProductsList.getInstance().ensureLoaded( getResources(), this.getApplicationContext() );
 
-		Log.d( TAG, "ProductsListBaseActivity: onCreate: Ready to handle the intent" );
+		setNavigationWithoutTabs();
 
 		// Call to the handleIntent method. It has to be implemented in the class child's
-		handleIntent( getIntent() );
-
-		Log.d( TAG, "ProductsListBaseActivity: onCreate: Intent handled" );
+		if ( getIntent().getAction() != null )
+		{
+			Log.d( TAG, mClassName + "\t" + "onCreate: Ready to handle the intent" );
+			handleIntent( getIntent() );
+			Log.d( TAG, mClassName + "\t" + "onCreate: Intent handled" );
+		}
 
 		// Set products list listeners
-		registerForContextMenu(
-				sProductsListView ); // Set the list view long clickable and responding with a context menu
 		setListListeners();
-
-		Log.d( TAG, "ProductsListBaseActivity: onCreate: Listeners set" );
 	}
 
 	/**
@@ -83,23 +83,43 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	@Override
 	public void onStart()
 	{
-		Log.d( TAG, "ProductsListBaseActivity: onStart" );
 		super.onStart();
 
-		// Get mVisibleCategories
+		Log.d( TAG, mClassName + "\t" + "onStart" );
+
+		// If the user has changed the visible categories preferences, re-initialize the visible categories
+		if ( sCategoriesVisibilityChanged )
+		{
+			initVisibleCategories();
+
+			setCategoriesVisibilityChanged( false );
+		}
+	}
+
+	/**
+	 * Initialize the current activity setting the layout and the class attributes
+	 */
+	private void initActivity()
+	{
+		// Set layout
+		setContentView( R.layout.products_list );
+
+		// Initialize class attributes
+		sProductsListBaseActivity = this;
+		sProductsListView = ( ListView ) findViewById( R.id.products_list );
+		sActionBar = getSupportActionBar();
 		initVisibleCategories();
 	}
 
-	@Override
-	protected void onNewIntent( Intent intent )
+	protected void handleIntent( Intent intent )
 	{
-		Log.d( TAG, "ProductsListBaseActivity: onNewIntent: " + intent.toString() );
 
-		setIntent( intent );
-		handleIntent( intent );
 	}
 
-	protected abstract void handleIntent( Intent intent );
+	public static void setCategoriesVisibilityChanged( Boolean status )
+	{
+		sCategoriesVisibilityChanged = status;
+	}
 
 	/******************************************************************************************************
 	 * Products list
@@ -110,6 +130,10 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	 */
 	private void setListListeners()
 	{
+		// List view long click context menu
+		registerForContextMenu( sProductsListView );
+
+		// Product click details activity)
 		sProductsListView.setOnItemClickListener( new AdapterView.OnItemClickListener()
 		{
 
@@ -214,11 +238,14 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	/**
 	 * Add to the mVisibleCategories array the categories set as visible by the user in the settings
 	 */
-	private void initVisibleCategories()
+	protected void initVisibleCategories()
 	{
-		Log.d( TAG, "ProductsListBaseActivity: initVisibleCategories" );
+		Log.d( TAG, mClassName + "\t" + "initVisibleCategories" );
 
-		mVisibleCategories.clear();
+		if ( !mVisibleCategories.isEmpty() )
+		{
+			mVisibleCategories.clear();
+		}
 
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
@@ -242,24 +269,22 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	/**
 	 * Set navigation mode tabs in order to show the constructed tabs
 	 */
-	protected void showTabs()
+	protected void setNavigationWithTabs()
 	{
-		Log.d( TAG, "ProductsListBaseActivity: showTabs" );
+		Log.d( TAG, mClassName + "\t" + "setNavigationWithTabs" );
 
 		sActionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
 
 		sActionBar.setHomeButtonEnabled( false );
 		sActionBar.setDisplayHomeAsUpEnabled( false );
-
-		sActionBar.setTitle( sProductsListBaseActivity.getResources().getString( R.string.app_name ) );
 	}
 
 	/**
 	 * Hide tabs changing the navigation mode to standard
 	 */
-	protected void hideTabs()
+	protected void setNavigationWithoutTabs()
 	{
-		Log.d( TAG, "ProductsListBaseActivity: hideTabs" );
+		Log.d( TAG, mClassName + "\t" + "setNavigationWithoutTabs" );
 
 		sActionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_STANDARD );
 
@@ -295,7 +320,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	@Override
 	public boolean onOptionsItemSelected( MenuItem item )
 	{
-		Log.d( TAG, "ProductsListBaseActivity: onOptionsItemSelected: " + item.getTitle() );
+		Log.d( TAG, mClassName + "\t" + "onOptionsItemSelected: " + item.getTitle() );
 
 		switch ( item.getItemId() )
 		{

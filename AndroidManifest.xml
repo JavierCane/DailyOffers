@@ -17,8 +17,7 @@
 
         <!-- App default activity (products by category) -->
         <activity
-                android:name=".activities.ProductsByCategoryActivity"
-                android:label="@string/app_name">
+                android:name=".activities.ProductsByCategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -64,6 +63,7 @@
                 android:name=".activities.ProductDetailsActivity" />
 
         <!-- App preferences activity -->
-        <activity android:name=".activities.PreferencesActivity" />
+        <activity android:name=".activities.PreferencesActivity"
+                  android:label="@string/settings" />
     </application>
 </manifest> 

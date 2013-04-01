@@ -8,7 +8,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.SubMenu;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
@@ -18,12 +17,28 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 
 	private String mQuery;
 
+	protected final String mClassName = this.getClass().getSimpleName();
+
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
 
-		hideTabs();
+		Log.d( TAG, mClassName + "\t\t" + "onCreate" );
+	}
+
+	/**
+	 * Override onNewIntent in order to launch new search queries from the same activity ("singleTop" launchMode)
+	 *
+	 * @param intent
+	 */
+	@Override
+	protected void onNewIntent( Intent intent )
+	{
+		Log.d( TAG, mClassName + "\t\t" + "onNewIntent: " + intent.toString() );
+
+		setIntent( intent );
+		handleIntent( intent );
 	}
 
 	@Override
@@ -31,7 +46,7 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 	{
 		if ( Intent.ACTION_SEARCH.equals( intent.getAction() ) )
 		{
-			Log.d( TAG, "ProductsSearchActivity: handleIntent: search intent detected" );
+			Log.d( TAG, mClassName + "\t\t" + "handleIntent: search intent detected" );
 
 			mQuery = intent.getStringExtra( SearchManager.QUERY );
 
@@ -41,7 +56,7 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		}
 		else
 		{
-			Log.e( TAG, "ProductsSearchActivity: handleIntent: Not expected intent: " + intent.getAction() );
+			Log.e( TAG, mClassName + "\t\t" + "handleIntent: Not expected intent: " + intent.getAction() );
 		}
 	}
 
@@ -55,7 +70,7 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 	 */
 	private void searchProducts()
 	{
-		Log.d( TAG, "ProductsSearchActivity: searchProducts: search intent, query: " + mQuery );
+		Log.d( TAG, mClassName + "\t\t" + "searchProducts: search intent, query: " + mQuery );
 
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );

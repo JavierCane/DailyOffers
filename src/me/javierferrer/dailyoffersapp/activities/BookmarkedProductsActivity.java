@@ -1,10 +1,8 @@
 package me.javierferrer.dailyoffersapp.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
@@ -16,20 +14,34 @@ import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 {
 
+	protected final String mClassName = this.getClass().getSimpleName();
+
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
 
-		hideTabs();
-	}
-
-	@Override
-	protected void handleIntent( Intent intent )
-	{
-		Log.d( TAG, "BookmarkedProductsActivity: handleIntent: " + intent.getAction() );
+		Log.d( TAG, mClassName + "\t" + "onCreate" );
 
 		showBookmarks();
+	}
+
+	/**
+	 * On start method overridden in order to hide search view text input field
+	 */
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		Log.d( TAG, mClassName + "\t" + "onStart" );
+
+		// If we have previously set the search menu item, make sure it's collapsed (it's possible to come here from
+		// search results, in that case, we have to close the SearchView text input)
+		if ( mSearchMenuItem != null )
+		{
+			mSearchMenuItem.collapseActionView();
+		}
 	}
 
 	/******************************************************************************************************
@@ -41,7 +53,7 @@ public final class BookmarkedProductsActivity extends ProductsListBaseActivity
 	 */
 	private void showBookmarks()
 	{
-		Log.d( TAG, "BookmarkedProductsActivity: showBookmarks" );
+		Log.d( TAG, mClassName + "\t" + "showBookmarks" );
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
