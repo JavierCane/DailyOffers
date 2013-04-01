@@ -31,7 +31,7 @@ public final class ProductsList
 
 	private final List<Product> sProductsList = new ArrayList<Product>();
 	private Map<String, ArrayList<Product>> sProductsByCategory;
-	private List<Integer> sBookmarkedProductsIds;
+	private List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
 	private boolean sLoaded = false;
 
 	private final String mClassName = this.getClass().getSimpleName();
@@ -71,6 +71,7 @@ public final class ProductsList
 			new Thread( new Runnable()
 			{
 
+				@Override
 				public void run()
 				{
 					loadBookmarkedProducts( context );

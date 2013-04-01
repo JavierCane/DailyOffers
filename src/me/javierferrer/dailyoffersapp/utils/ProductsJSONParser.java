@@ -39,7 +39,7 @@ public final class ProductsJSONParser
 	 * Returns the products in a hashmap with the products category_root as the hashmap key and an ArrayList of Product as the HashMap values
 	 *
 	 * @param productsJsonArray
-	 * @param sBookmarkedProducts
+	 * @param bookmarkedProducts
 	 * @return a List of Products
 	 */
 	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray,
@@ -116,7 +116,7 @@ public final class ProductsJSONParser
 			categoryLastChild = productJson.getString( "category_last_child" );
 
 			// Check if the current product has been saves as a bookmarked product
-			if ( bookmarkedProducts.contains( id ) )
+			if ( !bookmarkedProducts.isEmpty() && bookmarkedProducts.contains( id ) )
 			{
 				bookmarked = true;
 			}
