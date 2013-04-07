@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:paddingTop="5px"
-            android:paddingBottom="15px"
+            android:paddingRight="10px"
             android:layout_alignParentRight="true"
             android:contentDescription="@string/add_favorite"
             android:focusable="false"

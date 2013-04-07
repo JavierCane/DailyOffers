@@ -11,6 +11,7 @@ import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
@@ -240,7 +241,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 				return true;
 			// In case of add/remove from bookmarks menu item click
 			case R.id.mi_favorite_product:
-				setFavoriteProduct( selectedProduct, !selectedProduct.isFavorited() );
+				setFavoriteProduct( selectedProduct, !selectedProduct.isFavorited(), info.targetView );
 
 				return true;
 			default:
@@ -278,8 +279,13 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		// If the used has not set any category visible in settings, inform about it
 		if ( mVisibleCategories.isEmpty() )
 		{
+			mProductsListView.setVisibility( View.INVISIBLE );
 			Toast.makeText( getApplicationContext(), getResources().getString( R.string.no_visible_categories ),
 					Toast.LENGTH_LONG ).show();
+		}
+		else
+		{
+			mProductsListView.setVisibility( View.VISIBLE );
 		}
 	}
 
@@ -362,7 +368,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		return sCurrentCategoryProductsAdapter;
 	}
 
-	public static void setFavoriteProduct( Product selectedProduct, boolean newStatus )
+	public static void setFavoriteProduct( Product selectedProduct, boolean newStatus, View targetView )
 	{
 		Log.d( TAG, mClassName + "\t" + "setFavoriteProduct: " + selectedProduct.getName() + ", to: " + newStatus );
 
@@ -394,5 +400,12 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		// Add/remove it from the favorited products adapter
 		FavoritedProductsActivity.setFavoriteProduct( selectedProduct, newStatus );
+
+		// If the action comes from the context menu, we have to update the favorite icon:
+		if ( targetView != null )
+		{
+			CheckBox productCheckBox = ( CheckBox ) targetView.findViewById( R.id.cb_favorited_product );
+			productCheckBox.setChecked( newStatus );
+		}
 	}
 }

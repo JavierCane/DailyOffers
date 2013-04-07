@@ -103,11 +103,11 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 				Product favoritedProduct = ( Product ) holder.favorited.getTag();
 
 				ProductsListBaseActivity
-						.setFavoriteProduct( favoritedProduct, ( ( CheckBox ) checkBoxView ).isChecked() );
+						.setFavoriteProduct( favoritedProduct, ( ( CheckBox ) checkBoxView ).isChecked(),
+								null );
 			}
 		} );
 
-		// Set the favorite checkbox status before its listener in order to do not fire it while setting its value
 		holder.favorited.setChecked( product.isFavorited() );
 
 		return row;
