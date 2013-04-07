@@ -367,18 +367,22 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		Log.d( TAG, mClassName + "\t" + "setFavoriteProduct: " + selectedProduct.getName() + ", to: " + newStatus );
 
 		// Notify to the user
+		String notificationText;
 		if ( newStatus )
 		{
-			Toast.makeText( sProductsListBaseActivity.getApplicationContext(),
+			notificationText = String.format(
 					sProductsListBaseActivity.getResources().getString( R.string.favorited_product_added_confirm ),
-					Toast.LENGTH_SHORT ).show();
+					selectedProduct.getName() );
 		}
 		else
 		{
-			Toast.makeText( sProductsListBaseActivity.getApplicationContext(),
+			notificationText = String.format(
 					sProductsListBaseActivity.getResources().getString( R.string.favorited_product_removed_confirm ),
-					Toast.LENGTH_SHORT ).show();
+					selectedProduct.getName() );
 		}
+
+		Toast.makeText( sProductsListBaseActivity.getApplicationContext(), notificationText, Toast.LENGTH_SHORT )
+				.show();
 
 		// Set the product favorited flag to the new status
 		selectedProduct.setFavorited( newStatus );
