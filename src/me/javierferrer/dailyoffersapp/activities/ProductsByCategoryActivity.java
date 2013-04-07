@@ -93,7 +93,10 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 				sTab = sActionBar.getTabAt( 0 );
 			}
 
-			sProductsListView.setAdapter( new ProductsAdapter( sProductsListBaseActivity, R.layout.products_list_entry,
+			ListView productsListView = ( ListView ) sProductsListBaseActivity.findViewById( R.id.products_list );
+
+			productsListView.setAdapter( new ProductsAdapter( sProductsListBaseActivity.getApplicationContext(),
+					R.layout.products_list_entry,
 					ProductsList.getInstance().getCategoryProductsList( sTab.getTag().toString() ) ) );
 		}
 	}
@@ -168,9 +171,9 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
-			ListView productsLisView = ( ListView ) findViewById( R.id.products_list );
+			ListView productsListView = ( ListView ) findViewById( R.id.products_list );
 
-			productsLisView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+			productsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getCategoryProductsList( tab.getTag().toString() ) ) );
 		}
 		else

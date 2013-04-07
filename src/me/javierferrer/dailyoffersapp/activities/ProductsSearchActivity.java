@@ -6,12 +6,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.ListView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
+// TODO: No sugerencias
+// TODO: No búsquedas previas
+// TODO: Botón físico "buscar"
+// TODO: En emulador no muestra botón "More"
+// TODO:
 public final class ProductsSearchActivity extends ProductsListBaseActivity
 {
 
@@ -75,15 +81,17 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		// Get the xml/preferences.xml preferences
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences( getBaseContext() );
 
+		ListView productsListView = ( ListView ) findViewById( R.id.products_list );
+
 		// Check if the user has specified that the categories filters affects on search results
 		if ( preferences.getBoolean( "visibility_affects_search", true ) )
 		{
-			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+			productsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getFilteredProducts( mQuery, mVisibleCategories ) ) );
 		}
 		else
 		{
-			sProductsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
+			productsListView.setAdapter( new ProductsAdapter( this, R.layout.products_list_entry,
 					ProductsList.getInstance().getFilteredProducts( mQuery, CATEGORIES ) ) );
 		}
 	}
@@ -102,6 +110,8 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 	public boolean onCreateOptionsMenu( Menu menu )
 	{
 		super.onCreateOptionsMenu( menu );
+
+		// TODO: En emulador no muestra botón "More"
 
 		// Set showAsAction property to "always" in order to be able to setIconifiedByDefault to false
 		mSearchMenuItem.setShowAsAction( MenuItem.SHOW_AS_ACTION_ALWAYS );

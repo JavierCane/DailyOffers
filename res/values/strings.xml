@@ -14,10 +14,14 @@
     <string name="visible_category">This category will be shown in the products list</string>
     <string name="affect_search">Only products from checked categories will be shown in search results</string>
     <string name="no_affect_search">Products from all categories will be shown in search results</string>
-    <string name="add_bookmark">Bookmark this product</string>
-    <string name="remove_bookmark">Remove from bookmarks</string>
-    <string name="bookmarks">My Bookmarks</string>
+    <string name="add_favorite">Add to favorites</string>
+    <string name="remove_favorite">Remove from favorites</string>
+    <string name="favorites">My Favorites</string>
     <string name="search_results">Results for</string>
     <string name="no_visible_categories">There are no visible categories. You can set them in Settings.</string>
     <string name="visible_categories_affect_search">Filter affects search scope</string>
+    <string name="before">Before</string>
+    <string name="favorited_product_added_confirm">The product has been added to your favorite products list</string>
+    <string name="favorited_product_removed_confirm">The product has been removed from your favorite products list
+    </string>
 </resources>

@@ -11,9 +11,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,12 +23,12 @@ import java.util.Map;
 public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 {
 
-	private static final String BOOKMARKS_FILE_NAME = "bookmarked_products";
+	public static final String FAVORITES_FILE_NAME = "favorited_products_2";
 	private static final ProductsList sProductsListInstance = new ProductsList();
 
 	private final List<Product> sProductsList = new ArrayList<Product>();
 	private Map<String, ArrayList<Product>> sProductsByCategory;
-	private static List<Integer> sBookmarkedProductsIds = new ArrayList<Integer>();
+	private static Set<Integer> sFavoritedProductsIds =  new HashSet();
 	private static boolean sLoaded = false;
 
 	private static final String sClassName = "ProductsList";
@@ -55,11 +53,6 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 	public boolean isLoaded()
 	{
 		return sLoaded;
-	}
-
-	public static String getBookmarksFileName()
-	{
-		return BOOKMARKS_FILE_NAME;
 	}
 
 	@Override
@@ -107,7 +100,7 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 
 			// Parse the JSON products object into the HashMap<String, ArrayList<Product>>
 			sProductsByCategory = ProductsJSONParser.getInstance()
-					.parseAllProducts( productsJson.getJSONArray( "products" ), sBookmarkedProductsIds );
+					.parseAllProducts( productsJson.getJSONArray( "products" ), sFavoritedProductsIds );
 
 			// For each product category, add them to the complete products list
 			for ( ArrayList<Product> categoryProducts : sProductsByCategory.values() )
@@ -185,102 +178,102 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 		return sProductsByCategory.get( category );
 	}
 
-	public static void loadBookmarkedProducts( FileInputStream bookmarksFileInputStream )
+	public static void loadFavoritedProducts( FileInputStream favoritesFileInputStream )
 	{
 		try
 		{
-			ObjectInputStream ois = new ObjectInputStream( bookmarksFileInputStream );
+			ObjectInputStream ois = new ObjectInputStream( favoritesFileInputStream );
 
-			sBookmarkedProductsIds = ( List<Integer> ) ois.readObject();
+			sFavoritedProductsIds = ( Set<Integer> ) ois.readObject();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: loaded: " + sBookmarkedProductsIds.toString() );
+					sClassName + "\t\t\t\t" + "loadFavoritedProducts: loaded: " + sFavoritedProductsIds.toString() );
 
 			ois.close();
 		}
 		catch ( StreamCorruptedException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: StreamCorruptedException" );
+					sClassName + "\t\t\t\t" + "loadFavoritedProducts: StreamCorruptedException" );
 		}
 		catch ( OptionalDataException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: OptionalDataException" );
+					sClassName + "\t\t\t\t" + "loadFavoritedProducts: OptionalDataException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadFavoritedProducts: IOException" );
 		}
 		catch ( ClassNotFoundException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: ClassNotFoundException" );
+					sClassName + "\t\t\t\t" + "loadFavoritedProducts: ClassNotFoundException" );
 		}
 	}
 
-	private void saveBookmarkedProducts( Context context )
+	private void saveFavoritedProducts( Context context )
 	{
 		try
 		{
-			OutputStream fos = context.openFileOutput( BOOKMARKS_FILE_NAME, Context.MODE_PRIVATE );
+			OutputStream fos = context.openFileOutput( FAVORITES_FILE_NAME, Context.MODE_PRIVATE );
 
 			fos.flush();
 			ObjectOutputStream oos = new ObjectOutputStream( fos );
-			oos.writeObject( sBookmarkedProductsIds );
+			oos.writeObject( sFavoritedProductsIds );
 			oos.flush();
 			oos.close();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadBookmarkedProducts: saved: " + sBookmarkedProductsIds.toString() );
+					sClassName + "\t\t\t\t" + "loadFavoritedProducts: saved: " + sFavoritedProductsIds.toString() );
 		}
 		catch ( FileNotFoundException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "saveBookmarkedProducts: FileNotFoundException" );
+					sClassName + "\t\t\t\t" + "saveFavoritedProducts: FileNotFoundException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "saveBookmarkedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "saveFavoritedProducts: IOException" );
 		}
 	}
 
 	/**
-	 * Add or remove a product ID from the bookmarked products ID list.
+	 * Add or remove a product ID from the favorited products ID list.
 	 *
 	 * @param context   Application context (needed in order to call to openFileOutput() method while saving to internal storage)
 	 * @param productId Product to add/remove ID
 	 * @param add       Boolean indicating if we have to add (true) or remove (false) the product
 	 */
-	public void setBookmarkedProduct( Context context, Integer productId, Boolean add )
+	public void setFavoritedProduct( Context context, Integer productId, Boolean add )
 	{
 		if ( add )
 		{
-			sBookmarkedProductsIds.add( productId );
+			sFavoritedProductsIds.add( productId );
 		}
 		else
 		{
-			sBookmarkedProductsIds.remove( productId );
+			sFavoritedProductsIds.remove( productId );
 		}
 
-		saveBookmarkedProducts( context );
+		saveFavoritedProducts( context );
 	}
 
-	public ArrayList<Product> getBookmarkedProducts()
+	public ArrayList<Product> getFavoritedProducts()
 	{
-		ArrayList<Product> bookmarkedProductsList = new ArrayList<Product>();
+		ArrayList<Product> favoritedProductsList = new ArrayList<Product>();
 
-		for ( Integer bookmarkedProductId : sBookmarkedProductsIds )
+		for ( Integer favoritedProductId : sFavoritedProductsIds )
 		{
 			for ( Product product : sProductsList )
 			{
-				if ( bookmarkedProductId.equals( product.getId() ) )
+				if ( favoritedProductId.equals( product.getId() ) )
 				{
-					bookmarkedProductsList.add( product );
+					favoritedProductsList.add( product );
 				}
 			}
 		}
 
-		return bookmarkedProductsList;
+		return favoritedProductsList;
 	}
 }

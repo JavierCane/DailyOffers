@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Products JSON Parser
@@ -38,12 +39,13 @@ public final class ProductsJSONParser
 	 * Parses a list of products based on a JSONArray
 	 * Returns the products in a hashmap with the products category_root as the hashmap key and an ArrayList of Product as the HashMap values
 	 *
+	 *
 	 * @param productsJsonArray
-	 * @param bookmarkedProducts
+	 * @param favoritedProducts
 	 * @return a List of Products
 	 */
 	public static HashMap<String, ArrayList<Product>> parseAllProducts( JSONArray productsJsonArray,
-	                                                                    List<Integer> bookmarkedProducts )
+	                                                                    Set<Integer> favoritedProducts )
 	{
 		int numProducts = productsJsonArray.length();
 		HashMap<String, ArrayList<Product>> productsList = new HashMap<String, ArrayList<Product>>();
@@ -55,7 +57,7 @@ public final class ProductsJSONParser
 			try
 			{
 				// Parse the current product JSON
-				product = parseProduct( ( JSONObject ) productsJsonArray.get( i ), bookmarkedProducts );
+				product = parseProduct( ( JSONObject ) productsJsonArray.get( i ), favoritedProducts );
 
 				// If we've already parsed products from the same category, add it to the same ArrayList
 				if ( productsList.get( product.getCategoryRoot() ) != null )
@@ -81,11 +83,12 @@ public final class ProductsJSONParser
 	/**
 	 * Parses an individual product
 	 *
+	 *
 	 * @param productJson
-	 * @param bookmarkedProducts
+	 * @param favoritedProducts
 	 * @return product properties in a String-String HashMap based on a JSON product object
 	 */
-	private static Product parseProduct( JSONObject productJson, List<Integer> bookmarkedProducts )
+	private static Product parseProduct( JSONObject productJson, Set<Integer> favoritedProducts )
 	{
 		Product product = null;
 
@@ -100,7 +103,7 @@ public final class ProductsJSONParser
 		String categoryRoot;
 		String categoryLastChild;
 		ArrayList<HashMap<String, String>> attributes = new ArrayList<HashMap<String, String>>();
-		Boolean bookmarked;
+		Boolean favorited;
 
 		try
 		{
@@ -115,14 +118,14 @@ public final class ProductsJSONParser
 			categoryRoot = productJson.getString( "category_root" );
 			categoryLastChild = productJson.getString( "category_last_child" );
 
-			// Check if the current product has been saves as a bookmarked product
-			if ( !bookmarkedProducts.isEmpty() && bookmarkedProducts.contains( id ) )
+			// Check if the current product has been saves as a favorited product
+			if ( !favoritedProducts.isEmpty() && favoritedProducts.contains( id ) )
 			{
-				bookmarked = true;
+				favorited = true;
 			}
 			else
 			{
-				bookmarked = false;
+				favorited = false;
 			}
 
 			// Parse attributes
@@ -142,7 +145,7 @@ public final class ProductsJSONParser
 			}
 
 			product = new Product( id, name, detailsUrl, buyUrl, image, price, offerPrice, producer, categoryRoot,
-					categoryLastChild, attributes, bookmarked );
+					categoryLastChild, attributes, favorited );
 		}
 		catch ( JSONException e )
 		{

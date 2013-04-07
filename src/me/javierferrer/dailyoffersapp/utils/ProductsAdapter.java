@@ -1,12 +1,10 @@
 package me.javierferrer.dailyoffersapp.utils;
 
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.activities.ProductsListBaseActivity;
 import me.javierferrer.dailyoffersapp.models.Product;
@@ -16,43 +14,70 @@ import java.util.ArrayList;
 public final class ProductsAdapter extends ArrayAdapter<Product>
 {
 
-	private static ProductsListBaseActivity sProductsListBaseActivity;
-	private static ArrayList<Product> sProductsList;
-	private static int sTextViewId;
+	private int sTextViewId;
+
+	private Context mContext;
+	private LayoutInflater mInflater;
+	private ArrayList<Product> mProductsList;
+
+	private final String mClassName = this.getClass().getSimpleName();
 
 	private static class ProductViewHolder
 	{
 
-		TextView name, details;
 		ImageView image;
+		TextView name, offerPrice, price;
+		CheckBox favorited;
 	}
 
-	public ProductsAdapter( ProductsListBaseActivity productsListBaseActivity, int textViewId,
-	                        ArrayList<Product> productsList )
+	public ProductsAdapter( Context context, int textViewId, ArrayList<Product> productsList )
 	{
-		super( productsListBaseActivity, textViewId, productsList );
+		super( context, textViewId, productsList );
 
-		this.sProductsListBaseActivity = productsListBaseActivity;
-		this.sTextViewId = textViewId;
-		this.sProductsList = productsList;
+		sTextViewId = textViewId;
+
+		mContext = context;
+		mInflater = LayoutInflater.from( context );
+		mProductsList = productsList;
 	}
 
 	@Override
-	public View getView( int position, View view, ViewGroup parentViewGroup )
+	public int getCount()
 	{
-		View row = view;
-		ProductViewHolder holder;
+		return mProductsList.size();
+	}
+
+	@Override
+	public Product getItem( int position )
+	{
+		return mProductsList.get( position );
+	}
+
+	@Override
+	public long getItemId( int position )
+	{
+		return mProductsList.get( position ).getId();
+	}
+
+	@Override
+	public View getView( int position, View convertView, ViewGroup parent )
+	{
+		View row = convertView;
+		final ProductViewHolder holder;
+
+		Product product = mProductsList.get( position );
 
 		if ( row == null )
 		{
-			LayoutInflater inflater = sProductsListBaseActivity.getLayoutInflater();
-			row = inflater.inflate( sTextViewId, parentViewGroup, false );
+			row = mInflater.inflate( sTextViewId, parent, false );
 
 			holder = new ProductViewHolder();
 
-			holder.name = ( TextView ) row.findViewById( R.id.tv_product_name );
 			holder.image = ( ImageView ) row.findViewById( R.id.iv_product_image );
-			holder.details = ( TextView ) row.findViewById( R.id.tv_product_details );
+			holder.name = ( TextView ) row.findViewById( R.id.tv_product_name );
+			holder.offerPrice = ( TextView ) row.findViewById( R.id.tv_product_offer_price );
+			holder.price = ( TextView ) row.findViewById( R.id.tv_product_price );
+			holder.favorited = ( CheckBox ) row.findViewById( R.id.cb_favorited_product );
 
 			row.setTag( holder );
 		}
@@ -61,20 +86,29 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 			holder = ( ProductViewHolder ) row.getTag();
 		}
 
-		if ( position < sProductsList.size() )
-		{
-			Product product = sProductsList.get( position );
+//		productViewHolder.image.setImageResource( sProductsListBaseActivity.getResources().getIdentifier( product.getImage(), "drawable", sProductsListBaseActivity.getPackageName() ) );
+		holder.name.setText( product.getName() );
+		holder.offerPrice.setText( product.getOfferPrice() );
+		holder.price.setText( mContext.getResources().getString( R.string.before ) + ": " + product.getPrice() );
+		holder.favorited.setTag( product );
 
-			holder.name.setText( product.getName() );
-//		    holder.image.setImageResource( sProductsListBaseActivity.getResources().getIdentifier( product.getImage(), "drawable", sProductsListBaseActivity.getPackageName() ) );
-			holder.details.setText( product.getPrice() );
-		}
-		else
+		// Set listener for favorite action
+		// Set as OnClickListener instead of OnCheckedChangeListener in order to do not trigger while setChecked() call
+		holder.favorited.setOnClickListener( new CompoundButton.OnClickListener()
 		{
-			Log.e( ProductsListBaseActivity.TAG,
-					"ProductsAdapter: getView: Trying to get an index that is greater than the current parsed products count: " +
-					position + "/" + sProductsList.size() );
-		}
+
+			@Override
+			public void onClick( View checkBoxView )
+			{
+				Product favoritedProduct = ( Product ) holder.favorited.getTag();
+
+				ProductsListBaseActivity
+						.setFavoriteProduct( favoritedProduct, ( ( CheckBox ) checkBoxView ).isChecked() );
+			}
+		} );
+
+		// Set the favorite checkbox status before its listener in order to do not fire it while setting its value
+		holder.favorited.setChecked( product.isFavorited() );
 
 		return row;
 	}

@@ -21,6 +21,7 @@ import com.actionbarsherlock.widget.SearchView;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.Product;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
+import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -33,11 +34,12 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 	protected static final List<String> CATEGORIES = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
 	protected static ProductsListBaseActivity sProductsListBaseActivity;
-	protected static ListView sProductsListView;
+	protected static ProductsAdapter sCurrentCategoryProductsAdapter = null;
 	protected static ActionBar sActionBar;
 
-	protected final String mClassName = "ProductsListBaseActivity";
+	protected static final String mClassName = "ProductsListBaseActivity";
 	protected final List<String> mVisibleCategories = new ArrayList<String>();
+	protected ListView mProductsListView;
 	protected SearchView mSearchView;
 	protected MenuItem mSearchMenuItem;
 
@@ -63,17 +65,18 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		// ProductsByCategoryActivity.productsParseCallback() method
 		try
 		{
-			ProductsList.getInstance().loadBookmarkedProducts(
-					getApplicationContext().openFileInput( ProductsList.getBookmarksFileName() ) );
+			ProductsList.getInstance().loadFavoritedProducts(
+					getApplicationContext().openFileInput( ProductsList.FAVORITES_FILE_NAME ) );
 		}
 		catch ( FileNotFoundException e )
 		{
 			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" +
-			                                     "onCreate: FileNotFoundException (Probably the user has not defined any bookmarked product yet)." );
+			                                     "onCreate: FileNotFoundException (Probably the user has not defined any favorited product yet)." );
 		}
 
 		Log.d( TAG, mClassName + "\t" + "onCreate: ProductsList isLoaded: " + ProductsList.getInstance().isLoaded() );
 
+		// If we don't loaded the products JSON yet, do it in the background
 		if ( !ProductsList.getInstance().isLoaded() )
 		{
 			ProductsList.getInstance().execute( getResources().openRawResource( R.raw.products ) );
@@ -123,7 +126,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		// Initialize class attributes
 		sProductsListBaseActivity = this;
-		sProductsListView = ( ListView ) findViewById( R.id.products_list );
+		mProductsListView = ( ListView ) findViewById( R.id.products_list );
 		sActionBar = getSupportActionBar();
 		initVisibleCategories();
 	}
@@ -148,16 +151,18 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	private void setListListeners()
 	{
 		// List view long click context menu
-		registerForContextMenu( sProductsListView );
+		registerForContextMenu( mProductsListView );
 
 		// Product click details activity)
-		sProductsListView.setOnItemClickListener( new AdapterView.OnItemClickListener()
+		mProductsListView.setOnItemClickListener( new AdapterView.OnItemClickListener()
 		{
 
 			@Override
 			public void onItemClick( AdapterView<?> parent, View view, int position, long id )
 			{
-				Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( position );
+				Product selectedProduct = ( Product ) mProductsListView.getItemAtPosition( position );
+
+				Log.i( TAG, mClassName + "\t" + "setListListeners: click on: " + selectedProduct.getName() );
 
 				Intent productDetailsIntent = new Intent( ProductsListBaseActivity.this, ProductDetailsActivity.class );
 
@@ -186,15 +191,15 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) menuInfo;
 
 		// Get selected product
-		Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( info.position );
+		Product selectedProduct = ( Product ) mProductsListView.getItemAtPosition( info.position );
 
 		// Set the context menu title to the product name
 		menu.setHeaderTitle( selectedProduct.getName() );
 
-		// If the selected product is currently bookmarked, change the menu item title from "Bookmark this product" to "Remove from bookmarks"
-		if ( selectedProduct.isBookmarked() )
+		// If the selected product is currently favorited, change the menu item title from "Bookmark this product" to "Remove from bookmarks"
+		if ( selectedProduct.isFavorited() )
 		{
-			menu.findItem( R.id.mi_bookmark_product ).setTitle( getResources().getString( R.string.remove_bookmark ) );
+			menu.findItem( R.id.mi_favorite_product ).setTitle( getResources().getString( R.string.remove_favorite ) );
 		}
 	}
 
@@ -209,7 +214,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	{
 		AdapterView.AdapterContextMenuInfo info = ( AdapterView.AdapterContextMenuInfo ) item.getMenuInfo();
 
-		Product selectedProduct = ( Product ) sProductsListView.getItemAtPosition( info.position );
+		Product selectedProduct = ( Product ) mProductsListView.getItemAtPosition( info.position );
 
 		switch ( item.getItemId() )
 		{
@@ -234,13 +239,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 				return true;
 			// In case of add/remove from bookmarks menu item click
-			case R.id.mi_bookmark_product:
-				// Set the product bookmarked flag to the opposite of the current value
-				selectedProduct.setBookmarked( !selectedProduct.isBookmarked() );
-
-				// Add/remove the selected product to the bookmarked products list
-				ProductsList.getInstance().setBookmarkedProduct( this.getApplicationContext(), selectedProduct.getId(),
-						selectedProduct.isBookmarked() );
+			case R.id.mi_favorite_product:
+				setFavoriteProduct( selectedProduct, !selectedProduct.isFavorited() );
 
 				return true;
 			default:
@@ -346,8 +346,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 				intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
 				startActivity( intent );
 				return true;
-			case R.id.mi_bookmarks_list:
-				startActivity( new Intent( getBaseContext(), BookmarkedProductsActivity.class ) );
+			case R.id.mi_favorites_list:
+				startActivity( new Intent( getBaseContext(), FavoritedProductsActivity.class ) );
 				return true;
 			case R.id.mi_settings:
 				startActivity( new Intent( getBaseContext(), PreferencesActivity.class ) );
@@ -355,5 +355,41 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 			default:
 				return super.onOptionsItemSelected( item );
 		}
+	}
+
+	public static ProductsAdapter getFavoritedProductsAdapter()
+	{
+		return sCurrentCategoryProductsAdapter;
+	}
+
+	public static void setFavoriteProduct( Product selectedProduct, boolean newStatus )
+	{
+		Log.d( TAG, mClassName + "\t" + "setFavoriteProduct: " + selectedProduct.getName() + ", to: " + newStatus );
+
+		// Notify to the user
+		if ( newStatus )
+		{
+			Toast.makeText( sProductsListBaseActivity.getApplicationContext(),
+					sProductsListBaseActivity.getResources().getString( R.string.favorited_product_added_confirm ),
+					Toast.LENGTH_SHORT ).show();
+		}
+		else
+		{
+			Toast.makeText( sProductsListBaseActivity.getApplicationContext(),
+					sProductsListBaseActivity.getResources().getString( R.string.favorited_product_removed_confirm ),
+					Toast.LENGTH_SHORT ).show();
+		}
+
+
+		// Set the product favorited flag to the new status
+		selectedProduct.setFavorited( newStatus );
+
+		// Add/remove the selected product to the favorited products list
+		ProductsList.getInstance()
+				.setFavoritedProduct( sProductsListBaseActivity.getApplicationContext(), selectedProduct.getId(),
+						newStatus );
+
+		// Add/remove it from the favorited products adapter
+		FavoritedProductsActivity.setFavoriteProduct( selectedProduct, newStatus );
 	}
 }

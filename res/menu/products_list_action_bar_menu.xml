@@ -14,8 +14,8 @@
             android:showAsAction="always">
         <menu>
             <item
-                    android:id="@+id/mi_bookmarks_list"
-                    android:title="@string/bookmarks"
+                    android:id="@+id/mi_favorites_list"
+                    android:title="@string/favorites"
                     android:showAsAction="always"
                     />
             <item

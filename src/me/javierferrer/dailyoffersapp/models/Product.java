@@ -21,11 +21,11 @@ public final class Product implements Serializable
 	private String mCategoryRoot;
 	private String mCategoryLastChild;
 	private ArrayList<HashMap<String, String>> mAttributes;
-	private Boolean mBookmarked;
+	private Boolean mFavorited;
 
 	public Product( Integer id, String name, String detailsUrl, String buyUrl, String image, String price,
 	                String offerPrice, String producer, String categoryRoot, String categoryLastChild,
-	                ArrayList<HashMap<String, String>> attributes, Boolean bookmarked )
+	                ArrayList<HashMap<String, String>> attributes, Boolean favorited )
 	{
 		mId = id;
 		mName = name;
@@ -38,7 +38,7 @@ public final class Product implements Serializable
 		mCategoryRoot = categoryRoot;
 		mCategoryLastChild = categoryLastChild;
 		mAttributes = attributes;
-		mBookmarked = bookmarked;
+		mFavorited = favorited;
 	}
 
 	public Integer getId()
@@ -96,14 +96,14 @@ public final class Product implements Serializable
 		return mAttributes;
 	}
 
-	public Boolean isBookmarked()
+	public Boolean isFavorited()
 	{
-		return mBookmarked;
+		return mFavorited;
 	}
 
-	public void setBookmarked( Boolean bookmarked )
+	public void setFavorited( Boolean favorited )
 	{
-		mBookmarked = bookmarked;
+		mFavorited = favorited;
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public final class Product implements Serializable
 		return "[mName: " + mName + ", mDetailsUrl:" + mDetailsUrl + ", mBuyUrl:" + mBuyUrl + ", mImage:" + mImage +
 		       ", mPrice:" + mPrice + ", mOfferPrice:" + mOfferPrice + ", mProducer:" + mProducer +
 		       ", mCategoryRoot:" + mCategoryRoot + ", mCategoryLastChild:" + mCategoryLastChild +
-		       ", mAttributes:" + mAttributes.toString() + ", mBookmarked:" + mBookmarked.toString() + "]";
+		       ", mAttributes:" + mAttributes.toString() + ", mFavorited:" + mFavorited.toString() + "]";
 	}
 
 	@Override
