@@ -65,8 +65,8 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		// ProductsByCategoryActivity.productsParseCallback() method
 		try
 		{
-			ProductsList.getInstance().loadFavoritedProducts(
-					getApplicationContext().openFileInput( ProductsList.FAVORITES_FILE_NAME ) );
+			ProductsList.getInstance()
+					.loadFavoritedProducts( getApplicationContext().openFileInput( ProductsList.FAVORITES_FILE_NAME ) );
 		}
 		catch ( FileNotFoundException e )
 		{
@@ -379,7 +379,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 					sProductsListBaseActivity.getResources().getString( R.string.favorited_product_removed_confirm ),
 					Toast.LENGTH_SHORT ).show();
 		}
-
 
 		// Set the product favorited flag to the new status
 		selectedProduct.setFavorited( newStatus );

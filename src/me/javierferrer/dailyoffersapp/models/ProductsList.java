@@ -28,7 +28,7 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 
 	private final List<Product> sProductsList = new ArrayList<Product>();
 	private Map<String, ArrayList<Product>> sProductsByCategory;
-	private static Set<Integer> sFavoritedProductsIds =  new HashSet();
+	private static Set<Integer> sFavoritedProductsIds = new HashSet();
 	private static boolean sLoaded = false;
 
 	private static final String sClassName = "ProductsList";

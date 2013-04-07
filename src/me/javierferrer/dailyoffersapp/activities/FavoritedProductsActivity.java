@@ -2,9 +2,7 @@ package me.javierferrer.dailyoffersapp.activities;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;

@@ -7,7 +7,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,7 +37,6 @@ public final class ProductsJSONParser
 	/**
 	 * Parses a list of products based on a JSONArray
 	 * Returns the products in a hashmap with the products category_root as the hashmap key and an ArrayList of Product as the HashMap values
-	 *
 	 *
 	 * @param productsJsonArray
 	 * @param favoritedProducts
@@ -82,7 +80,6 @@ public final class ProductsJSONParser
 
 	/**
 	 * Parses an individual product
-	 *
 	 *
 	 * @param productJson
 	 * @param favoritedProducts
