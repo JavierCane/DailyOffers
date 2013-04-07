@@ -8,6 +8,7 @@
             android:minSdkVersion="7"
             android:targetSdkVersion="16"/>
 
+    <!-- Interpet permission in order to launch the buy action webview -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -28,10 +29,10 @@
                        android:value=".activities.ProductsSearchActivity" />
         </activity>
 
-        <!-- Bookmarked products list activity -->
+        <!-- Favorited products list activity -->
         <activity
-                android:name=".activities.BookmarkedProductsActivity"
-                android:label="@string/bookmarks">
+                android:name=".activities.FavoritedProductsActivity"
+                android:label="@string/favorites">
 
             <!-- Enable the search dialog to send searches to ProductsSearchActivity -->
             <meta-data android:name="android.app.default_searchable"
