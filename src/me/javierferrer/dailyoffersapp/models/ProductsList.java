@@ -58,7 +58,7 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 	@Override
 	protected Void doInBackground( InputStream... productsJsonFile )
 	{
-		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t" + "doInBackground: sLoaded: " + sLoaded );
+		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "doInBackground: sLoaded: " + sLoaded );
 
 		if ( !sLoaded )
 		{
@@ -71,14 +71,14 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 	@Override
 	protected void onPostExecute( Void dummyVariable )
 	{
-		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t" + "onPostExecute" );
+		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "onPostExecute" );
 		sLoaded = true;
 		ProductsByCategoryActivity.productsParseCallback();
 	}
 
 	private void loadProducts( InputStream[] productsJsonFile )
 	{
-		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadProducts: Loading products" );
+		Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "loadProducts: Loading products" );
 
 		// Open a buffer in order to read from the products JSON file
 		BufferedReader jsonReader = new BufferedReader( new InputStreamReader( productsJsonFile[0] ) );
@@ -108,17 +108,17 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 				sProductsList.addAll( categoryProducts );
 			}
 
-			Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadProducts: Products loaded" );
+			Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "loadProducts: Products loaded" );
 		}
 		catch ( JSONException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadProducts: JSONException: " + e.toString() );
+					sClassName + "\t\t\t\t\t" + "loadProducts: JSONException: " + e.toString() );
 		}
 		catch ( IOException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadProducts: IOException trying to read JSON: " + e.toString() );
+					sClassName + "\t\t\t\t\t" + "loadProducts: IOException trying to read JSON: " + e.toString() );
 		}
 		finally
 		{
@@ -129,7 +129,7 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 			catch ( IOException e )
 			{
 				Log.e( ProductsListBaseActivity.TAG,
-						sClassName + "\t\t\t\t" + "loadProducts: IOException trying to close JSON reader: " +
+						sClassName + "\t\t\t\t\t" + "loadProducts: IOException trying to close JSON reader: " +
 						e.toString() );
 			}
 		}
@@ -162,7 +162,7 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 		}
 		else
 		{
-			Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "sProductsList not sLoaded yet." );
+			Log.d( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "sProductsList not sLoaded yet." );
 		}
 
 		return results;
@@ -187,28 +187,28 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 			sFavoritedProductsIds = ( Set<Integer> ) ois.readObject();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadFavoritedProducts: loaded: " + sFavoritedProductsIds.toString() );
+					sClassName + "\t\t\t\t\t" + "loadFavoritedProducts: loaded: " + sFavoritedProductsIds.toString() );
 
 			ois.close();
 		}
 		catch ( StreamCorruptedException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadFavoritedProducts: StreamCorruptedException" );
+					sClassName + "\t\t\t\t\t" + "loadFavoritedProducts: StreamCorruptedException" );
 		}
 		catch ( OptionalDataException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadFavoritedProducts: OptionalDataException" );
+					sClassName + "\t\t\t\t\t" + "loadFavoritedProducts: OptionalDataException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "loadFavoritedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "loadFavoritedProducts: IOException" );
 		}
 		catch ( ClassNotFoundException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadFavoritedProducts: ClassNotFoundException" );
+					sClassName + "\t\t\t\t\t" + "loadFavoritedProducts: ClassNotFoundException" );
 		}
 	}
 
@@ -225,16 +225,16 @@ public final class ProductsList extends AsyncTask<InputStream, Void, Void>
 			oos.close();
 
 			Log.d( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "loadFavoritedProducts: saved: " + sFavoritedProductsIds.toString() );
+					sClassName + "\t\t\t\t\t" + "loadFavoritedProducts: saved: " + sFavoritedProductsIds.toString() );
 		}
 		catch ( FileNotFoundException e )
 		{
 			Log.e( ProductsListBaseActivity.TAG,
-					sClassName + "\t\t\t\t" + "saveFavoritedProducts: FileNotFoundException" );
+					sClassName + "\t\t\t\t\t" + "saveFavoritedProducts: FileNotFoundException" );
 		}
 		catch ( IOException e )
 		{
-			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t" + "saveFavoritedProducts: IOException" );
+			Log.e( ProductsListBaseActivity.TAG, sClassName + "\t\t\t\t\t" + "saveFavoritedProducts: IOException" );
 		}
 	}
 

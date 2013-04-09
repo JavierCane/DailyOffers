@@ -26,6 +26,7 @@ public final class ProductDetailsActivity extends SherlockActivity
 	protected void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
+
 		setContentView( R.layout.product_details );
 
 		sActionBar = getSupportActionBar();

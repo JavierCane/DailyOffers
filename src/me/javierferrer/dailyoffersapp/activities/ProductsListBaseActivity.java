@@ -30,6 +30,15 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
+// TODO: Ámbito de búsquedas afectado por filtros, todas las categorías habilitadas => no resultados de búsqueda (en
+// emulador)
+// TODO: Slide entre pestañas: http://mobiledevtips.blogspot.com.es/2012/01/action-bar-slide-transitions.html
+// TODO: No sugerencias
+// TODO: No búsquedas previas
+// TODO: Botón físico "buscar"
+// TODO: Botón "More" empequeñecido en resultados de búsqueda
+// TODO: En emulador no muestra botón "More"
+
 public abstract class ProductsListBaseActivity extends SherlockActivity
 {
 
@@ -47,8 +56,9 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	/**
 	 * Boolean to indicate if the categories visibility has changed from the preferences activity or not.
 	 * If it's set to true, when we re-create the activity, we'll redraw the categories tabs
+	 * Set to true by default in order to construct the visible tabs in the first app opening
 	 */
-	protected static Boolean sCategoriesVisibilityChanged = false;
+	protected static Boolean sCategoriesVisibilityChanged = true;
 
 	public static final String TAG = "DO";
 
@@ -62,8 +72,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		initActivity();
 
-		// Ensure that the products list has been loaded and if not, try to load it expecting a callback to the
-		// ProductsByCategoryActivity.productsParseCallback() method
+		// Load the favorited products list
 		try
 		{
 			ProductsList.getInstance()
@@ -83,8 +92,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 			ProductsList.getInstance().execute( getResources().openRawResource( R.raw.products ) );
 		}
 
-		setNavigationWithoutTabs();
-
 		// Call to the handleIntent method. It has to be implemented in the class child's
 		if ( getIntent().getAction() != null )
 		{
@@ -95,6 +102,20 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 		// Set products list listeners
 		setListListeners();
+	}
+
+	/**
+	 * Initialize the current activity setting the layout and the class attributes
+	 */
+	private void initActivity()
+	{
+		// Set layout
+		setContentView( R.layout.products_list );
+
+		// Initialize class attributes
+		sProductsListBaseActivity = this;
+		mProductsListView = ( ListView ) findViewById( R.id.products_list );
+		sActionBar = getSupportActionBar();
 	}
 
 	/**
@@ -115,21 +136,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 
 			setCategoriesVisibilityChanged( false );
 		}
-	}
-
-	/**
-	 * Initialize the current activity setting the layout and the class attributes
-	 */
-	private void initActivity()
-	{
-		// Set layout
-		setContentView( R.layout.products_list );
-
-		// Initialize class attributes
-		sProductsListBaseActivity = this;
-		mProductsListView = ( ListView ) findViewById( R.id.products_list );
-		sActionBar = getSupportActionBar();
-		initVisibleCategories();
 	}
 
 	protected void handleIntent( Intent intent )
@@ -230,7 +236,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 				return true;
 			// In case of buy product menu item click, create an intent to redirect to the product buy site
 			case R.id.mi_buy:
-				Intent intent = new Intent( this.getBaseContext(), WebViewActivity.class );
+				Intent intent = new Intent( ProductsListBaseActivity.this, WebViewActivity.class );
 
 				Bundle bundle = new Bundle();
 				bundle.putString( "url", selectedProduct.getBuyUrl() );
@@ -275,18 +281,6 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 				mVisibleCategories.add( categoryName );
 			}
 		}
-
-		// If the used has not set any category visible in settings, inform about it
-		if ( mVisibleCategories.isEmpty() )
-		{
-			mProductsListView.setVisibility( View.INVISIBLE );
-			Toast.makeText( getApplicationContext(), getResources().getString( R.string.no_visible_categories ),
-					Toast.LENGTH_LONG ).show();
-		}
-		else
-		{
-			mProductsListView.setVisibility( View.VISIBLE );
-		}
 	}
 
 	/**
@@ -305,14 +299,17 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 	/**
 	 * Hide tabs changing the navigation mode to standard
 	 */
-	protected void setNavigationWithoutTabs()
+	protected void setNavigationWithoutTabs( Boolean enableHome )
 	{
 		Log.d( TAG, mClassName + "\t" + "setNavigationWithoutTabs" );
 
 		sActionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_STANDARD );
 
-		sActionBar.setHomeButtonEnabled( true );
-		sActionBar.setDisplayHomeAsUpEnabled( true );
+		if ( enableHome )
+		{
+			sActionBar.setHomeButtonEnabled( true );
+			sActionBar.setDisplayHomeAsUpEnabled( true );
+		}
 	}
 
 	/******************************************************************************************************
@@ -348,15 +345,15 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		switch ( item.getItemId() )
 		{
 			case android.R.id.home:
-				Intent intent = new Intent( this, ProductsByCategoryActivity.class );
+				Intent intent = new Intent( ProductsListBaseActivity.this, ProductsByCategoryActivity.class );
 				intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
 				startActivity( intent );
 				return true;
 			case R.id.mi_favorites_list:
-				startActivity( new Intent( getBaseContext(), FavoritedProductsActivity.class ) );
+				startActivity( new Intent( ProductsListBaseActivity.this, FavoritedProductsActivity.class ) );
 				return true;
 			case R.id.mi_settings:
-				startActivity( new Intent( getBaseContext(), PreferencesActivity.class ) );
+				startActivity( new Intent( ProductsListBaseActivity.this, PreferencesActivity.class ) );
 				return true;
 			default:
 				return super.onOptionsItemSelected( item );

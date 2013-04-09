@@ -23,6 +23,8 @@ public final class FavoritedProductsActivity extends ProductsListBaseActivity
 	{
 		super.onCreate( savedInstanceState );
 
+		setNavigationWithoutTabs( true );
+
 		Log.d( TAG, mClassName + "\t" + "onCreate" );
 
 		ListView productsListView = ( ListView ) sProductsListBaseActivity.findViewById( R.id.products_list );

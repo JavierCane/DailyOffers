@@ -13,11 +13,6 @@ import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
-// TODO: No sugerencias
-// TODO: No búsquedas previas
-// TODO: Botón físico "buscar"
-// TODO: En emulador no muestra botón "More"
-// TODO:
 public final class ProductsSearchActivity extends ProductsListBaseActivity
 {
 
@@ -31,6 +26,8 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		super.onCreate( savedInstanceState );
 
 		Log.d( TAG, mClassName + "\t\t" + "onCreate" );
+
+		setNavigationWithoutTabs( true );
 	}
 
 	/**

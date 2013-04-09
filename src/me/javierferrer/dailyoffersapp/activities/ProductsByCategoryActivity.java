@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import me.javierferrer.dailyoffersapp.R;
 import me.javierferrer.dailyoffersapp.models.ProductsList;
@@ -31,6 +33,8 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 		super.onCreate( savedInstanceState );
 
 		Log.d( TAG, mClassName + "\t" + "onCreate" );
+
+		setNavigationWithTabs();
 	}
 
 	/**
@@ -42,9 +46,10 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	{
 		super.onStart();
 
-		setNavigationWithTabs();
-
 		Log.d( TAG, mClassName + "\t" + "onStart" );
+
+		// Re-initialize tabs (preferences probably has been changed)
+		initVisibleCategories();
 
 		// If we have previously set the search menu item, make sure it's collapsed (it's possible to come here from
 		// search results, in that case, we have to close the SearchView text input)
@@ -113,8 +118,28 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	{
 		super.initVisibleCategories();
 
-		Log.d( TAG, mClassName + "\t" + "constructTabs" );
+		Log.d( TAG, mClassName + "\t" + "initVisibleCategories" );
 
+		// If the user has not set any visible category in settings, inform about it
+		if ( mVisibleCategories.isEmpty() )
+		{
+			mProductsListView.setVisibility( View.INVISIBLE );
+			Toast.makeText( getApplicationContext(),
+					getResources().getString( R.string.no_visible_categories_explanation ), Toast.LENGTH_LONG ).show();
+		}
+		else
+		{
+			mProductsListView.setVisibility( View.VISIBLE );
+		}
+
+		initVisibleTabs();
+	}
+
+	/**
+	 * Method used in order to initialize ActionBar tabs thanks to the previously set visible categories
+	 */
+	private void initVisibleTabs()
+	{
 		sActionBar.removeAllTabs();
 
 		for ( String categoryName : mVisibleCategories )
@@ -126,20 +151,18 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 			sActionBar.addTab( tab );
 		}
 
-		if ( sTab == null )
+		// If we have any tab at the Action Bar and we have not set any one yet or the current set tab is not marked as visible,
+		// change the selected tab to the first one
+		if ( sActionBar.getTabCount() > 0 )
 		{
-			Log.d( TAG, mClassName + "\t" + "constructTabs: sTab: null" );
+			if ( sTab == null || !mVisibleCategories.contains( sTab.getTag() ) )
+			{
+				sTab = sActionBar.getTabAt( 0 );
+			}
 		}
 		else
 		{
-			Log.d( TAG, mClassName + "\t" + "constructTabs:sTab: " + sTab.getTag() );
-		}
-
-		// If we have any tab at the Action Bar and we have not set any one yet or the current set tab is not marked as visible,
-		// change the selected tab to the first one
-		if ( sActionBar.getTabCount() > 0 && ( sTab == null || !mVisibleCategories.contains( sTab.getTag() ) ) )
-		{
-			sTab = sActionBar.getTabAt( 0 );
+			setNavigationWithoutTabs( false );
 		}
 	}
 
@@ -166,8 +189,15 @@ public final class ProductsByCategoryActivity extends ProductsListBaseActivity i
 	@Override
 	public void onTabSelected( Tab tab, FragmentTransaction transaction )
 	{
-		Log.d( TAG, mClassName + "\t" + "onTabSelected: previous tab: " + sTab.getTag() +
-		            ", current tab: " + tab.getTag() );
+		if ( sTab != null )
+		{
+			Log.d( TAG, mClassName + "\t" + "onTabSelected: previous tab: " + sTab.getTag() +
+			            ", current tab: " + tab.getTag() );
+		}
+		else
+		{
+			Log.d( TAG, mClassName + "\t" + "onTabSelected: previous tab: 'null', current tab: " + tab.getTag() );
+		}
 
 		if ( ProductsList.getInstance().isLoaded() )
 		{
