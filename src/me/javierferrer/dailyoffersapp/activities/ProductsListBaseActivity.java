@@ -34,9 +34,6 @@ import static java.util.Arrays.asList;
 // TODO: Slide entre pestañas: http://mobiledevtips.blogspot.com.es/2012/01/action-bar-slide-transitions.html
 // TODO: No sugerencias
 // TODO: No búsquedas previas
-// TODO: Botón físico "buscar"
-// TODO: Botón "More" empequeñecido en resultados de búsqueda
-// TODO: En emulador no muestra botón "More"
 
 public abstract class ProductsListBaseActivity extends SherlockActivity
 {

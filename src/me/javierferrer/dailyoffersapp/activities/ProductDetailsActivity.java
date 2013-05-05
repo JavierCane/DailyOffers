@@ -30,6 +30,7 @@ public final class ProductDetailsActivity extends SherlockActivity
 	private ImageView mIvProductImage;
 	private TextView mTvProductOfferPrice;
 	private TextView mTvProductPrice;
+	private TextView mTvProductCategory;
 	private CheckBox mCbFavorited;
 	private Button mBtnBuyProduct;
 
@@ -47,6 +48,8 @@ public final class ProductDetailsActivity extends SherlockActivity
 
 		initViewVariables();
 
+		fillViewVariables();
+
 		constructAttributesViews();
 	}
 
@@ -61,20 +64,26 @@ public final class ProductDetailsActivity extends SherlockActivity
 
 	private void initViewVariables()
 	{
-
 		mLayout = ( RelativeLayout ) findViewById( R.id.rl_product_details );
 
 		mIvProductImage = ( ImageView ) findViewById( R.id.iv_product_image );
 		mTvProductOfferPrice = ( TextView ) findViewById( R.id.tv_product_offer_price );
 		mTvProductPrice = ( TextView ) findViewById( R.id.tv_product_price );
 		mCbFavorited = ( CheckBox ) findViewById( R.id.cb_favorited_product );
+		mTvProductCategory = ( TextView ) findViewById( R.id.tv_product_category );
+	}
 
+	private void fillViewVariables()
+	{
 		mIvProductImage
 				.setImageResource( ProductsListBaseActivity.getCategoriesImages().get( mProduct.getCategoryRoot() ) );
 		mTvProductOfferPrice
 				.setText( getResources().getString( R.string.offer_price ) + ": " + mProduct.getOfferPrice() + "€" );
 		mTvProductPrice
 				.setText( getResources().getString( R.string.regular_price ) + ": " + mProduct.getPrice() + "€" );
+		mTvProductCategory.setText(
+				getResources().getString( R.string.category ) + ": " + mProduct.getCategoryRoot() + " > " +
+				mProduct.getCategoryLastChild() );
 
 		mCbFavorited.setTag( mProduct );
 
@@ -130,15 +139,14 @@ public final class ProductDetailsActivity extends SherlockActivity
 					new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.WRAP_CONTENT,
 							RelativeLayout.LayoutParams.WRAP_CONTENT );
 			params.addRule( RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE );
+			params.setMargins( 30, 5, 0, 0 ); // Left, top, right, bottom.
 
 			if ( attributeIterator == 555 )
 			{
-				params.addRule( RelativeLayout.BELOW, R.id.tv_basic_data );
-				params.setMargins( 30, 15, 0, 0 ); // Left, top, right, bottom.
+				params.addRule( RelativeLayout.BELOW, R.id.tv_product_category );
 			}
 			else
 			{
-				params.setMargins( 30, 5, 0, 0 ); // Left, top, right, bottom.
 				params.addRule( RelativeLayout.BELOW, attributeIterator - 1 );
 			}
 

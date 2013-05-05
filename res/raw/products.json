@@ -220,7 +220,7 @@
 			"offer_price": "1.85",
 			"producer": "Duvel Moortgat",
 			"category_root": "Beers",
-			"category_last_child": "Beers",
+			"category_last_child": "Cool Beers",
 			"attributes":
 			[
 				{
@@ -247,7 +247,7 @@
 			"offer_price": "1.65",
 			"producer": "Alken Maes",
 			"category_root": "Beers",
-			"category_last_child": "Beers",
+			"category_last_child": "Cool Beers",
 			"attributes":
 			[
 				{
@@ -274,7 +274,7 @@
 			"offer_price": "1.70",
 			"producer": "Abbaye",
 			"category_root": "Beers",
-			"category_last_child": "Beers",
+			"category_last_child": "Cool Beers",
 			"attributes":
 			[
 				{
@@ -301,7 +301,7 @@
 			"offer_price": "1.80",
 			"producer": "Abbaye",
 			"category_root": "Beers",
-			"category_last_child": "Beers",
+			"category_last_child": "Cool Beers",
 			"attributes":
 			[
 				{
@@ -328,7 +328,7 @@
 			"offer_price": "1.80",
 			"producer": "Abbaye",
 			"category_root": "Beers",
-			"category_last_child": "Beers",
+			"category_last_child": "Cool Beers",
 			"attributes":
 			[
 				{
