@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="10px"
-                android:paddingTop="10px" >
+<RelativeLayout
+        android:id="@+id/rl_product_details"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10px"
+        android:paddingTop="10px">
 
     <ImageView
             android:id="@+id/iv_product_image"
@@ -12,15 +14,15 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:src="@drawable/abs__ic_cab_done_holo_light"
-            android:contentDescription="@string/product_image" />
+            android:contentDescription="@string/product_image"/>
 
     <TextView
             android:id="@+id/tv_product_offer_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/iv_product_image"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textSize="30dp"
+            android:textStyle="bold"/>
 
     <TextView
             android:id="@+id/tv_product_price"
@@ -28,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/iv_product_image"
             android:layout_below="@id/tv_product_offer_price"
-            android:textSize="20dp" />
+            android:paddingLeft="10px"
+            android:textSize="20dp"/>
 
     <!-- focusable para no "robar" el foco del elemento de la lista-->
     <CheckBox
@@ -40,14 +43,25 @@
             android:layout_alignParentRight="true"
             android:contentDescription="@string/add_favorite"
             android:focusable="false"
-            style="?android:attr/starStyle" />
+            style="?android:attr/starStyle"/>
 
-    <Button
-            android:layout_width="90dp"
+        <Button
+                android:id="@+id/btn_buy"
+                android:text="@string/buy"
+                android:textSize="30dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_product_image"/>
+
+    <TextView
+            android:id="@+id/tv_basic_data"
+            android:text="@string/basic_data"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buy"
-            android:id="@+id/btn_buy"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/iv_product_image"/>
+            android:layout_below="@id/btn_buy"
+            android:paddingLeft="10px"
+            android:paddingTop="50px"
+            android:textSize="20dp"/>
 
 </RelativeLayout>

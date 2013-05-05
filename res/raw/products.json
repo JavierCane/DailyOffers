@@ -15,23 +15,23 @@
 			"attributes":
 			[
 				{
-					"key": "wine type",
+					"key": "Wine type",
 					"value": "red wine"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "75 cl"
 				},
 				{
-					"key": "grapes",
+					"key": "Grapes",
 					"value": "Tempranillo (100%)"
 				},
 				{
-					"key": "appellation",
+					"key": "Appellation",
 					"value": "Ribera del Duero (Castilla y León,España)"
 				},
 				{
-					"key": "vintage",
+					"key": "Vintage",
 					"value": "2010"
 				}
 			]
@@ -50,23 +50,23 @@
 			"attributes":
 			[
 				{
-					"key": "wine type",
+					"key": "Wine type",
 					"value": "red wine"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "75 cl"
 				},
 				{
-					"key": "grapes",
+					"key": "Grapes",
 					"value": "Tempranillo (100%)"
 				},
 				{
-					"key": "appellation",
+					"key": "Appellation",
 					"value": "Ribera del Duero (Castilla y León,España)"
 				},
 				{
-					"key": "vintage",
+					"key": "Vintage",
 					"value": "2011"
 				}
 			]
@@ -85,23 +85,23 @@
 			"attributes":
 			[
 				{
-					"key": "wine type",
+					"key": "Wine type",
 					"value": "red wine"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "75 cl"
 				},
 				{
-					"key": "grapes",
+					"key": "Grapes",
 					"value": "Garnacha (100%)"
 				},
 				{
-					"key": "appellation",
+					"key": "Appellation",
 					"value": "Calatayud (Aragón, España)"
 				},
 				{
-					"key": "vintage",
+					"key": "Vintage",
 					"value": "2011"
 				}
 			]
@@ -120,23 +120,23 @@
 			"attributes":
 			[
 				{
-					"key": "wine type",
+					"key": "Wine type",
 					"value": "red wine"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "75 cl"
 				},
 				{
-					"key": "grapes",
+					"key": "Grapes",
 					"value": "Garnacha (100%)"
 				},
 				{
-					"key": "appellation",
+					"key": "Appellation",
 					"value": "Calatayud (Aragón, España)"
 				},
 				{
-					"key": "vintage",
+					"key": "Vintage",
 					"value": "2012"
 				}
 			]
@@ -155,11 +155,11 @@
 			"attributes":
 			[
 				{
-					"key": "country",
+					"key": "Country",
 					"value": "Cuba"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "70 cl"
 				}
 			]
@@ -178,11 +178,11 @@
 			"attributes":
 			[
 				{
-					"key": "country",
+					"key": "Country",
 					"value": "Cuba"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "70 cl"
 				}
 			]
@@ -201,11 +201,11 @@
 			"attributes":
 			[
 				{
-					"key": "country",
+					"key": "Country",
 					"value": "Cuba"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "70 cl"
 				}
 			]
@@ -224,15 +224,15 @@
 			"attributes":
 			[
 				{
-					"key": "type of beer",
+					"key": "Type of beer",
 					"value": "Pale Ale"
 				},
 				{
-					"key": "fermentation",
+					"key": "Fermentation",
 					"value": "Warm fermenting"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "33 cl"
 				}
 			]
@@ -251,15 +251,15 @@
 			"attributes":
 			[
 				{
-					"key": "type of beer",
+					"key": "Type of beer",
 					"value": "Pale Ale"
 				},
 				{
-					"key": "fermentation",
+					"key": "Fermentation",
 					"value": "Warm fermenting"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "33 cl"
 				}
 			]
@@ -278,15 +278,15 @@
 			"attributes":
 			[
 				{
-					"key": "type of beer",
+					"key": "Type of beer",
 					"value": "Trappist Beer"
 				},
 				{
-					"key": "fermentation",
+					"key": "Fermentation",
 					"value": "Warm fermenting"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
 					"value": "33 cl"
 				}
 			]
@@ -305,15 +305,42 @@
 			"attributes":
 			[
 				{
-					"key": "type of beer",
+					"key": "Type of beer",
 					"value": "Trappist Beer"
 				},
 				{
-					"key": "fermentation",
+					"key": "Fermentation",
 					"value": "Warm fermenting"
 				},
 				{
-					"key": "volume",
+					"key": "Volume",
+					"value": "33 cl"
+				}
+			]
+		},
+		{
+			"id": "12",
+			"name": "Chimay Blue",
+			"details_url": "http://cerveza.uvinum.es/chimay-azul",
+			"buy_url": "http://cerveza.uvinum.es/chimay-azul_comprar:store",
+			"image": "android.R.drawable.arrow_up_float",
+			"price": "1.89",
+			"offer_price": "1.80",
+			"producer": "Abbaye",
+			"category_root": "Beers",
+			"category_last_child": "Beers",
+			"attributes":
+			[
+				{
+					"key": "Type of beer",
+					"value": "Trappist Beer"
+				},
+				{
+					"key": "Fermentation",
+					"value": "Warm fermenting"
+				},
+				{
+					"key": "Volume",
 					"value": "33 cl"
 				}
 			]

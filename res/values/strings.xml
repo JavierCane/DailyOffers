@@ -26,4 +26,5 @@
     <string name="category">Category</string>
     <string name="favorited_product_added_confirm">%1$s has been added to Favorites</string>
     <string name="favorited_product_removed_confirm">%1$s has been removed from Favorites</string>
+    <string name="basic_data">Basic data:</string>
 </resources>
