@@ -25,8 +25,7 @@ import me.javierferrer.dailyoffersapp.models.ProductsList;
 import me.javierferrer.dailyoffersapp.utils.ProductsAdapter;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 
@@ -43,6 +42,14 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 {
 
 	protected static final List<String> CATEGORIES = new ArrayList<String>( asList( "Wines", "Spirits", "Beers" ) );
+	protected static final Map<String, Integer> CATEGORIES_IMAGES =
+			Collections.unmodifiableMap( new HashMap<String, Integer>()
+			{{
+					put( "Wines", R.drawable.wine );
+					put( "Spirits", R.drawable.spirit );
+					put( "Beers", R.drawable.beer );
+				}} );
+
 	protected static ProductsListBaseActivity sProductsListBaseActivity;
 	protected static ProductsAdapter sCurrentCategoryProductsAdapter = null;
 	protected static ActionBar sActionBar;
@@ -310,6 +317,11 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 			sActionBar.setHomeButtonEnabled( true );
 			sActionBar.setDisplayHomeAsUpEnabled( true );
 		}
+	}
+
+	public static Map<String, Integer> getCategoriesImages()
+	{
+		return CATEGORIES_IMAGES;
 	}
 
 	/******************************************************************************************************

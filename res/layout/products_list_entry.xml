@@ -39,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv_product_offer_price"
+            android:layout_toLeftOf="@+id/cb_favorited_product"
             android:layout_below="@id/tv_product_name"
             android:paddingLeft="20px"
             android:textSize="12dp" />

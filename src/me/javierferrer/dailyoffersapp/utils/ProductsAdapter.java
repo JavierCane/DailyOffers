@@ -17,7 +17,6 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 {
 
 	private int sTextViewId;
-	private Map<String, Integer> sCategoriesImages = new HashMap<String, Integer>();
 
 	private Context mContext;
 	private LayoutInflater mInflater;
@@ -36,10 +35,6 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 	public ProductsAdapter( Context context, int textViewId, ArrayList<Product> productsList )
 	{
 		super( context, textViewId, productsList );
-
-		sCategoriesImages.put( "Wines", R.drawable.wine );
-		sCategoriesImages.put( "Spirits", R.drawable.spirit );
-		sCategoriesImages.put( "Beers", R.drawable.beer );
 
 		sTextViewId = textViewId;
 
@@ -93,10 +88,10 @@ public final class ProductsAdapter extends ArrayAdapter<Product>
 			holder = ( ProductViewHolder ) row.getTag();
 		}
 
-		holder.image.setImageResource( sCategoriesImages.get( product.getCategoryRoot() ) );
+		holder.image.setImageResource( ProductsListBaseActivity.getCategoriesImages().get( product.getCategoryRoot() ) );
 		holder.name.setText( product.getName() );
-		holder.offerPrice.setText( product.getOfferPrice() );
-		holder.price.setText( mContext.getResources().getString( R.string.before ) + ": " + product.getPrice() );
+		holder.offerPrice.setText( product.getOfferPrice() + "€" );
+		holder.price.setText( mContext.getResources().getString( R.string.before ) + ": " + product.getPrice() + "€");
 		holder.favorited.setTag( product );
 
 		// Set listener for favorite action

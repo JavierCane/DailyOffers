@@ -21,6 +21,9 @@
     <string name="no_visible_categories_explanation">There are no visible categories. You can set them in Settings.</string>
     <string name="visible_categories_affect_search">Filter affects search scope</string>
     <string name="before">Before</string>
+    <string name="offer_price">Offer price</string>
+    <string name="regular_price">Regular price</string>
+    <string name="category">Category</string>
     <string name="favorited_product_added_confirm">%1$s has been added to Favorites</string>
     <string name="favorited_product_removed_confirm">%1$s has been removed from Favorites</string>
 </resources>
