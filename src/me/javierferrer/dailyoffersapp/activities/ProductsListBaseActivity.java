@@ -80,7 +80,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 		}
 		catch ( FileNotFoundException e )
 		{
-			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t\t\t\t" +
+			Log.d( ProductsListBaseActivity.TAG, mClassName + "\t" +
 			                                     "onCreate: FileNotFoundException (Probably the user has not defined any favorited product yet)." );
 		}
 

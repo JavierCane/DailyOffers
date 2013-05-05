@@ -51,6 +51,8 @@ public final class ProductsSearchActivity extends ProductsListBaseActivity
 		{
 			Log.d( TAG, mClassName + "\t\t" + "handleIntent: search intent detected" );
 
+			initVisibleCategories();
+
 			mQuery = intent.getStringExtra( SearchManager.QUERY );
 
 			sActionBar.setTitle( getResources().getString( R.string.search_results ) + ": \"" + mQuery + "\"" );
