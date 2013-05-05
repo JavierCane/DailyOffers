@@ -169,7 +169,7 @@ public abstract class ProductsListBaseActivity extends SherlockActivity
 			{
 				Product selectedProduct = ( Product ) mProductsListView.getItemAtPosition( position );
 
-				Log.i( TAG, mClassName + "\t" + "setListListeners: click on: " + selectedProduct.getName() );
+				Log.d( TAG, mClassName + "\t" + "setListListeners: click on: " + selectedProduct.getName() );
 
 				Intent productDetailsIntent = new Intent( ProductsListBaseActivity.this, ProductDetailsActivity.class );
 
